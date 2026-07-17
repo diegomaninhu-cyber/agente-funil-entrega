@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seu Acesso Está Liberado! | Treinamento Express + Kit Copiar e Colar</title>
+  <meta name="description" content="Acesse agora o Treinamento Express e o Kit Copiar e Colar para crescer seguidores e vender no automático pelo Instagram." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --card: #16161f;
+      --border: #252535;
+      --accent: #7c3aed;
+      --accent-light: #a855f7;
+      --accent-glow: rgba(124, 58, 237, 0.3);
+      --green: #10b981;
+      --green-glow: rgba(16, 185, 129, 0.2);
+      --gold: #f59e0b;
+      --text: #f0f0fa;
+      --muted: #8888aa;
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* HERO */
+    .hero {
+      background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.25) 0%, transparent 65%);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 20px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16,185,129,0.15);
+      border: 1px solid rgba(16,185,129,0.4);
+      color: var(--green);
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: pulse-green 2.5s infinite;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      max-width: 780px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #fff 30%, var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .hero-emoji {
+      font-size: 56px;
+      display: block;
+      margin-bottom: 16px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* SECTION LABEL */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .section-label span {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* MODULE CARDS */
+    .section {
+      padding: 60px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .modules-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .module-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+
+    .module-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px var(--accent-glow);
+    }
+
+    .module-num {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .module-body h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .module-body p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* TEMPLATE CARDS */
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 16px;
+    }
+
+    .template-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .template-card:hover {
+      border-color: var(--accent-light);
+      box-shadow: 0 4px 24px var(--accent-glow);
+    }
+
+    .template-card .tag {
+      display: inline-block;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.3);
+      color: var(--accent-light);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .template-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .template-box {
+      background: #0d0d14;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'Inter', sans-serif;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.3);
+      color: var(--accent-light);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .copy-btn:hover { background: rgba(124,58,237,0.25); }
+    .copy-btn.copied { background: rgba(16,185,129,0.15); border-color: var(--green); color: var(--green); }
+
+    /* PROMPTS */
+    .prompts-list { display: grid; gap: 24px; }
+
+    .prompt-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .prompt-card:hover { border-color: var(--gold); }
+
+    .prompt-header {
+      padding: 20px 24px;
+      background: rgba(245,158,11,0.05);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .prompt-icon {
+      width: 40px; height: 40px;
+      background: rgba(245,158,11,0.15);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+
+    .prompt-header h4 { font-size: 16px; font-weight: 700; }
+    .prompt-header p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    .prompt-body { padding: 20px 24px; }
+
+    /* DM SCRIPTS */
+    .dm-grid { display: grid; gap: 16px; }
+
+    .dm-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .dm-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .dm-step-badge {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; color: #fff;
+    }
+
+    .dm-step span { font-size: 13px; font-weight: 600; color: var(--muted); }
+
+    .bubble {
+      background: #1e1e2e;
+      border-radius: 12px 12px 12px 2px;
+      padding: 14px 18px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    /* CHECKLIST */
+    .checklist { list-style: none; display: grid; gap: 12px; }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .checklist li::before {
+      content: '✓';
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      background: var(--green-glow);
+      border: 1px solid rgba(16,185,129,0.5);
+      border-radius: 7px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .checklist li strong { color: var(--text); }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 28px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 140px;
+      padding: 10px 20px;
+      border-radius: 9px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: #fff;
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* FOOTER */
+    footer {
+      padding: 50px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .brand { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--green);
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 8px 32px rgba(16,185,129,0.4);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      z-index: 1000;
+    }
+
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .templates-grid { grid-template-columns: 1fr; }
+      .tab-btn { min-width: 110px; font-size: 12px; padding: 8px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-emoji">🎉</span>
+  <div class="badge">✅ Compra Confirmada — Acesso Liberado</div>
+  <h1>Seu Kit Está Pronto para Você Usar Agora</h1>
+  <p>Acesse abaixo o Treinamento Express, os Templates, os Scripts de DM e os Prompts de IA. Tudo para copiar, colar e aplicar hoje mesmo.</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- ===== SEÇÃO 1: TREINAMENTO ===== -->
+  <div class="section" id="treinamento">
+    <div class="section-label"><span>Treinamento Express</span></div>
+    <h2 class="section-title">🎓 O Método Comment-to-DM em 5 Módulos</h2>
+    <p class="section-desc">Assista (ou leia) nesta ordem. Cada módulo é rápido e direto — foque em aplicar um de cada vez.</p>
+
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-num">1</div>
+        <div class="module-body">
+          <h3>O Mecanismo por Trás da Estratégia</h3>
+          <p>Entenda por que o post "Comente X" ativa o algoritmo do Instagram, gera engajamento real e cria uma automação de crescimento que roda sem você. O segredo está no <strong>gap de informação</strong>: você promete algo específico, entrega no direct e coleta seguidores no caminho.</p>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">2</div>
+        <div class="module-body">
+          <h3>Como Copiar o Modelo (Passo a Passo)</h3>
+          <p>Configure o Manychat em 3 blocos: <strong>(a)</strong> Gatilho de comentário com palavra-chave → <strong>(b)</strong> Verificação de seguidor (Follow-Gate) → <strong>(c)</strong> Entrega automática da isca por DM. Sem isso, você só gera curtidas. Com isso, você cresce e vende.</p>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">3</div>
+        <div class="module-body">
+          <h3>Como Adaptar ao Seu Nicho com IA</h3>
+          <p>Use os Prompts do Módulo 5 deste kit para pedir ao Claude ou ChatGPT uma isca digital específica do seu nicho, o roteiro do post e as mensagens de DM prontas. Em menos de 30 minutos você tem uma campanha completa do zero, personalizada para o seu público.</p>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">4</div>
+        <div class="module-body">
+          <h3>Como Crescer Seguidores com Consistência</h3>
+          <p>Publique <strong>1 post gatilho por semana</strong>. Troque a isca a cada 2 semanas para não saturar. Misture Reels curtos (até 30s) com carrosséis de 5 slides. A frequência vence o alcance inicial baixo. Meta realista: 500–2.000 novos seguidores qualificados por mês com execução constante.</p>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">5</div>
+        <div class="module-body">
+          <h3>Como Vender no Automático (sem o seu tempo)</h3>
+          <p>Após a entrega da isca, configure um <strong>Smart Delay de 24 horas</strong> no Manychat. Depois, envie uma pergunta de re-engajamento e, com o clique da pessoa, apresente sua oferta de ticket baixo (R$ 29–97). O clique reabre a janela de 24h da Meta, tornando o envio 100% dentro das regras.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEÇÃO 2: KIT COPIAR E COLAR ===== -->
+  <div class="section" id="kit">
+    <div class="section-label"><span>Kit Copiar e Colar</span></div>
+    <h2 class="section-title">📋 Templates, Scripts e Prompts</h2>
+    <p class="section-desc">Selecione a aba que você precisa agora e copie diretamente para o Instagram ou Manychat.</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('templates')">📝 Posts Gatilho</button>
+      <button class="tab-btn" onclick="switchTab('dms')">💬 Scripts de DM</button>
+      <button class="tab-btn" onclick="switchTab('prompts')">🤖 Prompts de IA</button>
+      <button class="tab-btn" onclick="switchTab('checklist')">✅ Checklist</button>
+    </div>
+
+    <!-- TEMPLATES -->
+    <div class="tab-content active" id="tab-templates">
+      <div class="templates-grid">
+
+        <div class="template-card">
+          <div class="tag">Template 1</div>
+          <h4>🔧 A Ferramenta Secreta</h4>
+          <div class="template-box" id="t1">Eu passei as últimas semanas testando tudo no mercado de [NICHO], mas essa ferramenta secreta superou tudo. Ela faz [Benefício 1] e ainda te ajuda a [Benefício 2].
+
+Preparei um acesso gratuito para você.
+Quer acessar agora?
+
+Comente "[PALAVRA]" que eu te envio o link direto no seu direct. 📩</div>
+          <button class="copy-btn" onclick="copyText('t1', this)">📋 Copiar Template</button>
+        </div>
+
+        <div class="template-card">
+          <div class="tag">Template 2</div>
+          <h4>⚠️ O Erro Comum</h4>
+          <div class="template-box" id="t2">A maioria das pessoas trava em [DESEJO] porque comete o mesmo erro: [ERRO COMUM].
+
+Se você quer [RESULTADO], criei um checklist com o passo a passo exato que eu uso.
+
+Comente "[PALAVRA]" e o meu robô vai te mandar o material completo na sua DM! 🤖🎁</div>
+          <button class="copy-btn" onclick="copyText('t2', this)">📋 Copiar Template</button>
+        </div>
+
+        <div class="template-card">
+          <div class="tag">Template 3</div>
+          <h4>🎬 O Bastidor</h4>
+          <div class="template-box" id="t3">Todo mundo me pergunta qual é o segredo para conseguir [RESULTADO] tão rápido.
+
+A verdade é que eu parei de fazer [AÇÃO RUIM] e comecei a usar um método simples de [NOME DA ESTRATÉGIA].
+
+Eu documentei esse processo inteiro em um mapa mental.
+
+Digite "[PALAVRA]" nos comentários que eu te envio no direct. 👇</div>
+          <button class="copy-btn" onclick="copyText('t3', this)">📋 Copiar Template</button>
+        </div>
+
+        <div class="template-card">
+          <div class="tag">Template 4</div>
+          <h4>📋 A Lista Definitiva</h4>
+          <div class="template-box" id="t4">Pare de sofrer para encontrar bons [RECURSOS/FERRAMENTAS].
+
+Compilei uma lista definitiva com as [NÚMERO] melhores opções gratuitas para você aplicar no seu negócio hoje e ganhar muito tempo.
+
+Quer a lista completa com os links?
+
+Comente "[PALAVRA]" e checa sua DM! 📩</div>
+          <button class="copy-btn" onclick="copyText('t4', this)">📋 Copiar Template</button>
+        </div>
+
+        <div class="template-card">
+          <div class="tag">Template 5</div>
+          <h4>⚡ O Atalho</h4>
+          <div class="template-box" id="t5">Se você quer [DESEJO], mas não tem tempo para [OBJEÇÃO], existe um atalho.
+
+Eu criei um [TEMPLATE/GUIA/ROTEIRO] pronto para você só copiar e colar.
+
+Comente a palavra "[PALAVRA]" e eu te mando o acesso gratuito na mesma hora por mensagem! 🚀</div>
+          <button class="copy-btn" onclick="copyText('t5', this)">📋 Copiar Template</button>
+        </div>
+
+        <div class="template-card">
+          <div class="tag">Template 6</div>
+          <h4>🏆 O Desafio</h4>
+          <div class="template-box" id="t6">Se você aplicar essa pequena mudança por [X DIAS], os resultados de [BENEFÍCIO] vão aparecer.
+
+Para te ajudar, criei um PDF com o desafio completo e o passo a passo.
+
+Topa o desafio?
+
+Digite "[PALAVRA]" nos comentários para receber o material VIP no seu direct! 🎯</div>
+          <button class="copy-btn" onclick="copyText('t6', this)">📋 Copiar Template</button>
+        </div>
+
+        <div class="template-card">
+          <div class="tag">Template 7</div>
+          <h4>🔄 Antes e Depois</h4>
+          <div class="template-box" id="t7">Sair de [ESTADO RUIM] para [ESTADO BOM] não é sorte, é método.
+
+O que mudou meu jogo foi ter acesso a uma estratégia focada em [PILAR PRINCIPAL].
+
+Eu documentei como eu fiz essa virada.
+
+Quer ter acesso aos bastidores?
+
+Comente "[PALAVRA]" e eu te envio na DM. 🤫</div>
+          <button class="copy-btn" onclick="copyText('t7', this)">📋 Copiar Template</button>
+        </div>
+
+        <div class="template-card">
+          <div class="tag">Template 8</div>
+          <h4>🔓 A Curiosidade</h4>
+          <div class="template-box" id="t8">Existe uma regra não dita no mercado de [NICHO] que quase ninguém compartilha.
+
+Saber disso pode te poupar [TEMPO/DINHEIRO].
+
+Eu fiz um compilado revelando esse segredo de forma prática.
+
+Ficou curioso?
+
+Comente "[PALAVRA]" que te conto tudo no direct. 🔓</div>
+          <button class="copy-btn" onclick="copyText('t8', this)">📋 Copiar Template</button>
+        </div>
+
+        <div class="template-card">
+          <div class="tag">Template 9</div>
+          <h4>🎁 O Presente Inesperado</h4>
+          <div class="template-box" id="t9">Peguei o meu melhor [DOCUMENTO/PLANILHA] que uso no meu dia a dia para [BENEFÍCIO] e vou liberar de graça para os meus seguidores.
+
+Quer garantir o seu acesso antes que eu tire do ar?
+
+Comente "[PALAVRA]" e vai olhar as suas mensagens agora! 🎁</div>
+          <button class="copy-btn" onclick="copyText('t9', this)">📋 Copiar Template</button>
+        </div>
+
+        <div class="template-card">
+          <div class="tag">Template 10</div>
+          <h4>🔍 O Check-up</h4>
+          <div class="template-box" id="t10">Muitos estão deixando dinheiro na mesa porque o [SEU PERFIL/NEGÓCIO] não está otimizado para [OPORTUNIDADE].
+
+Eu criei um diagnóstico rápido de [NÚMERO] passos para você mesmo avaliar e corrigir isso hoje.
+
+Quer receber o diagnóstico completo no direct?
+
+Digite "[PALAVRA]" abaixo! 👇</div>
+          <button class="copy-btn" onclick="copyText('t10', this)">📋 Copiar Template</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DM SCRIPTS -->
+    <div class="tab-content" id="tab-dms">
+      <div class="dm-grid">
+
+        <div class="dm-card">
+          <div class="dm-step">
+            <div class="dm-step-badge">1</div>
+            <span>Envio Imediato (após comentário)</span>
+          </div>
+          <div class="bubble" id="dm1">Opa! Vi lá que você comentou no meu post. 🎁
+
+Aqui está o link secreto para você acessar o material que eu prometi, conforme combinado:
+
+👇 Toca no botão abaixo para acessar agora!</div>
+          <button class="copy-btn" onclick="copyText('dm1', this)" style="margin-top:14px">📋 Copiar</button>
+        </div>
+
+        <div class="dm-card">
+          <div class="dm-step">
+            <div class="dm-step-badge">2</div>
+            <span>Follow-Gate (se ainda não segue)</span>
+          </div>
+          <div class="bubble" id="dm2">Ops! Parece que você ainda não me segue. 🙈
+
+Para liberar o acesso ao material gratuito, é só me seguir aqui no Instagram e depois clicar em "Já Segui" abaixo.
+
+É rapidinho — e é assim que garante o acesso! 😄</div>
+          <button class="copy-btn" onclick="copyText('dm2', this)" style="margin-top:14px">📋 Copiar</button>
+        </div>
+
+        <div class="dm-card">
+          <div class="dm-step">
+            <div class="dm-step-badge">3</div>
+            <span>24h depois — Re-engajamento (SEM oferta ainda)</span>
+          </div>
+          <div class="bubble" id="dm3">Ei, conseguiu acessar o [NOME DA ISCA] ontem? 🤖
+
+Estava pensando aqui... muita gente que baixou o material me perguntou como eu fiz para ter tantos comentários naquele post e automatizar tudo no automático.
+
+Você também cria conteúdo e quer ver a estratégia exata que eu uso para ganhar seguidores e fazer vendas?</div>
+          <button class="copy-btn" onclick="copyText('dm3', this)" style="margin-top:14px">📋 Copiar</button>
+        </div>
+
+        <div class="dm-card">
+          <div class="dm-step">
+            <div class="dm-step-badge">4</div>
+            <span>Fechamento (após clicar em "Sim, quero ver!")</span>
+          </div>
+          <div class="bubble" id="dm4">Legal! 🚀 O segredo é exatamente esse funil automático que você acabou de passar.
+
+Eu empacotei todo o meu método no Treinamento Express + Kit Copiar e Colar — com templates prontos de posts, scripts de DM e prompts de IA para criar tudo em minutos.
+
+O valor é simbólico: só R$ 49,90. Você recupera isso com as suas primeiras vendas usando o método.
+
+Quer pegar o seu Kit agora e começar a rodar hoje?</div>
+          <button class="copy-btn" onclick="copyText('dm4', this)" style="margin-top:14px">📋 Copiar</button>
+        </div>
+
+        <div class="dm-card">
+          <div class="dm-step">
+            <div class="dm-step-badge">5</div>
+            <span>Resposta a Objeção: "Tá caro"</span>
+          </div>
+          <div class="bubble" id="dm5">Entendo! Mas pensa assim: R$ 49,90 é o valor de 1 almoço. 🍱
+
+Com esse kit, você tem tudo para montar uma automação que pode trazer dezenas de seguidores novos e vendas no piloto automático, sem precisar de agência ou programador.
+
+Se funcionar mesmo que 1 vez, você já pagou o kit com lucro. Faz sentido?</div>
+          <button class="copy-btn" onclick="copyText('dm5', this)" style="margin-top:14px">📋 Copiar</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PROMPTS -->
+    <div class="tab-content" id="tab-prompts">
+      <div class="prompts-list">
+
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <div class="prompt-icon">💡</div>
+            <div>
+              <h4>Prompt 1 — Criador de Iscas Digitais</h4>
+              <p>Use quando precisar de uma ideia de material gratuito irresistível</p>
+            </div>
+          </div>
+          <div class="prompt-body">
+            <div class="template-box" id="p1">Aja como um estrategista de marketing digital e especialista no nicho de [INSERIR SEU NICHO]. Meu objetivo é atrair [INSERIR SEU PÚBLICO]. Crie 5 ideias de Iscas Digitais de consumo rápido (checklists, planilhas simples, prompts ou mini-guias) que resolvam uma dor urgente desse público. Para cada ideia, forneça um título persuasivo, o formato ideal de entrega e um gancho de 1 frase para eu usar em um Reels/Post.</div>
+            <button class="copy-btn" onclick="copyText('p1', this)" style="margin-top:12px">📋 Copiar Prompt</button>
+          </div>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <div class="prompt-icon">🎥</div>
+            <div>
+              <h4>Prompt 2 — Roteirista de Reels</h4>
+              <p>Use quando precisar gravar um Reels que gere comentários</p>
+            </div>
+          </div>
+          <div class="prompt-body">
+            <div class="template-box" id="p2">Aja como um especialista em Copywriting para Instagram. Eu vou entregar de graça o seguinte material: [NOME DA SUA ISCA]. Escreva um roteiro curto para um Reels de até 45 segundos com:
+1. Um gancho inicial (primeiros 3 segundos) que retenha a atenção.
+2. O desenvolvimento rápido do problema.
+3. A solução mostrando a minha isca.
+4. Um CTA pedindo para a pessoa comentar a palavra "[SUA PALAVRA CHAVE]" para receber o material no direct.
+Separe as falas do que deve aparecer visualmente na tela.</div>
+            <button class="copy-btn" onclick="copyText('p2', this)" style="margin-top:12px">📋 Copiar Prompt</button>
+          </div>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <div class="prompt-icon">🤖</div>
+            <div>
+              <h4>Prompt 3 — Construtor de Scripts de DM</h4>
+              <p>Use quando precisar criar mensagens conversacionais para o Manychat</p>
+            </div>
+          </div>
+          <div class="prompt-body">
+            <div class="template-box" id="p3">Você é um especialista em funis de vendas por direct. Escreva um script de 3 mensagens curtas para o Manychat:
+- Pessoa comentou no meu post e vai receber [A SUA ISCA].
+Mensagem 1 (imediato): Entregue o link da isca de forma calorosa.
+Mensagem 2 (após 1 dia): Puxe conversa casual perguntando se ela acessou, e faça uma pergunta curta sobre a dor [INSERIR DOR].
+Mensagem 3: Faça transição sutil oferecendo meu produto de R$ 49,90 chamado [NOME DO PRODUTO].
+Tom coloquial, use emojis sem exagerar, inclua sugestões de botões para clicar.</div>
+            <button class="copy-btn" onclick="copyText('p3', this)" style="margin-top:12px">📋 Copiar Prompt</button>
+          </div>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <div class="prompt-icon">📦</div>
+            <div>
+              <h4>Prompt 4 — Criador de Mini-Produtos</h4>
+              <p>Use quando quiser criar um produto digital de R$ 29–97 para vender no funil</p>
+            </div>
+          </div>
+          <div class="prompt-body">
+            <div class="template-box" id="p4">Eu tenho uma audiência que acabou de baixar meu material gratuito sobre [TEMA DA ISCA]. Quero oferecer um produto digital de ticket baixo (entre R$ 27 e R$ 97) que seja continuação lógica dessa isca e que não dependa do meu tempo de suporte. Aja como um produtor digital e sugira 3 ideias de produtos perfeitos. Para cada produto, defina: Promessa Principal, Formato de Entrega e 3 tópicos centrais que devem estar no material.</div>
+            <button class="copy-btn" onclick="copyText('p4', this)" style="margin-top:12px">📋 Copiar Prompt</button>
+          </div>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <div class="prompt-icon">💳</div>
+            <div>
+              <h4>Prompt 5 — Copywriter de Checkout</h4>
+              <p>Use quando precisar do texto para a página de pagamento</p>
+            </div>
+          </div>
+          <div class="prompt-body">
+            <div class="template-box" id="p5">Aja como o melhor copywriter de resposta direta do Brasil. Estou vendendo um produto chamado [NOME DO PRODUTO] por [PREÇO]. O público são [PÚBLICO] que sofrem com [DOR PRINCIPAL]. Crie o texto para a minha página de checkout com:
+1. Uma Headline forte.
+2. 5 bullets destacando o que a pessoa ganha.
+3. Ancoragem de preço (mostrando que o valor é barato pelo que entrega).
+4. Argumento de eliminação de risco (entrega imediata).
+Texto persuasivo, ético e sem enrolação.</div>
+            <button class="copy-btn" onclick="copyText('p5', this)" style="margin-top:12px">📋 Copiar Prompt</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CHECKLIST -->
+    <div class="tab-content" id="tab-checklist">
+      <p class="section-desc">Revise este checklist completo antes de publicar qualquer campanha de Comment-to-DM.</p>
+      <ul class="checklist">
+        <li><strong>Post:</strong> A palavra-chave é simples, curta e fácil de digitar (ex: "Claude", "Kit", "Acesso")?</li>
+        <li><strong>Post:</strong> A legenda termina com um CTA claro pedindo para comentar a palavra-chave?</li>
+        <li><strong>Manychat:</strong> O gatilho de comentário está configurado com a palavra-chave correta?</li>
+        <li><strong>Manychat:</strong> A primeira mensagem de DM é calorosa e entrega a isca imediatamente?</li>
+        <li><strong>Manychat:</strong> O Follow-Gate está ativo para forçar o seguimento antes da entrega?</li>
+        <li><strong>Manychat:</strong> Existe mensagem de recuperação para quem ignorou a primeira DM?</li>
+        <li><strong>Manychat:</strong> O Smart Delay de 24 horas está configurado antes da mensagem de oferta?</li>
+        <li><strong>Manychat:</strong> A mensagem de re-engajamento (24h depois) é uma pergunta e NÃO uma oferta direta?</li>
+        <li><strong>Oferta:</strong> O link do checkout está correto e funcionando?</li>
+        <li><strong>Oferta:</strong> O botão de compra está visível e com texto de ação claro?</li>
+        <li><strong>Entrega:</strong> O produto digital está hospedado e o link de acesso funciona corretamente?</li>
+        <li><strong>Métricas:</strong> Você sabe quantos comentários, DMs enviados e cliques aconteceram?</li>
+        <li><strong>Consistência:</strong> Você tem pelo menos 1 post gatilho programado para a semana seguinte?</li>
+      </ul>
+    </div>
+
+  </div><!-- /section kit -->
+
+</div><!-- /container -->
+
+<footer>
+  <div class="brand">@diegoabneroficial</div>
+  <p>Obrigado pela confiança. Agora é hora de aplicar! 🚀</p>
+</footer>
+
+<div class="toast" id="toast">✅ Copiado com sucesso!</div>
+
+<script>
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function copyText(id, btn) {
+    const el = document.getElementById(id);
+    navigator.clipboard.writeText(el.innerText).then(() => {
+      btn.classList.add('copied');
+      btn.textContent = '✅ Copiado!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = '📋 Copiar ' + (id.startsWith('p') ? 'Prompt' : id.startsWith('dm') ? '' : 'Template');
+      }, 2000);
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    });
+  }
+</script>
+
+</body>
+</html>
