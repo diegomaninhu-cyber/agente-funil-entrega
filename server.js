@@ -1,11 +1,76 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.use(express.static(path.join(__dirname)));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+const SALES_FILE = path.join(__dirname, 'vendas.json');
+
+app.use(express.json());
+
+app.post('/webhook', (req, res) => {
+    try {
+          const payload = req.body;
+          const timestamp = new Date().toISOString();
+          const venda = {
+                  timestamp,
+                  invoice_slug: payload.invoice_slug || null,
+                  amount: payload.amount || null,
+                  paid_amount: payload.paid_amount || null,
+                  installments: payload.installments || null,
+                  capture_method: payload.capture_method || null,
+                  transaction_nsu: payload.transaction_nsu || null,
+                  order_nsu: payload.order_nsu || null,
+                  receipt_url: payload.receipt_url || null,
+                  customer: payload.customer || null,
+                  items: payload.items || null,
+                  raw: payload
+          };
+          let vendas = [];
+          if (fs.existsSync(SALES_FILE)) {
+                  try { vendas = JSON.parse(fs.readFileSync(SALES_FILE, 'utf8')); } catch (e) { vendas = []; }
+          }
+          vendas.push(venda);
+          fs.writeFileSync(SALES_FILE, JSON.stringify(vendas, null, 2), 'utf8');
+          console.log("VENDA: " + timestamp + " | R$ " + (venda.paid_amount / 100).toFixed(2));
+          res.status(200).json({ status: 'ok', received: timestamp });
+    } catch (err) {
+          console.error('Erro webhook:', err);
+          res.status(400).json({ status: 'error', message: err.message });
+    }
 });
+
+app.get('/vendas', (req, res) => {
+    const token = req.query.token;
+    if (token !== (process.env.ADMIN_TOKEN || 'diego2026')) {
+          return res.status(401).json({ error: 'Nao autorizado' });
+    }
+    if (!fs.existsSync(SALES_FILE)) return res.json({ total: 0, vendas: [] });
+    try {
+          const vendas = JSON.parse(fs.readFileSync(SALES_FILE, 'utf8'));
+          const total = vendas.reduce((acc, v) => acc + (v.paid_amount || 0), 0);
+          res.json({
+                  total_vendas: vendas.length,
+                  total_arrecadado_reais: (total / 100).toFixed(2),
+                  vendas: vendas.map(v => ({
+                            data: v.timestamp,
+                            valor: 'R$ ' + ((v.paid_amount || 0) / 100).toFixed(2),
+                            metodo: v.capture_method,
+                            recibo: v.receipt_url,
+                            cliente: v.customer
+                  }))
+          });
+    } catch (e) {
+          res.status(500).json({ error: 'Erro ao ler vendas' });
+    }
+});
+
+app.use(express.static(path.join(__dirname)));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+    console.log('Servidor rodando na porta ' + PORT);
 });
