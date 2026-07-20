@@ -86,8 +86,16 @@ app.get('/vendas', (req, res) => {
   }
 });
 
-// ─── SERVE PÁGINA DE ENTREGA ──────────────────────────────────────────────────
+// ─── SERVE PÁGINAS DE OFERTA E ENTREGA ──────────────────────────────────────
 app.use(express.static(path.join(__dirname)));
+
+app.get('/oferta', (req, res) => {
+  res.sendFile(path.join(__dirname, 'oferta.html'));
+});
+
+app.get('/oferta2', (req, res) => {
+  res.sendFile(path.join(__dirname, 'oferta2.html'));
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
