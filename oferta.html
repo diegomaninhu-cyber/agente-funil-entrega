@@ -210,6 +210,53 @@
       gap: 6px;
     }
 
+    /* ── PLAY OVERLAY CUSTOMIZADO ── */
+    .play-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      cursor: pointer;
+      z-index: 10;
+      transition: opacity 0.3s ease;
+    }
+    
+    .play-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .play-icon-large {
+      width: 80px;
+      height: 80px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,173,3,0.5);
+      animation: pulse-play 2s infinite;
+    }
+
+    .play-icon-large svg { margin-left: 5px; }
+
+    .play-text {
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes pulse-play {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,173,3,0.5); }
+      50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(0,173,3,0); }
+    }
+
     /* ── RESPONSIVO PARA DISPOSITIVOS MENORES ── */
     @media (max-width: 480px) {
       .video-section { 
@@ -261,33 +308,21 @@
     <div class="video-wrapper" id="videoWrapper">
       <div class="video-container">
 
-        <!--
-          INSTRUCOES PARA ADICIONAR SEU VIDEO:
-          ====================================
-          Quando tiver o video pronto, substitua a div .video-placeholder
-          por uma tag <video> com seu arquivo hospedado:
-
-          <video
-            id="mainVideo"
-            playsinline
-            controls
-            preload="metadata"
-            poster="thumbnail.jpg"
-          >
-            <source src="/videos/oferta.mp4" type="video/mp4"/>
-          </video>
-
-          O JavaScript abaixo ja esta configurado para:
-          - Rastrear o progresso do video
-          - Mostrar o botao CTA no tempo que voce definir (var CTA_TRIGGER_SECONDS)
-          - Manter o botao visivel ao final
-        -->
+        <!-- OVERLAY DE PLAY CUSTOMIZADO -->
+        <div class="play-overlay" id="playOverlay">
+          <div class="play-icon-large">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="white">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+          <div class="play-text">Clique para ouvir</div>
+        </div>
 
         <video
           id="mainVideo"
           playsinline
-          controls
           preload="metadata"
+          style="cursor: pointer;"
         >
           <source src="WhatsApp Video 2026-07-20 at 05.37.27.mp4" type="video/mp4"/>
         </video>
@@ -333,6 +368,7 @@
     var videoProgress = document.getElementById('videoProgress');
     var progressFill = document.getElementById('progressFill');
     var video = document.getElementById('mainVideo');
+    var playOverlay = document.getElementById('playOverlay');
 
     function showCTA() {
       ctaContainer.classList.add('visible');
@@ -341,6 +377,25 @@
     if (video) {
       // Tem video: escuta o progresso
       videoProgress.classList.add('visible');
+
+      // Click no overlay de play
+      if(playOverlay) {
+        playOverlay.addEventListener('click', function() {
+          playOverlay.classList.add('hidden');
+          video.play();
+        });
+      }
+
+      // Click no video para pausar/despausar
+      video.addEventListener('click', function() {
+        if(video.paused) {
+          video.play();
+          if(playOverlay) playOverlay.classList.add('hidden');
+        } else {
+          video.pause();
+          if(playOverlay) playOverlay.classList.remove('hidden');
+        }
+      });
 
       video.addEventListener('timeupdate', function() {
         var pct = (video.currentTime / video.duration) * 100;
@@ -354,6 +409,7 @@
       video.addEventListener('ended', function() {
         showCTA();
         progressFill.style.width = '100%';
+        if(playOverlay) playOverlay.classList.remove('hidden');
       });
 
     } else {
