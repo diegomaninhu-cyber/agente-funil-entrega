@@ -101,6 +101,10 @@ app.get('/oferta3', (req, res) => {
   res.sendFile(path.join(__dirname, 'oferta3.html'));
 });
 
+app.get('/oferta4', (req, res) => {
+  res.sendFile(path.join(__dirname, 'oferta4.html'));
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
