@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Máquina de Seguidores com IAs Autônomas 2026</title>
+<meta name="description" content="Transforme seu Instagram em uma máquina de vendas com IAs Agênticas e claudeCode.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #121212;
+    --panel: #1a1a1a;
+    --panel-2: #222222;
+    --light: #f5f5f5;
+    --light-2: #ffffff;
+    --ink: #e0e0e0;
+    --ink-dark: #111111;
+    --muted: #888888;
+    --muted-dark: #555555;
+    --line: #2a2a2a;
+    --line-light: #e0e0e0;
+    
+    --accent: #a855f7;
+    --accent-deep: #7c3aed;
+    --accent-soft: rgba(168,85,247,0.1);
+    
+    --green: #10b981;
+    --green-2: #059669;
+    
+    --shadow: 0 30px 60px rgba(0,0,0,0.6);
+    --shadow-sm: 0 10px 30px rgba(0,0,0,0.4);
+    --radius: 12px;
+    --radius-lg: 16px;
+    --maxw: 1040px;
+    --fs: 'Inter', sans-serif;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--fs);
+    color:var(--ink);
+    background:var(--bg-2);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img, video{max-width:100%;display:block}
+  a{text-decoration:none;color:inherit}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .section{padding:90px 0}
+  .section--light{background:var(--light);color:var(--ink-dark)}
+  .section--panel{background:var(--bg)}
+
+  /* Tipografia */
+  .eyebrow{
+    display:inline-block;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+    font-size:0.75rem;color:var(--accent);margin-bottom:24px;
+  }
+  .section--light .eyebrow{color:var(--accent-deep)}
+  h1,h2,h3{line-height:1.2;font-weight:600;letter-spacing:-0.03em}
+  h1{font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700}
+  h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:600}
+  h3{font-size:clamp(1.2rem,2.4vw,1.4rem);font-weight:600}
+  .em{font-style:italic;font-weight:500}
+  .lead{font-size:clamp(1.1rem,2.1vw,1.25rem);color:var(--muted);font-weight:300}
+  .section--light .lead{color:var(--muted-dark)}
+  .hl{color:var(--accent)}
+  .center{text-align:center}
+  .mx-auto{margin-left:auto;margin-right:auto}
+  .maxcopy{max-width:720px}
+
+  /* Overrides Seções Claras */
+  .section--light h1,.section--light h2,.section--light h3{color:var(--ink-dark)}
+  .section--light .stack-total{color:var(--ink-dark)}
+  .section--light .stack-total s{color:var(--muted-dark)}
+  .section--light .pain-list li{background:#fff;border-color:var(--line-light);color:#333}
+  .section--light .pain-list li b{color:#111}
+  .section--light .feature-card h2,.section--light .feature-card h3{color:#fff}
+  .section--light .feature-card .prose p{color:#ccc}
+  .section--light .feature-card .prose p b{color:#fff}
+
+  /* Botoes */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:12px;
+    background:var(--green);
+    color:#fff;font-weight:600;font-size:1.1rem;
+    padding:20px 48px;border-radius:4px;border:0;cursor:pointer;letter-spacing:0.05em;
+    box-shadow:0 10px 30px rgba(16,185,129,0.2);transition:all 0.3s ease;
+    text-align:center;line-height:1;text-transform:uppercase;
+  }
+  .btn:hover{transform:translateY(-2px);background:var(--green-2);box-shadow:0 15px 40px rgba(16,185,129,0.3)}
+  .btn--full{display:flex;width:100%}
+
+  /* Top bar */
+  .prehead{background:#000;color:var(--muted);text-align:center;font-size:0.85rem;padding:12px 24px;font-weight:400;border-bottom:1px solid var(--line)}
+  .prehead b{color:#fff;font-weight:600}
+  .topbar{padding:24px 0;background:var(--bg)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:center}
+  .brand{text-align:center;line-height:1.2}
+  .brand .name{font-weight:300;letter-spacing:0.3em;font-size:1.2rem;color:#fff}
+  .brand .name b{font-weight:700}
+  .brand .sub{display:block;font-size:0.6rem;letter-spacing:0.4em;color:var(--accent);margin-top:6px;text-transform:uppercase;font-weight:500;}
+
+  /* HERO */
+  .hero{position:relative;padding:0;background:var(--bg)}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;padding-top: 80px; padding-bottom: 90px;}
+  .hero-left{display:flex;flex-direction:column;justify-content:center}
+  .hero-media{position:relative;display:flex;align-items:center;justify-content:center}
+  .hero h1{margin:0 0 24px;max-width:600px;line-height: 1.1;}
+  .hero .lead{max-width:480px;margin:0 0 40px}
+  
+  .hero-bullets{list-style:none;display:grid;gap:16px;margin:0 0 40px;max-width:480px}
+  .hero-bullets li{display:flex;align-items:center;gap:16px;font-size:1rem;color:var(--ink);font-weight: 400;}
+  .hero-bullets li .ck{flex:0 0 auto;width:20px;height:20px;border-radius:2px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600}
+  
+  /* Video Hero */
+  .video-wrapper {
+    width: 100%;
+    max-width: 400px;
+    background: #000;
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 177.78%;
+  }
+  .video-container video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .play-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.4s ease;
+  }
+  .play-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .play-icon-large {
+    width: 72px;
+    height: 72px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+  .play-overlay:hover .play-icon-large {
+    transform: scale(1.05);
+    background: rgba(255,255,255,0.15);
+  }
+  .play-icon-large svg { margin-left: 4px; }
+
+  @media(min-width:861px){
+    .hero{background:linear-gradient(90deg,var(--light) 0 50%,var(--bg) 50% 100%)}
+    .hero .wrap{padding-left:24px;padding-right:0}
+    .hero-media{padding:48px 24px 48px 48px}
+    .hero-left h1{color:var(--ink-dark)}
+    .hero-left .lead{color:var(--muted-dark)}
+    .hero-left .hero-bullets li{color:var(--ink-dark)}
+  }
+
+  /* prose */
+  .prose{max-width:680px;margin:0 auto}
+  .prose p{margin:0 0 24px;font-size:1.1rem;color:var(--muted);font-weight:300;line-height:1.8}
+  .section--light .prose p{color:#444}
+  .prose p b{color:#fff;font-weight:500}
+  .section--light .prose p b{color:#111}
+  .prose .big{text-align:center;font-size:1.4rem;font-weight:500;color:#fff;margin-top:40px}
+  .section--light .prose .big{color:#111}
+
+  /* Pain list */
+  .pain-list{list-style:none;max-width:720px;margin:40px auto 0;display:grid;gap:16px}
+  .pain-list li{position:relative;background:var(--panel);border:1px solid var(--line);border-left:2px solid #333;border-radius:8px;padding:24px 24px 24px 48px;font-size:1rem;color:var(--muted);font-weight:300}
+  .pain-list li::before{content:"—";position:absolute;left:20px;top:22px;color:var(--muted);font-weight:400;font-size:1rem}
+  .pain-list li b{color:#fff;font-weight:500}
+
+  /* Feature card */
+  .feature-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(40px,5vw,60px);box-shadow:var(--shadow);max-width:840px;margin:0 auto}
+  .badge{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:500;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:24px;}
+
+  /* Value stack */
+  .stack{display:grid;gap:20px;max-width:800px;margin:0 auto}
+  .stack-item{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;transition:border-color 0.3s ease;}
+  .stack-item:hover{border-color:var(--accent-soft)}
+  .stack-item.bonus{border:1px solid rgba(168,85,247,0.3);background:var(--panel-2)}
+  .bonus-badge{display:inline-block;color:var(--accent);font-weight:600;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px}
+  
+  .stack-tag{flex:0 0 auto;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:600;background:var(--line);color:var(--ink);letter-spacing:0;}
+  .stack-item.bonus .stack-tag{background:var(--accent-soft);color:var(--accent);}
+  
+  .stack-item h3{margin-bottom:8px;color:#fff;font-weight:500;font-size:1.15rem;}
+  .stack-item p{color:var(--muted);font-size:0.95rem;margin-bottom:16px;font-weight:300;line-height:1.6;}
+  .price-tag{font-weight:500;color:var(--accent);font-size:0.9rem;letter-spacing:0.02em}
+  .price-tag .module-label{color:var(--muted);font-weight:400}
+  .stack-total{text-align:center;margin-top:40px;font-size:1.2rem;font-weight:500;color:#fff}
+  .stack-total s{color:var(--muted);font-weight:400}
+
+  /* Oferta */
+  .offer-anchor{max-width:600px;margin:0 auto 40px;text-align:center}
+  .offer-card{background:var(--panel);border:1px solid rgba(168,85,247,0.2);border-radius:var(--radius-lg);max-width:540px;margin:0 auto;box-shadow:var(--shadow);overflow:hidden}
+  .offer-head{background:var(--panel-2);color:var(--accent);text-align:center;padding:20px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;font-size:0.8rem;border-bottom:1px solid var(--line)}
+  .offer-body{padding:clamp(32px,5vw,48px)}
+  .offer-list{list-style:none;display:grid;gap:16px;margin-bottom:32px}
+  .offer-list li{display:flex;justify-content:space-between;gap:16px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px;font-size:0.95rem;color:var(--muted);font-weight:300}
+  .offer-list li:last-child{border-bottom:0}
+  .offer-list s{color:var(--muted-dark)}
+  .offer-list .tagprice{font-weight:500;white-space:nowrap;color:var(--muted-dark)}
+  .offer-total{text-align:center;margin:8px 0 32px}
+  .offer-total .strike{color:var(--muted);font-size:0.95rem}
+  .offer-total .strike s{font-weight:400}
+  .offer-price{font-size:clamp(2.5rem,8vw,3.5rem);font-weight:600;color:#fff;line-height:1;margin-top:12px;letter-spacing:-0.03em}
+  .offer-price small{display:block;font-size:0.85rem;font-weight:400;color:var(--muted);margin-top:12px;text-transform:none;letter-spacing:0}
+
+  /* Footer */
+  .footer{background:#000;color:var(--muted-dark);text-align:center;padding:60px 24px;font-size:0.8rem;border-top:1px solid var(--line);font-weight:300}
+
+  @media(max-width:860px){
+    .hero{background:var(--bg)}
+    .hero-grid{grid-template-columns:1fr;gap:40px;padding-top: 60px; padding-bottom: 60px;}
+    .hero-left{order:1}
+    .hero-media{order:2}
+    .hero h1,.hero .lead,.hero-bullets{max-width:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- PRÉ-HEADLINE -->
+<div class="prehead">
+  Treinamento Prático: Copie, cole e veja a mágica acontecer em <b>apenas 50 minutos</b>. Sem precisar saber tecnologia.
+</div>
+
+<!-- TOPBAR / LOGO -->
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <span class="name">MÁQUINA DE <b>SEGUIDORES</b></span>
+      <span class="sub">Inteligência Artificial Agêntica</span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-left">
+      <h1>Transforme seu Instagram numa máquina de vendas com <span class="em hl">IAs Autônomas.</span></h1>
+      <p class="lead">Gere criativos, crie fluxos de conversa e capte leads por apenas R$ 0,90 utilizando o poder da tecnologia <b>claudeCode</b> de 2026. Mesmo que você não saiba nada de tecnologia.</p>
+      <ul class="hero-bullets">
+        <li><span class="ck">✓</span> Automações de comentários, DMs e vendas</li>
+        <li><span class="ck">✓</span> Scripts, Workflows e Prompts de "copiar e colar"</li>
+        <li><span class="ck">✓</span> Bônus: Aprenda a ter 6 meses de Claude Grátis</li>
+      </ul>
+      <a href="#oferta" class="btn" style="width: fit-content;">Iniciar Minha Máquina Agora</a>
+    </div>
+    
+    <div class="hero-media">
+      <div class="video-wrapper" id="videoWrapper">
+        <div class="video-container">
+          <!-- OVERLAY DE PLAY -->
+          <div class="play-overlay" id="playOverlay">
+            <div class="play-icon-large">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+          <video id="mainVideo" playsinline preload="metadata">
+            <source src="video_oferta_hq.mp4" type="video/mp4"/>
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGITAÇÃO DO PROBLEMA -->
+<section class="section section--panel">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">A Criação no Escuro</span>
+      <h2 class="maxcopy mx-auto">Você está criando conteúdo <span class="em hl">baseado em suposições?</span></h2>
+    </div>
+    <div class="prose" style="margin-top:48px">
+      <p>A maioria dos perfis foca em criar conteúdo "no escuro" e tenta atrair "qualquer um". O resultado? Seguidores desqualificados que apenas curtem e nunca compram o seu produto.</p>
+      <p>Mas existe um segredo usado por grandes nomes como Antônio Fogaça, Pablo Marçal, Wendel Carvalho e até pela própria Inteligência Artificial do Claude em seu perfil: <b>a produção orientada à demanda com automação conversacional.</b></p>
+      <p class="big">Seu Instagram precisa trabalhar por você.</p>
+      <p style="text-align:center">Nós desenvolvemos "skills especiais" para diagnosticar exatamente o que seu nicho quer comprar. O anúncio e a postagem são ditados pela oferta e pela dor do cliente, garantindo conversão extrema.</p>
+    </div>
+
+    <p class="center" style="margin-top:48px;font-weight:500;font-size:1.1rem;color:#fff">Sem Desafios Técnicos:</p>
+    <ul class="pain-list">
+      <li>Você <b>não vai precisar saber tecnologia.</b> Só precisa ser bom em "copiar e colar".</li>
+      <li>Você pode criar conteúdo de altíssima assertividade <b>sem precisar aparecer</b> se tiver vergonha.</li>
+      <li>Em no máximo <b>50 minutos de implementação</b>, sua estrutura autônoma estará pronta.</li>
+      <li>Chega de leads caros. Com nosso modelo, você traz pessoas qualificadas a partir de <b>R$ 0,90</b>.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- MECANISMO ÚNICO -->
+<section class="section section--light">
+  <div class="wrap">
+    <div class="feature-card">
+      <div class="center">
+        <span class="badge">O Mecanismo de 2026</span>
+        <h2>Fluxos de Conversação com <span class="em hl">claudeCode</span></h2>
+      </div>
+      <div class="prose" style="margin-top:40px">
+        <p>Imagine uma estrutura onde a IA cria seus anúncios, analisa seu produto e, assim que você posta no Instagram, ela assume o controle. O seguidor comenta, e instantaneamente um fluxo de conversa persuasivo se inicia na DM.</p>
+        <p>A IA nutre o lead, entrega a oferta, realiza o atendimento básico e guia a pessoa até o fechamento. Tudo enquanto você está focado em entregar o seu serviço.</p>
+        <p>E a melhor parte? Independente do seu nicho, nós entregamos uma <b>Biblioteca de Prompts Sêniores Testados e Validados</b>. Basta aplicar as skills e plugar no seu negócio.</p>
+        <p class="big" style="margin-top:40px">Copiar, colar, faturar. <span class="hl">Simples assim.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE STACK -->
+<section class="section section--panel">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Treinamento e Ferramentas</span>
+      <h2>Tudo que você acessa Imediatamente</h2>
+    </div>
+    <div class="stack" style="margin-top:48px">
+      
+      <div class="stack-item">
+        <div class="stack-tag">01</div>
+        <div>
+          <h3>Skill Especial de Diagnóstico e Funil</h3>
+          <p>Instruções exatas para a IA descobrir o produto perfeito para o seu nicho, identificar a dor profunda do seu público e estruturar a comunicação da sua página de vendas.</p>
+          <span class="price-tag"><span class="module-label">Valor:</span> R$97</span>
+        </div>
+      </div>
+      
+      <div class="stack-item">
+        <div class="stack-tag">02</div>
+        <div>
+          <h3>Criação de Anúncios e Criativos com IA</h3>
+          <p>O processo completo onde a IA desenha os criativos por você. Inclui 10 modelos de anúncios validados e estruturas de postagens para gerar chuva de engajamento qualificado.</p>
+          <span class="price-tag"><span class="module-label">Valor:</span> R$97</span>
+        </div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-tag">03</div>
+        <div>
+          <h3>Workflows de Conversação e Atendimento</h3>
+          <p>Scripts e templates testados. O fluxo prontinho: como responder os comentários, conduzir na DM, apresentar a oferta e fechar vendas de modo 100% autônomo.</p>
+          <span class="price-tag"><span class="module-label">Valor:</span> R$97</span>
+        </div>
+      </div>
+      
+      <div class="stack-item bonus">
+        <div class="stack-tag">B1</div>
+        <div>
+          <span class="bonus-badge">Material Adicional</span>
+          <h3>Biblioteca de Prompts Sêniores Validados</h3>
+          <p>Os exatos comandos que usamos para fazer o claudeCode gerar páginas de vendas instantâneas, criativos impecáveis e fluxos precisos, funcionando para qualquer nicho.</p>
+          <span class="price-tag"><span class="module-label">Valor:</span> R$47</span>
+        </div>
+      </div>
+      
+      <div class="stack-item bonus">
+        <div class="stack-tag">B2</div>
+        <div>
+          <span class="bonus-badge">Bônus Especial</span>
+          <h3>Como obter 6 meses de Claude Grátis</h3>
+          <p>O segredo prático para acessar a tecnologia de ponta do Claude por 6 meses de forma totalmente gratuita, reduzindo seu custo de operação a zero.</p>
+          <span class="price-tag"><span class="module-label">Valor:</span> R$97</span>
+        </div>
+      </div>
+
+    </div>
+    <p class="stack-total" style="color: #fff">Avaliação Total: <s>R$435,00</s></p>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section class="section section--light" id="oferta">
+  <div class="wrap">
+    <div class="offer-anchor">
+      <span class="eyebrow">Acesso Liberado Imediato</span>
+      <h2 style="color:var(--ink-dark)">Implemente sua Máquina Hoje</h2>
+    </div>
+    
+    <div class="offer-card">
+      <div class="offer-head">Treinamento Prático + Todos os Bônus</div>
+      <div class="offer-body">
+        <ul class="offer-list">
+          <li><span>Skill Especial de Diagnóstico</span><span class="tagprice"><s>R$ 97</s></span></li>
+          <li><span>Criação de Anúncios com IA (10 Modelos)</span><span class="tagprice"><s>R$ 97</s></span></li>
+          <li><span>Workflows de Atendimento na DM</span><span class="tagprice"><s>R$ 97</s></span></li>
+          <li><span>Biblioteca de Prompts Sêniores</span><span class="tagprice"><s>R$ 47</s></span></li>
+          <li><span>Como ter 6 meses de Claude Grátis</span><span class="tagprice"><s>R$ 97</s></span></li>
+        </ul>
+        <div class="offer-total">
+          <div class="strike">Hoje, investimento reduzido de <s>R$ 435</s> para:</div>
+          <div class="offer-price">R$ 49,90 <small>Pagamento Único</small></div>
+        </div>
+        <a href="https://checkout.infinitepay.io/ag12-sendz?lenc=G0oBICwKbGNu4EEaZR5oHizyEBs_k1H6GcpOXPMe-IWzSaJ6s-TdgDN8oDt_-F8e6fNE-zDY1dV8jLNk4JBDPuANWlvgVMHJWe703V7h9vS_tfZbmEUtSSMJAw00DFtgeS4__SxETrE39VCNyWrkTffTBP6-MCxJsByNEQTNGQuyeRszzUDvblYxHKLi82PivFtd7sWBY7r1D_pBXibib7tRwDWWuGh5JZ-j1BhZsfM0LI9J0bXUhmr45gSaVnTtoz7vxuimEyOSiicyeJDf5VEKffApsCAuBe7Aho0XS4mch9hhUSSL_UYcshQ.v1.839b51d9acbb69fb&mcp_token=eyJwaWQiOjEwMjkxMjc1ODAyODc1OCwic2lkIjoxOTc0Mjg5ODc2LCJheCI6IjhiOWMxMGIyMzBmNDQyMDY0OTliOGFjMmZiMWRjMjlhIiwidHMiOjE3ODQ1NDQ0ODUsImV4cCI6MTc4Njk2MzY4NX0.qM5PL7vFouin-en22kPZjVCFb8ZZhbyVt0hocijJVb0&fbclid=PAVERFWATK3EFwZG9mAmV4dG4DYWVtAjEwAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp90a_OOHrKYgCaZpOOqV-pr-Wq_vD_6cdqq9lozfdR8Uw8N9zMm_hRDtKwMG_aem_-WwTGjVAE-V4EID8841tEg" class="btn btn--full">Efetuar Inscrição Imediata</a>
+        <div style="text-align:center;margin-top:20px;font-size:0.8rem;color:var(--muted);font-weight:400;">
+          Transação Segura · Acesso Imediato
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="brand" style="margin-bottom:24px">
+      <span class="name" style="font-size:1rem;color:var(--muted)">MÁQUINA DE <b>SEGUIDORES</b></span>
+    </div>
+    <p>Este site não faz parte do site do Facebook ou Facebook Inc.<br>Além disso, este site não é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial da FACEBOOK, Inc.</p>
+  </div>
+</footer>
+
+<script>
+  // Lógica de Player de Vídeo Customizado
+  var video = document.getElementById('mainVideo');
+  var playOverlay = document.getElementById('playOverlay');
+
+  if (video && playOverlay) {
+    playOverlay.addEventListener('click', function() {
+      playOverlay.classList.add('hidden');
+      video.play();
+    });
+
+    video.addEventListener('click', function() {
+      if(video.paused) {
+        video.play();
+        playOverlay.classList.add('hidden');
+      } else {
+        video.pause();
+        playOverlay.classList.remove('hidden');
+      }
+    });
+
+    video.addEventListener('ended', function() {
+      playOverlay.classList.remove('hidden');
+    });
+  }
+</script>
+
+</body>
+</html>
