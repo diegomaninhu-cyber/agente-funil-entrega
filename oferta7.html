@@ -152,6 +152,36 @@
     border: 1px solid var(--border); margin: auto auto 0; width: max-content;
   }
 
+  .ig-app {
+    display: flex; flex-direction: column; height: 100%; width: 100%; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 10px;
+  }
+  .ig-topbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+  .ig-top-icons { display: flex; gap: 15px; align-items: center; font-size: 1.2rem; }
+  
+  .ig-red-bubble {
+    position: absolute; top: 0; right: 0; background: #ff2525; color: #fff; font-weight: 700;
+    font-size: 0.65rem; padding: 6px 10px; border-radius: 20px; white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(255, 37, 37, 0.6); z-index: 10;
+    transform: translate(30%, -40%);
+  }
+  
+  .ig-stories { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #222; overflow: hidden; }
+  .ig-story { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .ig-story-img { width: 50px; height: 50px; border-radius: 50%; background: #333; }
+  .ig-story-img.active { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); padding: 2px; }
+  .ig-story-img.active::after { content: ''; display: block; width: 100%; height: 100%; background: #111; border-radius: 50%; border: 2px solid #000; }
+  .ig-story-name { font-size: 0.6rem; color: #aaa; width: 50px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-align: center; }
+  
+  .ig-feed { flex: 1; display: flex; flex-direction: column; padding: 10px 0; }
+  .ig-feed-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .ig-feed-avatar { width: 32px; height: 32px; border-radius: 50%; background: #444; }
+  .ig-feed-header b { font-size: 0.75rem; }
+  .ig-feed-img { flex: 1; border-radius: 8px; margin-bottom: 10px; }
+  
+  .ig-bottombar { display: flex; justify-content: space-around; align-items: center; padding: 10px 0; border-top: 1px solid #222; font-size: 1.2rem; margin-top: auto; }
+  .ig-dot { position: absolute; top: -5px; right: -5px; background: #ff2525; color: #fff; width: 14px; height: 14px; border-radius: 50%; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
   /* Stats Bar Hero */
   .hero-stats {
     display: flex;
@@ -351,19 +381,41 @@
         <!-- Antes -->
         <div class="phone-mockup small">
           <div class="phone-notch"></div>
-          <div class="ig-header">
-            <div class="ig-avatar"></div>
-            <div class="ig-stats">
-              <div class="ig-stat"><b>12</b><span>Posts</span></div>
-              <div class="ig-stat"><b>345</b><span>Seguidores</span></div>
-              <div class="ig-stat"><b>400</b><span>Seguindo</span></div>
+          <div class="ig-app">
+            <!-- Top Bar -->
+            <div class="ig-topbar">
+              <div class="ig-logo" style="font-family: serif; font-style: italic; font-size: 1.2rem; font-weight:600">Instagram</div>
+              <div class="ig-top-icons">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <div style="position:relative">
+                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </div>
+              </div>
             </div>
-          </div>
-          <p style="color:var(--text-secondary);font-size:0.85rem;text-align:center;margin-bottom:20px;font-weight:600">Sem a Máquina</p>
-          <div class="ig-list">
-            <div class="ig-item"><div class="ig-icon" style="background:#333">👤</div><span style="color:#888">Novo seguidor</span></div>
-            <div class="ig-item"><div class="ig-icon" style="background:#333">👤</div><span style="color:#888">Novo seguidor</span></div>
-            <div class="ig-item"><div class="ig-icon" style="background:#333">👤</div><span style="color:#888">Novo seguidor</span></div>
+            <!-- Stories -->
+            <div class="ig-stories">
+              <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name">Seu story</div></div>
+              <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name">_joao</div></div>
+              <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name">maria</div></div>
+            </div>
+            <!-- Feed Mockup -->
+            <div class="ig-feed">
+               <div class="ig-feed-header">
+                 <div class="ig-feed-avatar"></div>
+                 <div><b>Você</b><br><span style="font-size:0.6rem;color:#888">Patrocinado</span></div>
+               </div>
+               <div class="ig-feed-img" style="background: #111; display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 20px;">
+                   <span style="font-size: 0.7rem; color: #888">Post com baixo engajamento</span>
+               </div>
+            </div>
+            <!-- Bottom Nav -->
+            <div class="ig-bottombar">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <div style="width:22px; height:22px; border-radius:50%; background:#444"></div>
+            </div>
           </div>
           <div class="dash-label">Antes</div>
         </div>
@@ -371,19 +423,52 @@
         <!-- Depois -->
         <div class="phone-mockup small" style="border-color:var(--gold); box-shadow: var(--shadow-glow);">
           <div class="phone-notch"></div>
-          <div class="ig-header">
-            <div class="ig-avatar" style="border: 2px solid var(--gold)"></div>
-            <div class="ig-stats">
-              <div class="ig-stat"><b style="color:var(--gold)">45</b><span style="color:#aaa">Posts</span></div>
-              <div class="ig-stat"><b style="color:var(--gold)">15.4k</b><span style="color:#aaa">Seguidores</span></div>
-              <div class="ig-stat"><b style="color:var(--gold)">450</b><span style="color:#aaa">Seguindo</span></div>
+          <div class="ig-app">
+            <!-- Top Bar -->
+            <div class="ig-topbar">
+              <div class="ig-logo" style="font-family: serif; font-style: italic; font-size: 1.2rem; font-weight:600">Instagram</div>
+              <div class="ig-top-icons">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <div style="position:relative">
+                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                   <!-- Bolha Vermelha Absurda -->
+                   <div class="ig-red-bubble">
+                      💬 99+ &nbsp; ❤️ 99+ &nbsp; 👤 99+
+                   </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <p style="color:var(--gold);font-size:0.85rem;text-align:center;margin-bottom:20px;font-weight:600">Com a Máquina (Automação 24/7)</p>
-          <div class="ig-list">
-            <div class="ig-item" style="border: 1px solid var(--border-gold); background: rgba(212,175,55,0.05)"><div class="ig-icon" style="background:var(--gold); color:#000">👥</div><span style="color:var(--gold)">+100 novos seguidores</span></div>
-            <div class="ig-item" style="border: 1px solid var(--border-gold); background: rgba(212,175,55,0.05)"><div class="ig-icon" style="background:#fff; color:#000">💬</div><span style="color:#fff">+100 mensagens no Direct</span></div>
-            <div class="ig-item" style="border: 1px solid var(--border-gold); background: rgba(212,175,55,0.05)"><div class="ig-icon" style="background:#10b981; color:#fff">💰</div><span style="color:#10b981">Novas Vendas Convertidas</span></div>
+            <!-- Stories -->
+            <div class="ig-stories">
+              <div class="ig-story"><div class="ig-story-img active"></div><div class="ig-story-name">Seu story</div></div>
+              <div class="ig-story"><div class="ig-story-img active"></div><div class="ig-story-name">stefannis...</div></div>
+              <div class="ig-story"><div class="ig-story-img active"></div><div class="ig-story-name">cecilia.c...</div></div>
+            </div>
+            <!-- Feed Mockup -->
+            <div class="ig-feed">
+               <div class="ig-feed-header">
+                 <div class="ig-feed-avatar" style="border:2px solid var(--gold)"></div>
+                 <div><b>Você</b><br><span style="font-size:0.6rem;color:#888">Patrocinado</span></div>
+               </div>
+               <div class="ig-feed-img" style="background: radial-gradient(circle, #2a1b00 0%, #000 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 20px; border: 1px solid var(--gold)">
+                   <div style="display:flex; flex-direction:column; align-items:center; opacity:0.8">
+                     <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                   </div>
+                   <b style="color:var(--gold); font-size:1.4rem; text-align:center; margin-top:10px; line-height:1.1">IA Trabalhando<br>24/7</b>
+                   <span style="font-size: 0.75rem; color: #fff; margin-top:10px; background:rgba(0,0,0,0.5); padding: 4px 10px; border-radius:10px; border: 1px solid var(--gold)">Máquina Ativada</span>
+               </div>
+            </div>
+            <!-- Bottom Nav -->
+            <div class="ig-bottombar">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <span style="position:relative">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                <div class="ig-dot">9</div>
+              </span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <div style="width:22px; height:22px; border-radius:50%; background:var(--gold)"></div>
+            </div>
           </div>
           <div class="dash-label" style="border-color:var(--gold); color:var(--gold)">Depois</div>
         </div>
