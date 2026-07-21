@@ -171,18 +171,41 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 .problem-card p { font-size: 15px; color: var(--gray-300); line-height: 1.5; font-weight: 400; }
 
 /* MECHANISM */
-.mechanism-section { background: var(--surface-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
-.mech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-@media (max-width: 960px) { .mech-grid { grid-template-columns: 1fr; } }
-.phone-mockup { position: relative; width: 340px; height: 680px; margin: 0 auto; background: #000; border: 2px solid var(--primary-dark); border-radius: 40px; padding: 12px; box-shadow: 0 40px 80px rgba(215,168,75,0.1), inset 0 0 0 2px #111; transform: perspective(1000px) rotateY(-5deg) rotateX(5deg); }
-.phone-screen { background: var(--surface); height: 100%; border-radius: 30px; overflow: hidden; position: relative; border: 1px solid #222; }
-.phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 28px; background: #000; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; z-index: 10; }
-.mech-chat { padding: 64px 24px 24px; display: flex; flex-direction: column; gap: 16px; height: 100%; }
-.chat-bot { background: linear-gradient(145deg, #1A1A1A, #111); border: 1px solid var(--primary-dark); border-radius: 16px 16px 16px 4px; padding: 16px; width: 85%; }
-.chat-bot .icon { width: 32px; height: 32px; background: rgba(215,168,75,0.1); color: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
-.chat-bot .line { height: 6px; background: #333; border-radius: 3px; margin-bottom: 8px; }
-.chat-user { background: var(--surface-3); border: 1px solid var(--border); border-radius: 16px 16px 4px 16px; padding: 16px; width: 75%; align-self: flex-end; }
-.chat-user .line { height: 6px; background: #444; border-radius: 3px; margin-bottom: 8px; }
+.mechanism-section { padding: 40px 0 80px 0; background: transparent; }
+.mechanism-card {
+  background: #080808;
+  border: 1px solid #1E1E1E;
+  border-radius: 28px;
+  padding: 64px 56px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+.mech-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+@media (max-width: 960px) {
+  .mechanism-card { padding: 40px 24px; }
+  .mech-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+.mech-eyebrow {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+}
+.mech-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 28px;
+  border: 1px solid #9D6B19;
+  background: rgba(215, 168, 75, 0.03);
+  border-radius: 14px;
+  margin-top: 16px;
+}
+.mech-btn i { color: var(--primary); width: 22px; height: 22px; }
+.mech-img-wrap { width: 100%; display: flex; justify-content: center; align-items: center; }
+.mech-img-wrap img { width: 100%; max-width: 520px; border-radius: 20px; object-fit: cover; }
 
 /* BENEFITS */
 .benefits-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 64px; }
@@ -352,41 +375,43 @@ footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24
   </section>
 
   <!-- MECHANISM -->
-  <section class="mechanism-section">
-    <div class="container mech-grid">
-      <div class="mech-content gsap-fade">
-        <span class="hero-eyebrow">O MECANISMO DE 2026</span>
-        <h2 class="mb-6">Fluxos de Conversação com <br><span class="gold">ClaudeCode</span></h2>
-        <p class="mb-6">Imagine uma estrutura onde a IA cria seus anúncios, analisa seu produto, assim que você posta no Instagram, ela assume o controle. O seguidor comenta e, imediatamente, um fluxo de conversas persuasivas se inicia na DM.</p>
-        <p class="mb-6">A IA nutre o lead, entrega o valor, realiza o atendimento básico e guia a pessoa até o fechamento. Tudo enquanto você está focado em entregar o seu serviço.</p>
-        <p class="mb-8">E a melhor parte? Independente do seu nicho, nós entregamos uma <strong>Biblioteca de Prompts Testados e Validados</strong>. Basta aplicar na sua realidade e colocar em prática no seu negócio.</p>
-        <div class="btn btn-secondary" style="pointer-events: none;">Copiar, colar, faturar. Simples assim.</div>
-      </div>
-      
-      <div class="mech-visual gsap-fade" style="transition-delay: 200ms;">
-        <div class="phone-mockup">
-          <div class="phone-screen">
-            <div class="phone-notch"></div>
-            <div class="mech-chat">
-              <div class="chat-user">
-                <div class="line" style="width: 80%"></div>
-                <div class="line" style="width: 60%"></div>
-              </div>
-              <div class="chat-bot">
-                <div class="icon"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
-                <div class="line" style="width: 90%"></div>
-                <div class="line" style="width: 100%"></div>
-                <div class="line" style="width: 70%"></div>
-              </div>
-              <div class="chat-bot">
-                <div class="icon"><i data-lucide="credit-card" style="width: 20px; height: 20px;"></i></div>
-                <div class="line" style="width: 60%"></div>
-              </div>
-              <div class="chat-user" style="margin-top:auto">
-                <div class="line" style="width: 40%"></div>
-              </div>
+  <section class="mechanism-section container">
+    <div class="mechanism-card gsap-fade">
+      <div class="mech-grid">
+        <div class="mech-content">
+          <span class="mech-eyebrow">O MECANISMO DE 2025</span>
+          <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 32px; line-height: 1.15;">Fluxos de Conversação com <br><span class="gold">ClaudeCode</span></h2>
+          
+          <p style="margin-bottom: 24px; color: var(--gray-300); font-size: 17px; line-height: 1.6;">
+            Imagine uma estrutura onde a IA cria seus anúncios,<br>
+            analisa seu produto, assim que você posta no Instagram,<br>
+            ela assume o controle. O seguidor comenta e,<br>
+            imediatamente, <span style="color:var(--primary); font-weight:700;">um fluxo de conversas persuasivas</span> se<br>
+            inicia no DM.
+          </p>
+          
+          <p style="margin-bottom: 24px; color: var(--gray-300); font-size: 17px; line-height: 1.6;">
+            A IA nutre o lead, entrega o valor, realiza o atendimento<br>
+            básico e <span style="color:var(--primary); font-weight:700;">guia a pessoa até o fechamento</span>. Tudo<br>
+            enquanto você está focado em entregar o seu serviço.
+          </p>
+          
+          <p style="margin-bottom: 32px; color: var(--gray-300); font-size: 17px; line-height: 1.6;">
+            E a melhor parte? Independente do seu nicho, nós<br>
+            entregamos uma <span style="color:var(--primary); font-weight:700;">Biblioteca de Prompts Testados e<br>Validados</span>. Basta aplicar na sua realidade e colocar em<br>prática no seu negócio.
+          </p>
+
+          <div class="mech-btn">
+            <i data-lucide="copy"></i>
+            <div>
+              <span style="color:var(--primary); font-weight:700; font-size:16px;">Copiar, colar, faturar.</span>
+              <span style="color:var(--white); font-weight:400; font-size:16px; margin-left:6px;">Simples assim.</span>
             </div>
           </div>
+        </div>
+        
+        <div class="mech-img-wrap">
+          <img src="/claude_mechanism_3d_phone.png" alt="Mecanismo 3D ClaudeCode">
         </div>
       </div>
     </div>
