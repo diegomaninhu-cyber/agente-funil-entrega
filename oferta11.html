@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Máquina de Seguidores | Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- GSAP & Lenis -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script>
+<style>
+/* CSS RESET & VARIABLES */
+:root {
+  --background: #070707;
+  --surface: #101010;
+  --surface-2: #151515;
+  --surface-3: #1A1A1A;
+  --border: #262626;
+  --primary: #D7A84B;
+  --primary-light: #E8C574;
+  --primary-dark: #9D6B19;
+  --white: #FFFFFF;
+  --gray-50: #F5F5F5;
+  --gray-100: #E5E5E5;
+  --gray-200: #CFCFCF;
+  --gray-300: #B5B5B5;
+  --gray-400: #909090;
+  --gray-500: #707070;
+  --gray-600: #5C5C5C;
+  --gray-700: #444444;
+  --gray-800: #2A2A2A;
+  --gray-900: #181818;
+  --shadow-card: 0 10px 30px rgba(0,0,0,0.35);
+  --shadow-hover: 0 20px 60px rgba(0,0,0,0.55);
+  --shadow-btn: 0 8px 30px rgba(215,168,75,0.25);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --container: 1280px;
+  --font: 'Inter Tight', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--background);
+  color: var(--gray-200);
+  font-family: var(--font);
+  font-size: 18px;
+  line-height: 1.6;
+  background-image: 
+    radial-gradient(circle at top right, rgba(215, 168, 75, 0.05) 0%, transparent 40%),
+    linear-gradient(rgba(215, 168, 75, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(215, 168, 75, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100px 100px, 100px 100px;
+}
+
+/* TYPOGRAPHY */
+h1, h2, h3, h4 { color: var(--white); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; }
+h1 { font-size: 56px; }
+h2 { font-size: 44px; }
+h3 { font-size: 34px; }
+h4 { font-size: 26px; }
+.hero-title { font-size: 72px; line-height: 1; margin-bottom: 24px; }
+.text-xl { font-size: 22px; }
+.text-sm { font-size: 15px; }
+.text-caption { font-size: 13px; }
+.text-primary { color: var(--primary); }
+
+/* LAYOUT */
+.container { max-width: var(--container); margin: 0 auto; padding: 0 80px; }
+section { padding: 96px 0; }
+@media (max-width: 960px) {
+  .container { padding: 0 40px; }
+  h1 { font-size: 48px; }
+  .hero-title { font-size: 56px; }
+}
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  section { padding: 64px 0; }
+  h1 { font-size: 40px; }
+  .hero-title { font-size: 48px; }
+}
+
+/* COMPONENTS */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 60px; padding: 0 40px; border-radius: var(--radius-md);
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  text-decoration: none; transition: all 0.2s ease; cursor: pointer;
+}
+.btn-primary {
+  background-color: var(--primary); color: var(--background);
+  box-shadow: var(--shadow-btn); border: none;
+}
+.btn-primary:hover {
+  background-color: var(--primary-light); transform: scale(1.02);
+}
+.btn-secondary {
+  background-color: transparent; color: var(--primary);
+  border: 1px solid var(--primary);
+}
+.btn-secondary:hover {
+  background-color: rgba(215,168,75,0.1); transform: scale(1.02);
+}
+
+.card {
+  background-color: #121212; border: 1px solid #282828;
+  border-radius: var(--radius-lg); padding: 32px;
+  box-shadow: var(--shadow-card); transition: all 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px); box-shadow: var(--shadow-hover);
+  border-color: #333;
+}
+
+/* HEADER */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0; background: rgba(7,7,7,0.8);
+  backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 50;
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 20px; font-weight: 800; color: var(--white); display: flex; align-items: center; gap: 8px; letter-spacing: 0.1em; text-transform: uppercase; }
+.logo i { color: var(--primary); }
+.header-cta { height: 44px; padding: 0 24px; font-size: 13px; }
+
+/* HERO */
+.hero-section { padding-top: 80px; padding-bottom: 120px; }
+.hero-grid { display: grid; grid-template-columns: 55% 40%; gap: 5%; align-items: center; }
+@media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 64px; } }
+.hero-eyebrow { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; display: block; }
+.hero-description { color: var(--gray-300); margin-bottom: 40px; max-width: 500px; }
+.hero-list { list-style: none; margin-bottom: 48px; }
+.hero-list li { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: var(--gray-100); font-size: 16px;}
+.hero-video-wrap { position: relative; border-radius: var(--radius-lg); padding: 8px; background: linear-gradient(to bottom, #262626, #111); }
+.hero-video-inner { background: #000; border-radius: 12px; overflow: hidden; position: relative; aspect-ratio: 9/16; }
+.hero-video-inner img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+.play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px; background: rgba(215,168,75,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #000; transition: transform 0.2s; }
+.play-btn:hover { transform: translate(-50%, -50%) scale(1.1); }
+.hero-badge { position: absolute; bottom: 24px; right: -24px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow-card); }
+.badge-avatars { display: flex; }
+.badge-avatars img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--surface); margin-left: -8px; }
+.badge-avatars img:first-child { margin-left: 0; }
+.badge-text { font-size: 13px; color: var(--gray-300); }
+.badge-text strong { color: var(--white); font-weight: 700; display: block; }
+
+/* STATS */
+.stats-section { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); padding: 48px 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+@media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; gap: 40px; } }
+.stat-item { display: flex; align-items: center; gap: 16px; justify-content: center; }
+@media (max-width: 768px) { .stat-item { justify-content: flex-start; } }
+.stat-icon { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--primary); }
+.stat-text h4 { font-size: 20px; margin-bottom: 2px; }
+.stat-text p { font-size: 13px; color: var(--gray-400); }
+
+/* PROBLEM */
+.problem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 64px; }
+@media (max-width: 960px) { .problem-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .problem-grid { grid-template-columns: 1fr; } }
+.problem-card { text-align: center; }
+.problem-icon { margin: 0 auto 24px; width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--primary); }
+.problem-card p { font-size: 15px; color: var(--gray-300); }
+
+/* MECHANISM */
+.mechanism-section { background: var(--surface-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.mech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+@media (max-width: 960px) { .mech-grid { grid-template-columns: 1fr; } }
+.phone-mockup { position: relative; width: 320px; height: 640px; margin: 0 auto; background: #0A0A0A; border: 2px solid #333; border-radius: 40px; padding: 12px; box-shadow: 0 40px 80px rgba(0,0,0,0.8), inset 0 0 0 2px #111; }
+.phone-screen { background: var(--surface); height: 100%; border-radius: 32px; overflow: hidden; position: relative; border: 1px solid #222; }
+.phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 24px; background: #0A0A0A; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 10; }
+.mech-chat { padding: 48px 24px 24px; display: flex; flex-direction: column; gap: 16px; height: 100%; }
+.chat-bot { background: linear-gradient(145deg, #1A1A1A, #111); border: 1px solid var(--primary-dark); border-radius: 16px 16px 16px 4px; padding: 16px; width: 85%; }
+.chat-bot .icon { width: 32px; height: 32px; background: rgba(215,168,75,0.1); color: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.chat-bot .line { height: 6px; background: #333; border-radius: 3px; margin-bottom: 8px; }
+.chat-user { background: var(--surface-3); border: 1px solid var(--border); border-radius: 16px 16px 4px 16px; padding: 16px; width: 75%; align-self: flex-end; }
+.chat-user .line { height: 6px; background: #444; border-radius: 3px; margin-bottom: 8px; }
+
+/* BENEFITS */
+.benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+@media (max-width: 960px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .benefits-grid { grid-template-columns: 1fr; } }
+.benefit-card { position: relative; }
+.benefit-num { position: absolute; top: 32px; right: 32px; font-size: 13px; font-weight: 800; color: var(--primary-dark); font-family: monospace; }
+.benefit-card h4 { font-size: 20px; margin-bottom: 12px; padding-right: 24px; }
+.benefit-card p { font-size: 15px; color: var(--gray-400); margin-bottom: 24px; }
+.benefit-price { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* PRICING */
+.pricing-box { max-width: 700px; margin: 0 auto; text-align: center; }
+.pricing-list { list-style: none; margin: 40px 0; text-align: left; }
+.pricing-list li { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding: 16px 0; }
+.pricing-list li:last-child { border-bottom: none; }
+.pricing-list span { color: var(--gray-200); font-weight: 500; display: flex; align-items: center; gap: 12px;}
+.pricing-list s { color: var(--gray-500); font-size: 15px; }
+.pricing-total { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; margin-top: 40px; }
+.price-tag { font-size: 64px; font-weight: 800; color: var(--white); line-height: 1; margin: 16px 0 32px; }
+.price-tag small { font-size: 18px; color: var(--gray-400); font-weight: 500; display: block; margin-top: 8px; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--border); padding: 48px 0; text-align: center; }
+footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24px auto 0; }
+
+/* UTILS */
+.text-center { text-align: center; }
+.mb-2 { margin-bottom: 8px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
+.mb-8 { margin-bottom: 32px; }
+.gold { color: var(--primary); }
+.gsap-fade { opacity: 0; transform: translateY(30px); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-inner">
+    <div class="logo"><i data-lucide="zap"></i> MÁQUINA</div>
+    <a href="#pricing" class="btn btn-primary header-cta">QUERO ACESSO AGORA</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content gsap-fade">
+          <span class="hero-eyebrow">Treinamento Prático + Acesso Imediato</span>
+          <h1 class="hero-title">Transforme seu Instagram numa máquina de vendas com <span class="gold">IA Autônomas.</span></h1>
+          <p class="text-xl hero-description">Crie fluxos de conversa que captam, qualificam e convertem leads em clientes de forma automática, usando o poder da inteligência artificial.</p>
+          
+          <ul class="hero-list">
+            <li><i data-lucide="check-circle-2" class="gold"></i> Automações de comentários, DMs e vendas</li>
+            <li><i data-lucide="check-circle-2" class="gold"></i> Scripts, workflows e prompts prontos para copiar</li>
+            <li><i data-lucide="check-circle-2" class="gold"></i> Bônus: Biblioteca de Prompts e meses de Claude Grátis</li>
+          </ul>
+          
+          <a href="#pricing" class="btn btn-primary">QUERO MINHA MÁQUINA AGORA</a>
+          <p class="text-caption" style="margin-top: 16px; color: var(--gray-500); display: flex; align-items: center; gap: 8px;"><i data-lucide="lock" style="width:14px;height:14px;"></i> Compra segura. Acesso imediato.</p>
+        </div>
+        
+        <div class="hero-media gsap-fade" style="transition-delay: 200ms;">
+          <div class="hero-video-wrap">
+            <div class="hero-video-inner">
+              <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Video Placeholder">
+              <div class="play-btn"><i data-lucide="play" fill="currentColor"></i></div>
+            </div>
+            <div class="hero-badge">
+              <div class="badge-avatars">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="User">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" alt="User">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="User">
+              </div>
+              <div class="badge-text">
+                <strong>+3.000 alunos</strong>
+                Resultados comprovados
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item gsap-fade">
+          <div class="stat-icon"><i data-lucide="users"></i></div>
+          <div class="stat-text"><h4>+3.000</h4><p>Alunos ativos</p></div>
+        </div>
+        <div class="stat-item gsap-fade" style="transition-delay: 100ms;">
+          <div class="stat-icon"><i data-lucide="trending-up"></i></div>
+          <div class="stat-text"><h4>Resultados</h4><p>Comprovados</p></div>
+        </div>
+        <div class="stat-item gsap-fade" style="transition-delay: 200ms;">
+          <div class="stat-icon"><i data-lucide="refresh-cw"></i></div>
+          <div class="stat-text"><h4>Atualizações</h4><p>Constantes</p></div>
+        </div>
+        <div class="stat-item gsap-fade" style="transition-delay: 300ms;">
+          <div class="stat-icon"><i data-lucide="unlock"></i></div>
+          <div class="stat-text"><h4>Acesso vitalício</h4><p>Conteúdo completo</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="container">
+    <div class="text-center gsap-fade" style="max-width: 700px; margin: 0 auto;">
+      <span class="hero-eyebrow">A CRIAÇÃO NO ESCURO</span>
+      <h2 class="mb-6">Você está criando conteúdo <span class="gold">baseado em suposições?</span></h2>
+      <p class="mb-4">A maioria dos perfis foca em criar conteúdo "bonito" que não gera resultado. O resultado? Seguidores desqualificados que apenas curtem e nunca compram seu produto.</p>
+      <p class="mb-4">Mas existe um segredo usado por grandes nomes: aplicar IA estratégica no Instagram para atrair o público certo e convertê-lo em uma conversa que vende.</p>
+      <p class="text-white" style="font-weight: 700;">Seu Instagram precisa trabalhar por você.</p>
+    </div>
+    
+    <div class="problem-grid">
+      <div class="card problem-card gsap-fade">
+        <div class="problem-icon"><i data-lucide="search"></i></div>
+        <p>Você não vai precisar saber tecnologia.</p>
+      </div>
+      <div class="card problem-card gsap-fade" style="transition-delay: 100ms;">
+        <div class="problem-icon"><i data-lucide="message-square-off"></i></div>
+        <p>Você pode criar conteúdo de altíssima assertividade sem precisar aparecer se não quiser.</p>
+      </div>
+      <div class="card problem-card gsap-fade" style="transition-delay: 200ms;">
+        <div class="problem-icon"><i data-lucide="clock"></i></div>
+        <p>Em no máximo 90 minutos de implementação, sua máquina autônoma estará pronta.</p>
+      </div>
+      <div class="card problem-card gsap-fade" style="transition-delay: 300ms;">
+        <div class="problem-icon"><i data-lucide="dollar-sign"></i></div>
+        <p>Com poucos cliques e com IA estratégica, você terá pessoas qualificadas a partir de R$0,90.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MECHANISM -->
+  <section class="mechanism-section">
+    <div class="container mech-grid">
+      <div class="mech-content gsap-fade">
+        <span class="hero-eyebrow">O MECANISMO DE 2026</span>
+        <h2 class="mb-6">Fluxos de Conversação com <span class="gold">ClaudeCode</span></h2>
+        <p class="mb-6">Imagine uma estrutura onde a IA cria seus anúncios, analisa seu produto, assim que você posta no Instagram, ela assume o controle. O seguidor comenta e, imediatamente, um fluxo de conversas persuasivas se inicia na DM.</p>
+        <p class="mb-6">A IA nutre o lead, entrega o valor, realiza o atendimento básico e guia a pessoa até o fechamento. Tudo enquanto você está focado em entregar o seu serviço.</p>
+        <p class="mb-8">E a melhor parte? Independente do seu nicho, nós entregamos uma <strong>Biblioteca de Prompts Testados e Validados</strong>. Basta aplicar na sua realidade e colocar em prática no seu negócio.</p>
+        <div class="btn btn-secondary" style="pointer-events: none;">Copiar, colar, faturar. Simples assim.</div>
+      </div>
+      
+      <div class="mech-visual gsap-fade" style="transition-delay: 200ms;">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="mech-chat">
+              <div class="chat-user">
+                <div class="line" style="width: 80%"></div>
+                <div class="line" style="width: 60%"></div>
+              </div>
+              <div class="chat-bot">
+                <div class="icon"><i data-lucide="bot" style="width: 20px; height: 20px;"></i></div>
+                <div class="line" style="width: 90%"></div>
+                <div class="line" style="width: 100%"></div>
+                <div class="line" style="width: 70%"></div>
+              </div>
+              <div class="chat-user" style="margin-top:auto">
+                <div class="line" style="width: 40%"></div>
+              </div>
+              <div class="chat-bot" style="background:var(--primary); border:none;">
+                <div class="line" style="background:rgba(0,0,0,0.5); width: 60%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="container">
+    <div class="text-center gsap-fade">
+      <span class="hero-eyebrow">TREINAMENTO E FERRAMENTAS</span>
+      <h2>Tudo que você acessa imediatamente</h2>
+    </div>
+    
+    <div class="benefits-grid">
+      <div class="card benefit-card gsap-fade">
+        <div class="benefit-num">01</div>
+        <h4>Skill Especial ou Diagnóstico de Funil</h4>
+        <p>Estratégias essenciais para um diagnóstico perfeito e criar ofertas que geram resultado.</p>
+        <div class="benefit-price">Valor: R$97</div>
+      </div>
+      <div class="card benefit-card gsap-fade" style="transition-delay: 100ms;">
+        <div class="benefit-num">02</div>
+        <h4>Criação de Anúncios Criativos com IA</h4>
+        <p>Processo completo de criação de anúncios validados e estratégias avançadas para qualquer nicho.</p>
+        <div class="benefit-price">Valor: R$97</div>
+      </div>
+      <div class="card benefit-card gsap-fade" style="transition-delay: 200ms;">
+        <div class="benefit-num">03</div>
+        <h4>Workflows de Conversação e Atendimento</h4>
+        <p>Scripts e templates testados para atendimento, pré-venda e fechamento automático.</p>
+        <div class="benefit-price">Valor: R$97</div>
+      </div>
+      <div class="card benefit-card gsap-fade">
+        <div class="benefit-num">04</div>
+        <h4>Biblioteca de Prompts Softwares Validados</h4>
+        <p>Os melhores prompts e ferramentas testadas para criar fluxos precisos e vender todos os dias.</p>
+        <div class="benefit-price">Valor: R$97</div>
+      </div>
+      <div class="card benefit-card gsap-fade" style="transition-delay: 100ms;">
+        <div class="benefit-num">05</div>
+        <h4>Como obter 6 meses de Claude Grátis</h4>
+        <p>Guia prático para garantir 6 meses de Claude sem custos e multiplicar seus resultados.</p>
+        <div class="benefit-price">Valor: R$97</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="container" id="pricing">
+    <div class="pricing-box gsap-fade">
+      <span class="hero-eyebrow">ACESSO LIBERADO IMEDIATO</span>
+      <h2>Implemente sua Máquina Hoje</h2>
+      
+      <div class="pricing-total">
+        <ul class="pricing-list">
+          <li><span><i data-lucide="check" class="gold"></i> Skill Especial ou Diagnóstico</span> <s>R$ 97</s></li>
+          <li><span><i data-lucide="check" class="gold"></i> Criação de Anúncios com IA</span> <s>R$ 97</s></li>
+          <li><span><i data-lucide="check" class="gold"></i> Workflows de Atendimento na DM</span> <s>R$ 97</s></li>
+          <li><span><i data-lucide="check" class="gold"></i> Biblioteca de Prompts</span> <s>R$ 47</s></li>
+          <li><span><i data-lucide="check" class="gold"></i> Como ter 6 meses de Claude Grátis</span> <s>R$ 97</s></li>
+        </ul>
+        <div style="text-align: left; margin-bottom: 32px; color: var(--primary-light); font-size: 15px;">Bônus: Investimentos avaliados em R$ 435,00</div>
+        
+        <div style="border-top: 1px solid var(--border); padding-top: 32px;">
+          <div style="font-weight: 700; color: var(--primary); letter-spacing: 0.1em;">INVESTIMENTO ÚNICO</div>
+          <div class="price-tag">R$ 49,90 <small>Pagamento único</small></div>
+          <a href="https://checkout.infinitepay.io/ag12-sendz?lenc=G0oBICwKbGNu4EEaZR5oHizyEBs_k1H6GcpOXPMe-IWzSaJ6s-TdgDN8oDt_-F8e6fNE-zDY1dV8jLNk4JBDPuANWlvgVMHJWe703V7h9vS_tfZbmEUtSSMJAw00DFtgeS4__SxETrE39VCNyWrkTffTBP6-MCxJsByNEQTNGQuyeRszzUDvblYxHKLi82PivFtd7sWBY7r1D_pBXibib7tRwDWWuGh5JZ-j1BhZsfM0LI9J0bXUhmr45gSaVnTtoz7vxuimEyOSiicyeJDf5VEKffApsCAuBe7Aho0XS4mch9hhUSSL_UYcshQ.v1.839b51d9acbb69fb&mcp_token=eyJwaWQiOjEwMjkxMjc1ODAyODc1OCwic2lkIjoxOTc0Mjg5ODc2LCJheCI6IjhiOWMxMGIyMzBmNDQyMDY0OTliOGFjMmZiMWRjMjlhIiwidHMiOjE3ODQ1NDQ0ODUsImV4cCI6MTc4Njk2MzY4NX0.qM5PL7vFouin-en22kPZjVCFb8ZZhbyVt0hocijJVb0&fbclid=PAVERFWATK3EFwZG9mAmV4dG4DYWVtAjEwAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp90a_OOHrKYgCaZpOOqV-pr-Wq_vD_6cdqq9lozfdR8Uw8N9zMm_hRDtKwMG_aem_-WwTGjVAE-V4EID8841tEg" class="btn btn-primary" style="width: 100%; max-width: 400px; margin: 0 auto;">QUERO ACESSO IMEDIATO</a>
+          <p class="text-caption" style="margin-top: 16px; color: var(--gray-500); display: flex; align-items: center; justify-content: center; gap: 8px;"><i data-lucide="lock" style="width:14px;height:14px;"></i> Compra segura. Acesso imediato.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="logo" style="justify-content: center; margin-bottom: 24px; color: var(--gray-400)"><i data-lucide="zap" style="color:var(--primary-dark)"></i> MÁQUINA</div>
+    <p>Este produto não é afiliado ao Instagram, Meta ou Facebook Inc. Resultados podem variar de acordo com a aplicação das estratégias.</p>
+  </div>
+</footer>
+
+<script>
+  // Initialize Lucide Icons
+  lucide.createIcons();
+
+  // Initialize Lenis for Smooth Scrolling
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    direction: 'vertical',
+    gestureDirection: 'vertical',
+    smooth: true,
+    mouseMultiplier: 1,
+    smoothTouch: false,
+    touchMultiplier: 2,
+    infinite: false,
+  })
+
+  function raf(time) {
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+  }
+
+  requestAnimationFrame(raf)
+
+  // Initialize GSAP Animations
+  gsap.registerPlugin(ScrollTrigger);
+
+  const fadeElements = document.querySelectorAll('.gsap-fade');
+  fadeElements.forEach((el) => {
+    gsap.to(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: "top 85%", // Animation starts when top of element hits 85% of viewport height
+        toggleActions: "play none none none"
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      clearProps: "transform" // Clean up after animation to prevent layout issues
+    });
+  });
+</script>
+</body>
+</html>
