@@ -336,6 +336,123 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 .price-tag { font-size: 64px; font-weight: 800; color: var(--white); line-height: 1; margin: 16px 0 32px; letter-spacing: -0.04em;}
 .price-tag small { font-size: 16px; color: var(--gray-400); font-weight: 500; display: block; margin-top: 12px; letter-spacing: 0; }
 
+/* GUARANTEE */
+.guarantee-section { padding: 80px 0; }
+.guarantee-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  background: #080808;
+  border: 1px solid rgba(215,168,75,0.25);
+  border-radius: 24px;
+  padding: 56px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+@media (max-width: 768px) {
+  .guarantee-card { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 40px 28px; gap: 28px; }
+}
+.guarantee-seal {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(215,168,75,0.04);
+  flex-shrink: 0;
+}
+.guarantee-seal .seal-days { font-size: 48px; font-weight: 800; color: var(--primary); line-height: 1; }
+.guarantee-seal .seal-label { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.15em; margin-top: 4px; }
+.guarantee-text h3 { margin-bottom: 16px; }
+.guarantee-text p { color: var(--gray-300); font-size: 16px; line-height: 1.7; }
+.guarantee-text p strong { color: var(--white); }
+
+/* FAQ */
+.faq-section { padding: 80px 0; }
+.faq-list { max-width: 800px; margin: 48px auto 0; display: grid; gap: 14px; }
+.faq-item {
+  background: #090909;
+  border: 1px solid #1E1E1E;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+.faq-item.open { border-color: var(--primary-dark); }
+.faq-q {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 22px 28px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  font-family: var(--font);
+}
+.faq-q .faq-icon {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(215,168,75,0.08);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  transition: transform 0.25s ease;
+  border: 1px solid rgba(215,168,75,0.2);
+}
+.faq-item.open .faq-q .faq-icon { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.faq-a-inner { padding: 0 28px 24px; color: var(--gray-400); font-size: 16px; line-height: 1.7; }
+
+/* SEALS */
+.seals-section { padding: 0 0 80px; }
+.seals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+@media (max-width: 768px) { .seals-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .seals-grid { grid-template-columns: 1fr; } }
+.seal-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #090909;
+  border: 1px solid #1E1E1E;
+  border-radius: 14px;
+  padding: 20px;
+}
+.seal-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
+  background: rgba(215,168,75,0.04);
+}
+.seal-icon i { width: 20px; height: 20px; }
+.seal-item span { font-size: 14px; font-weight: 600; color: var(--gray-200); }
+
 /* FOOTER */
 footer { border-top: 1px solid var(--border); padding: 64px 0; text-align: center; }
 footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24px auto 0; }
@@ -624,6 +741,77 @@ footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24
   </section>
 </main>
 
+  <!-- GUARANTEE -->
+  <section class="guarantee-section container">
+    <div class="guarantee-card gsap-fade">
+      <div class="guarantee-seal">
+        <div class="seal-days">7</div>
+        <div class="seal-label">Dias de<br>Garantia</div>
+      </div>
+      <div class="guarantee-text">
+        <h3>Garantia Incondicional de 7 Dias</h3>
+        <p>Se em <strong>7 dias</strong> você acessar o treinamento, aplicar as estratégias e sentir que o conteúdo não entrega o que prometemos, basta enviar um e-mail e devolvemos <strong>100% do seu investimento</strong>. Sem perguntas, sem burocracia.</p>
+        <p style="margin-top: 16px;">O risco é <strong>inteiramente nosso</strong>. Confiamos no que entregamos porque sabemos que funciona.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section container">
+    <div class="text-center gsap-fade">
+      <span class="problem-eyebrow">Perguntas Frequentes</span>
+      <h2>Tire suas dúvidas</h2>
+    </div>
+    <div class="faq-list gsap-fade">
+      <div class="faq-item">
+        <button class="faq-q">Preciso saber programar ou ter conhecimento técnico?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Não. Todo o treinamento foi desenvolvido para ser aplicado por qualquer pessoa, mesmo sem nenhum conhecimento técnico. As instruções são passo a passo, com templates e prompts prontos para copiar e colar.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Funciona para qualquer nicho?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sim. Os fluxos de conversação e os prompts são adaptáveis a qualquer nicho de mercado. Já temos alunos de saúde, educação, estética, serviços digitais, e-commerce e muito mais obtendo resultados consistentes.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Quanto tempo leva para implementar?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Em no máximo 60 minutos você terá a sua máquina autônoma configurada e pronta para captar, qualificar e converter leads automaticamente.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Tenho acesso vitalício?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sim. Uma vez que você adquire o treinamento, o acesso é vitalício, incluindo todas as atualizações futuras sem custo adicional.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">A compra é segura?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Totalmente. O pagamento é processado por plataforma certificada com criptografia SSL de 256 bits. Seus dados estão 100% protegidos e o acesso é liberado imediatamente após a confirmação.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">E se eu não gostar do conteúdo?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Você tem 7 dias de garantia incondicional. Se por qualquer motivo sentir que o treinamento não é para você, basta solicitar o reembolso e devolvemos 100% do valor investido. Sem perguntas.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEALS -->
+  <section class="seals-section container">
+    <div class="seals-grid gsap-fade">
+      <div class="seal-item">
+        <div class="seal-icon"><i data-lucide="lock"></i></div>
+        <span>Compra 100% Segura</span>
+      </div>
+      <div class="seal-item">
+        <div class="seal-icon"><i data-lucide="zap"></i></div>
+        <span>Acesso Imediato</span>
+      </div>
+      <div class="seal-item">
+        <div class="seal-icon"><i data-lucide="shield-check"></i></div>
+        <span>Garantia 7 Dias</span>
+      </div>
+      <div class="seal-item">
+        <div class="seal-icon"><i data-lucide="headphones"></i></div>
+        <span>Suporte Dedicado</span>
+      </div>
+    </div>
+  </section>
+
 <footer>
   <div class="container">
     <div class="logo" style="justify-content: center; margin-bottom: 24px; color: var(--gray-400)"><i data-lucide="zap" style="color:var(--primary-dark)"></i> MÁQUINA <span style="font-size:12px;font-weight:400;margin-left:8px;">DE SEGUIDORES</span></div>
@@ -676,6 +864,23 @@ footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24
     c.addEventListener('pointerup',function(e){if(pending)set(e.clientX);dragging=false;pending=false;});
     window.addEventListener('pointerup',function(){dragging=false;});
     c.addEventListener('pointercancel',function(){dragging=false;pending=false;});
+  });
+
+  // FAQ Accordion
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement;
+      var ans = item.querySelector('.faq-a');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        ans.style.maxHeight = ans.scrollHeight + 'px';
+      }
+    });
   });
 </script>
 </body>
