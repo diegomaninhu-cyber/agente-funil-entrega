@@ -207,6 +207,114 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 .mech-img-wrap { width: 100%; display: flex; justify-content: center; align-items: center; }
 .mech-img-wrap img { width: 100%; max-width: 520px; border-radius: 20px; object-fit: cover; }
 
+/* BEFORE/AFTER COMPARATOR */
+.cmp-section { padding: 80px 0 40px; }
+.cmp-section-title { text-align: center; margin-bottom: 48px; }
+.cmp-section-eyebrow {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+}
+.cmp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.cmp {
+  position: relative;
+  aspect-ratio: 1/1;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #1E1E1E;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  --pct: 50%;
+  touch-action: pan-y;
+  user-select: none;
+  cursor: ew-resize;
+}
+.cmp-img {
+  position: absolute;
+  inset: 0;
+}
+.cmp-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cmp-after { background: #1A1A1A; }
+.cmp-before {
+  background: #111;
+  clip-path: inset(0 calc(100% - var(--pct)) 0 0);
+  z-index: 1;
+}
+.cmp-img small {
+  position: absolute;
+  top: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 6px 16px;
+  border-radius: 50px;
+  z-index: 4;
+}
+.cmp-before small {
+  left: 14px;
+  background: rgba(20,20,20,0.85);
+  color: var(--gray-300);
+}
+.cmp-after small {
+  right: 14px;
+  background: linear-gradient(89deg, var(--primary), var(--primary-dark));
+  color: #fff;
+}
+.cmp-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pct);
+  width: 2px;
+  background: #fff;
+  transform: translateX(-1px);
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(0,0,0,0.6);
+  z-index: 3;
+}
+.cmp-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff;
+  color: #1b1b1b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+}
+.cmp-hint {
+  text-align: center;
+  margin-top: 16px;
+  color: var(--gray-500);
+  font-size: 14px;
+}
+@media (max-width: 680px) {
+  .cmp-grid { grid-template-columns: 1fr; gap: 18px; }
+}
+
 /* BENEFITS */
 .benefits-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 64px; }
 .benefit-card { width: calc(33.333% - 16px); position: relative; padding: 40px 32px;}
@@ -416,6 +524,27 @@ footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24
       </div>
     </div>
   </section>
+  <!-- BEFORE/AFTER COMPARATOR -->
+  <section class="cmp-section container">
+    <div class="cmp-section-title gsap-fade">
+      <span class="cmp-section-eyebrow">Prova Visual</span>
+      <h2>Veja a transformação <br><span class="gold">acontecendo na prática</span></h2>
+      <p style="margin-top: 16px; color: var(--gray-400); font-size: 17px;">Mesmo perfil. Mesma conta. Apenas a <strong style="color:var(--white)">estratégia certa</strong> de diferença.</p>
+    </div>
+    <div class="cmp-grid gsap-fade">
+      <div class="cmp">
+        <div class="cmp-img cmp-after"><img loading="lazy" decoding="async" src="/depois-feed.png" alt="Depois — Feed Premium"><small>Depois</small></div>
+        <div class="cmp-img cmp-before"><img loading="lazy" decoding="async" src="/antes-feed.png" alt="Antes — Feed Desorganizado"><small>Antes</small></div>
+        <div class="cmp-divider"><div class="cmp-handle">⟺</div></div>
+      </div>
+      <div class="cmp">
+        <div class="cmp-img cmp-after"><img loading="lazy" decoding="async" src="/depois-dm.png" alt="Depois — DM Automatizada"><small>Depois</small></div>
+        <div class="cmp-img cmp-before"><img loading="lazy" decoding="async" src="/antes-dm.png" alt="Antes — DM Manual"><small>Antes</small></div>
+        <div class="cmp-divider"><div class="cmp-handle">⟺</div></div>
+      </div>
+    </div>
+    <p class="cmp-hint gsap-fade">← arraste a alça para comparar antes e depois →</p>
+  </section>
 
   <!-- BENEFITS -->
   <section class="container">
@@ -521,6 +650,32 @@ footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24
       scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" },
       opacity: 1, y: 0, duration: 0.8, ease: "power2.out", clearProps: "transform"
     });
+  });
+
+  // Comparador antes/depois arrastável (mouse + toque)
+  document.querySelectorAll('.cmp').forEach(function(c){
+    var dragging=false, pending=false, sx=0, sy=0;
+    function set(x){var r=c.getBoundingClientRect();var p=(x-r.left)/r.width;p=Math.max(0,Math.min(1,p));c.style.setProperty('--pct',(p*100)+'%');}
+    c.addEventListener('pointerdown',function(e){
+      sx=e.clientX; sy=e.clientY;
+      if(e.pointerType==='mouse'){dragging=true;try{c.setPointerCapture(e.pointerId);}catch(_){}set(e.clientX);}
+      else{pending=true;}
+    });
+    c.addEventListener('pointermove',function(e){
+      if(dragging){set(e.clientX);return;}
+      if(!pending) return;
+      var dx=e.clientX-sx, dy=e.clientY-sy;
+      if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>6){
+        pending=false;dragging=true;
+        try{c.setPointerCapture(e.pointerId);}catch(_){}
+        set(e.clientX);
+      }else if(Math.abs(dy)>6){
+        pending=false;
+      }
+    });
+    c.addEventListener('pointerup',function(e){if(pending)set(e.clientX);dragging=false;pending=false;});
+    window.addEventListener('pointerup',function(){dragging=false;});
+    c.addEventListener('pointercancel',function(){dragging=false;pending=false;});
   });
 </script>
 </body>
