@@ -464,6 +464,29 @@ footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24
 .mb-6 { margin-bottom: 24px; }
 .mb-8 { margin-bottom: 32px; }
 .gsap-fade { opacity: 0; transform: translateY(30px); }
+
+/* PHONE MOCKUP */
+.phone-mockup {
+  position: relative;
+  border: 12px solid #111;
+  border-radius: 40px;
+  background: #000;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 0 2px #282828;
+  overflow: hidden;
+}
+.phone-mockup::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 28px;
+  background: #111;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 100;
+}
 </style>
 </head>
 <body>
@@ -505,12 +528,14 @@ footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24
         </div>
         
         <div class="hero-media gsap-fade" style="transition-delay: 200ms;">
-          <div class="cmp" style="aspect-ratio: 1080/2340; max-width: 320px; max-height: 80vh; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
-            <div class="cmp-img cmp-after"><img loading="lazy" decoding="async" src="/depois-fogaca.jpg" alt="Depois — Antonio Fogaça 53.974 seguidores"><small>Depois</small></div>
-            <div class="cmp-img cmp-before"><img loading="lazy" decoding="async" src="/antes-fogaca.jpg" alt="Antes — Antonio Fogaça 31.940 seguidores"><small>Antes</small></div>
-            <div class="cmp-divider"><div class="cmp-handle">⟺</div></div>
+          <div class="phone-mockup" style="max-width: 320px; margin: 0 auto;">
+            <div class="cmp" style="aspect-ratio: 1080/2340; max-height: 75vh; border: none; box-shadow: none; border-radius: 28px;">
+              <div class="cmp-img cmp-after"><img loading="lazy" decoding="async" src="/depois-fogaca.jpg" alt="Depois — Antonio Fogaça 53.974 seguidores"><small>Depois</small></div>
+              <div class="cmp-img cmp-before"><img loading="lazy" decoding="async" src="/antes-fogaca.jpg" alt="Antes — Antonio Fogaça 31.940 seguidores"><small>Antes</small></div>
+              <div class="cmp-divider"><div class="cmp-handle">⟺</div></div>
+            </div>
           </div>
-          <p class="cmp-hint" style="text-align: center; margin-top: 16px;">← arraste a alça para comparar →</p>
+          <p class="cmp-hint" style="text-align: center; margin-top: 24px;">← arraste a alça para comparar →</p>
         </div>
       </div>
     </div>
