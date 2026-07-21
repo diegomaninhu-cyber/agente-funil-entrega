@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Máquina de Seguidores com IA - Oferta 7</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Grand+Hotel&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0d0d0d;
@@ -157,30 +157,31 @@
     margin-top: 10px;
   }
   .ig-topbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+  .ig-logo { font-family: 'Grand Hotel', cursive; font-size: 1.8rem; font-weight: 400; letter-spacing: 0.5px; }
   .ig-top-icons { display: flex; gap: 15px; align-items: center; font-size: 1.2rem; }
   
   .ig-red-bubble {
-    position: absolute; top: 0; right: 0; background: #ff2525; color: #fff; font-weight: 700;
-    font-size: 0.65rem; padding: 6px 10px; border-radius: 20px; white-space: nowrap;
-    box-shadow: 0 4px 15px rgba(255, 37, 37, 0.6); z-index: 10;
-    transform: translate(30%, -40%);
+    position: absolute; top: 0; right: -5px; background: #ff1a1a; color: #fff; font-weight: 700;
+    font-size: 0.7rem; padding: 6px 12px; border-radius: 20px; white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(255, 26, 26, 0.5); z-index: 10;
+    transform: translate(30%, -40%); letter-spacing: -0.2px;
   }
   
-  .ig-stories { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #222; overflow: hidden; }
-  .ig-story { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .ig-story-img { width: 50px; height: 50px; border-radius: 50%; background: #333; }
-  .ig-story-img.active { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); padding: 2px; }
-  .ig-story-img.active::after { content: ''; display: block; width: 100%; height: 100%; background: #111; border-radius: 50%; border: 2px solid #000; }
-  .ig-story-name { font-size: 0.6rem; color: #aaa; width: 50px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-align: center; }
+  .ig-stories { display: flex; gap: 14px; padding: 12px 0px; border-bottom: 1px solid #222; overflow: hidden; margin: 0 -5px; }
+  .ig-story { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .ig-story-img { width: 60px; height: 60px; border-radius: 50%; background: #222; padding: 2px; }
+  .ig-story-img.active { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+  .ig-story-img::after { content: ''; display: block; width: 100%; height: 100%; background: #333; border-radius: 50%; border: 2px solid #000; }
+  .ig-story-name { font-size: 0.65rem; color: #ccc; width: 60px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-align: center; }
   
   .ig-feed { flex: 1; display: flex; flex-direction: column; padding: 10px 0; }
   .ig-feed-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .ig-feed-avatar { width: 32px; height: 32px; border-radius: 50%; background: #444; }
-  .ig-feed-header b { font-size: 0.75rem; }
-  .ig-feed-img { flex: 1; border-radius: 8px; margin-bottom: 10px; }
+  .ig-feed-avatar { width: 36px; height: 36px; border-radius: 50%; background: #444; }
+  .ig-feed-header b { font-size: 0.8rem; }
+  .ig-feed-img { flex: 1; border-radius: 0px; margin: 0 -20px; margin-bottom: 10px; overflow: hidden; }
   
-  .ig-bottombar { display: flex; justify-content: space-around; align-items: center; padding: 10px 0; border-top: 1px solid #222; font-size: 1.2rem; margin-top: auto; }
-  .ig-dot { position: absolute; top: -5px; right: -5px; background: #ff2525; color: #fff; width: 14px; height: 14px; border-radius: 50%; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  .ig-bottombar { display: flex; justify-content: space-around; align-items: center; padding: 10px 0; border-top: 1px solid #222; font-size: 1.2rem; margin-top: auto; margin-bottom: -10px;}
+  .ig-dot { position: absolute; top: -5px; right: -5px; background: #ff1a1a; color: #fff; width: 14px; height: 14px; border-radius: 50%; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
   /* Stats Bar Hero */
   .hero-stats {
@@ -384,7 +385,7 @@
           <div class="ig-app">
             <!-- Top Bar -->
             <div class="ig-topbar">
-              <div class="ig-logo" style="font-family: serif; font-style: italic; font-size: 1.2rem; font-weight:600">Instagram</div>
+              <div class="ig-logo">Instagram</div>
               <div class="ig-top-icons">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 <div style="position:relative">
@@ -394,7 +395,7 @@
             </div>
             <!-- Stories -->
             <div class="ig-stories">
-              <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name">Seu story</div></div>
+              <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name" style="color:#fff">Seu story</div></div>
               <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name">_joao</div></div>
               <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name">maria</div></div>
             </div>
@@ -426,36 +427,62 @@
           <div class="ig-app">
             <!-- Top Bar -->
             <div class="ig-topbar">
-              <div class="ig-logo" style="font-family: serif; font-style: italic; font-size: 1.2rem; font-weight:600">Instagram</div>
+              <div class="ig-logo">Instagram</div>
               <div class="ig-top-icons">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 <div style="position:relative">
                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                    <!-- Bolha Vermelha Absurda -->
                    <div class="ig-red-bubble">
-                      💬 99+ &nbsp; ❤️ 99+ &nbsp; 👤 99+
+                      💬 8 &nbsp; ❤️ 1 &nbsp; 👤 7
                    </div>
                 </div>
               </div>
             </div>
             <!-- Stories -->
             <div class="ig-stories">
-              <div class="ig-story"><div class="ig-story-img active"></div><div class="ig-story-name">Seu story</div></div>
+              <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name" style="color:#fff">Seu story</div></div>
               <div class="ig-story"><div class="ig-story-img active"></div><div class="ig-story-name">stefannis...</div></div>
               <div class="ig-story"><div class="ig-story-img active"></div><div class="ig-story-name">cecilia.c...</div></div>
+              <div class="ig-story"><div class="ig-story-img active"></div><div class="ig-story-name">eujorge...</div></div>
             </div>
             <!-- Feed Mockup -->
             <div class="ig-feed">
                <div class="ig-feed-header">
-                 <div class="ig-feed-avatar" style="border:2px solid var(--gold)"></div>
-                 <div><b>Você</b><br><span style="font-size:0.6rem;color:#888">Patrocinado</span></div>
+                 <div class="ig-feed-avatar" style="border:2px solid #e1306c"></div>
+                 <div><b>Você</b> <svg width="12" height="12" viewBox="0 0 24 24" fill="#38bdf8"><circle cx="12" cy="12" r="12"></circle><path d="M17 8l-7 8-3-3" stroke="#fff" stroke-width="2" fill="none"></path></svg><br><span style="font-size:0.65rem;color:#ccc">Patrocinado</span></div>
                </div>
-               <div class="ig-feed-img" style="background: radial-gradient(circle, #2a1b00 0%, #000 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 20px; border: 1px solid var(--gold)">
-                   <div style="display:flex; flex-direction:column; align-items:center; opacity:0.8">
-                     <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--gold)"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+               <div class="ig-feed-img" style="background: #000; position: relative; display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 20px 0; min-height: 200px;">
+                   <!-- Logo pixel -->
+                   <div style="position:absolute; top: 10px; display:flex; align-items:center; gap:6px; color:#fff; font-weight:600; font-size:0.8rem; letter-spacing:1px; z-index:2">
+                       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h4v4H0zm6 0h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm0 6h4v4h-4zm-6 0h4v4h-4zm-6 0h4v4H6z"></path></svg> pixel
                    </div>
-                   <b style="color:var(--gold); font-size:1.4rem; text-align:center; margin-top:10px; line-height:1.1">IA Trabalhando<br>24/7</b>
-                   <span style="font-size: 0.75rem; color: #fff; margin-top:10px; background:rgba(0,0,0,0.5); padding: 4px 10px; border-radius:10px; border: 1px solid var(--gold)">Máquina Ativada</span>
+                   
+                   <!-- Radar Rings -->
+                   <div style="position:absolute; width: 200px; height: 200px; border: 1px dashed rgba(249, 115, 22, 0.3); border-radius: 50%; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                   <div style="position:absolute; width: 140px; height: 140px; border: 1px dotted rgba(249, 115, 22, 0.5); border-radius: 50%; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                   
+                   <!-- Floating tags -->
+                   <div style="position:absolute; top: 55px; left: 50%; transform: translateX(-50%); border: 1px solid #ea580c; padding: 2px 8px; border-radius: 4px; font-size: 0.5rem; color: #ccc; background:#000; z-index:2">👤 Rotina</div>
+                   <div style="position:absolute; top: 90px; left: 10px; border: 1px solid #ea580c; padding: 2px 8px; border-radius: 4px; font-size: 0.5rem; color: #ccc; background:#000; z-index:2">📈 Leads</div>
+                   <div style="position:absolute; top: 90px; right: 10px; border: 1px solid #ea580c; padding: 2px 8px; border-radius: 4px; font-size: 0.5rem; color: #ccc; background:#000; z-index:2">🎧 Suporte</div>
+                   <div style="position:absolute; bottom: 55px; left: 15px; border: 1px solid #ea580c; padding: 2px 8px; border-radius: 4px; font-size: 0.5rem; color: #ccc; background:#000; z-index:2">🗄️ Dados</div>
+                   <div style="position:absolute; bottom: 55px; right: 15px; border: 1px solid #ea580c; padding: 2px 8px; border-radius: 4px; font-size: 0.5rem; color: #ccc; background:#000; z-index:2">🛒 Vendas</div>
+
+                   <!-- Center Text -->
+                   <div style="z-index: 2; text-align: center; margin-top: 15px;">
+                       <div style="font-size: 0.75rem; font-weight: 600; color: #fff;">IA Trabalhando</div>
+                       <div style="font-size: 3rem; font-weight: 800; line-height: 1; color: #fff; text-shadow: 0 0 20px rgba(249, 115, 22, 0.4); font-family: Impact, sans-serif;">24/7</div>
+                       <div style="font-size: 0.65rem; color: #f97316; margin-top: 4px; font-weight:600">pela sua empresa</div>
+                   </div>
+                   
+                   <!-- Bottom orange box -->
+                   <div style="position:absolute; bottom: 10px; right: 0px; background: #ea580c; color: #fff; padding: 6px 12px; font-size: 0.6rem; font-weight: 600; display:flex; align-items:center; gap:4px; transform: skewX(-15deg);">
+                       <div style="transform: skewX(15deg); display:flex; align-items:center; gap: 4px;">
+                          <div style="width:16px;height:16px; border:1px solid #fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.6rem; line-height:0">→</div>
+                          <div style="text-align:left; line-height:1.2">Aprenda na Imersão<br>Agentes de IA para Negócios</div>
+                       </div>
+                   </div>
                </div>
             </div>
             <!-- Bottom Nav -->
