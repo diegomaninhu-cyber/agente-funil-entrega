@@ -133,12 +133,42 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 .stat-text p { font-size: 14px; color: var(--gray-400); }
 
 /* PROBLEM */
+.problem-eyebrow {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 20px;
+}
 .problem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 64px; }
 @media (max-width: 960px) { .problem-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .problem-grid { grid-template-columns: 1fr; } }
-.problem-card { text-align: center; padding: 48px 32px;}
-.problem-icon { margin: 0 auto 24px; width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--primary); background: rgba(215,168,75,0.05); }
-.problem-card p { font-size: 15px; color: var(--gray-300); }
+.problem-card {
+  background: #090909;
+  border: 1px solid #1E1E1E;
+  border-radius: 18px;
+  text-align: center;
+  padding: 44px 28px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+}
+.problem-card:hover { border-color: var(--primary-dark); transform: translateY(-4px); }
+.problem-icon {
+  margin: 0 auto 28px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  background: transparent;
+}
+.problem-icon i { width: 28px; height: 28px; }
+.problem-card p { font-size: 15px; color: var(--gray-300); line-height: 1.5; font-weight: 400; }
 
 /* MECHANISM */
 .mechanism-section { background: var(--surface-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
@@ -274,31 +304,48 @@ footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24
   </section>
 
   <!-- PROBLEM -->
-  <section class="container" style="padding-top:120px;">
-    <div class="text-center gsap-fade" style="max-width: 700px; margin: 0 auto;">
-      <span class="hero-eyebrow">A CRIAÇÃO NO ESCURO</span>
-      <h2 class="mb-6">Você está criando conteúdo <br><span class="gold">baseado em suposições?</span></h2>
-      <p class="mb-6">A maioria dos perfis foca em criar conteúdo "bonito" que não gera resultado. O resultado? Seguidores desqualificados que apenas curtem e nunca compram seu produto.</p>
-      <p class="mb-6">Mas existe um segredo usado por grandes nomes como Antônio Fagoga, Pablo Marçal, Wendell Carvalho e outros: aplicar IA estratégica no Instagram para atrair o público certo e convertê-lo em uma conversa que vende.</p>
-      <p class="text-white mb-6" style="font-weight: 700; font-size:20px;">Seu Instagram precisa trabalhar por você.</p>
-      <p>Nós desenvolvemos estratégias para diagnosticar exatamente o que seu nicho quer comprar. O anúncio é a postagem, apenas o ponto de partida. O sistema de conversas é o que fecha vendas.</p>
+  <section class="container" style="padding-top:100px; padding-bottom:100px;">
+    <div class="text-center gsap-fade" style="max-width: 840px; margin: 0 auto;">
+      <span class="problem-eyebrow">A CRIAÇÃO DO ESCURO</span>
+      <h2 style="font-size: 52px; font-weight: 800; margin-bottom: 32px; line-height: 1.15;">Você está criando conteúdo <br><span class="gold">baseado em suposições?</span></h2>
+      
+      <p style="margin-bottom: 24px; color: var(--gray-300); font-size: 18px; line-height: 1.6;">
+        A maioria dos perfis foca em criar conteúdo “bonito” que não gera resultado.<br>
+        O resultado? Seguidores desqualificados que apenas curtem e nunca compram seu produto.
+      </p>
+      
+      <p style="margin-bottom: 24px; color: var(--gray-300); font-size: 18px; line-height: 1.6;">
+        Mas existe um segredo usado por grandes nomes como Antônio Fogaça,<br>
+        Pablo Marçal, Wendell Carvalho e outros: aplicar IA estratégica no Instagram<br>
+        para atrair o público certo e convertê-lo em uma conversa que vende.
+      </p>
+      
+      <p style="margin-bottom: 24px; color: var(--white); font-weight: 700; font-size: 20px;">
+        Seu Instagram precisa trabalhar por você.
+      </p>
+      
+      <p style="margin-bottom: 48px; color: var(--gray-300); font-size: 18px; line-height: 1.6;">
+        Nós desenvolvemos estratégias para diagnosticar exatamente o que seu<br>
+        nicho quer comprar. O anúncio e a postagem são apenas o ponto de partida.<br>
+        O sistema de conversas é o que fecha vendas.
+      </p>
     </div>
     
     <div class="problem-grid">
-      <div class="card problem-card gsap-fade">
+      <div class="problem-card gsap-fade">
         <div class="problem-icon"><i data-lucide="search"></i></div>
         <p>Você não vai precisar saber tecnologia.</p>
       </div>
-      <div class="card problem-card gsap-fade" style="transition-delay: 100ms;">
+      <div class="problem-card gsap-fade" style="transition-delay: 100ms;">
         <div class="problem-icon"><i data-lucide="message-square"></i></div>
         <p>Você pode criar conteúdo de altíssima assertividade sem precisar aparecer se não quiser.</p>
       </div>
-      <div class="card problem-card gsap-fade" style="transition-delay: 200ms;">
+      <div class="problem-card gsap-fade" style="transition-delay: 200ms;">
         <div class="problem-icon"><i data-lucide="clock"></i></div>
-        <p>Em no máximo 90 minutos de implementação, sua máquina autônoma estará pronta.</p>
+        <p>Em no máximo 60 minutos de implementação, sua máquina autônoma estará pronta.</p>
       </div>
-      <div class="card problem-card gsap-fade" style="transition-delay: 300ms;">
-        <div class="problem-icon"><i data-lucide="circle-dollar-sign"></i></div>
+      <div class="problem-card gsap-fade" style="transition-delay: 300ms;">
+        <div class="problem-icon"><i data-lucide="dollar-sign"></i></div>
         <p>Com poucos cliques e com IA estratégica, você terá pessoas qualificadas a partir de R$0,90.</p>
       </div>
     </div>
