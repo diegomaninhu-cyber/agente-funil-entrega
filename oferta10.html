@@ -6,35 +6,36 @@
 <title>Máquina de Seguidores com IAs Autônomas 2026</title>
 <meta name="description" content="Transforme seu Instagram em uma máquina de vendas com IAs Agênticas e claudeCode.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0a;
-    --bg-2: #121212;
-    --panel: #1a1a1a;
-    --panel-2: #222222;
-    --light: #f5f5f5;
-    --light-2: #ffffff;
-    --ink: #e0e0e0;
-    --ink-dark: #111111;
-    --muted: #888888;
-    --muted-dark: #555555;
-    --line: #2a2a2a;
-    --line-light: #e0e0e0;
+    --bg: #1C1A19;
+    --bg-2: #242221;
+    --panel: #2A2826;
+    --panel-2: #33312F;
+    --light: #FAF8F5;
+    --light-2: #F0EAE1;
+    --ink: #EAE4D9;
+    --ink-dark: #221F1E;
+    --muted: #A39B95;
+    --muted-dark: #66615E;
+    --line: #3D3937;
+    --line-light: #D9D2C5;
     
-    --accent: #a855f7;
-    --accent-deep: #7c3aed;
-    --accent-soft: rgba(168,85,247,0.1);
+    --accent: #D97757;
+    --accent-deep: #B85636;
+    --accent-soft: rgba(217, 119, 87, 0.15);
     
-    --green: #10b981;
-    --green-2: #059669;
+    --green: #D97757;
+    --green-2: #B85636;
     
     --shadow: 0 30px 60px rgba(0,0,0,0.6);
     --shadow-sm: 0 10px 30px rgba(0,0,0,0.4);
-    --radius: 12px;
-    --radius-lg: 16px;
+    --radius: 8px;
+    --radius-lg: 12px;
     --maxw: 1040px;
     --fs: 'Inter', sans-serif;
+    --fs-serif: 'Merriweather', serif;
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
@@ -56,16 +57,13 @@
   .section--panel{background:var(--bg)}
 
   /* Tipografia */
-  .eyebrow{
-    display:inline-block;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
-    font-size:0.75rem;color:var(--accent);margin-bottom:24px;
-  }
-  .section--light .eyebrow{color:var(--accent-deep)}
-  h1,h2,h3{line-height:1.2;font-weight:600;letter-spacing:-0.03em}
+  .eyebrow{display:inline-block;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;font-size:0.8rem;color:var(--accent);margin-bottom:24px;font-family:var(--fs);}
+  .section--light .eyebrow{display:inline-block;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;font-size:0.8rem;color:var(--accent);margin-bottom:24px;font-family:var(--fs);}
+  h1,h2,h3{line-height:1.2;font-family:var(--fs-serif);font-weight:700;letter-spacing:-0.01em;}
   h1{font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700}
   h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:600}
   h3{font-size:clamp(1.2rem,2.4vw,1.4rem);font-weight:600}
-  .em{font-style:italic;font-weight:500}
+  .em{font-style:italic;font-weight:400;font-family:var(--fs-serif)}
   .lead{font-size:clamp(1.1rem,2.1vw,1.25rem);color:var(--muted);font-weight:300}
   .section--light .lead{color:var(--muted-dark)}
   .hl{color:var(--accent)}
@@ -237,6 +235,20 @@
   /* Footer */
   .footer{background:#000;color:var(--muted-dark);text-align:center;padding:60px 24px;font-size:0.8rem;border-top:1px solid var(--line);font-weight:300}
 
+
+/* CYCLE CONTAINER */
+.cycle-container { max-width: 900px; margin: 0 auto; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 48px; box-shadow: var(--shadow); }
+.cycle-grid { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.cycle-item { flex: 1; text-align: center; position: relative; }
+.cycle-num { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--fs-serif); font-size: 1.2rem; font-weight: 700; margin: 0 auto 24px; border: 1px solid var(--accent); }
+.cycle-item h3 { font-size: 1rem; color: #fff; margin-bottom: 12px; }
+.cycle-item p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+.cycle-arrow { flex: 0 0 auto; padding-top: 10px; color: var(--line-light); }
+@media(max-width: 860px) {
+  .cycle-grid { flex-direction: column; align-items: center; gap: 40px; }
+  .cycle-arrow { transform: rotate(90deg); padding-top: 0; }
+}
+
 /* VISUAL CARDS (UI MOCKUPS EM CSS) */
 .vc-wrapper { margin-top: 32px; margin-bottom: 16px; background: linear-gradient(145deg, #161616, #0e0e0e); border: 1px solid #2a2a2a; border-radius: 12px; padding: 32px; position: relative; overflow: hidden; box-shadow: inset 0 0 40px rgba(0,0,0,0.5); }
 .vc-wrapper::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(168,85,247,0.4), transparent); }
@@ -365,6 +377,46 @@
         <p>A IA nutre o lead, entrega a oferta, realiza o atendimento básico e guia a pessoa até o fechamento. Tudo enquanto você está focado em entregar o seu serviço.</p>
         <p>E a melhor parte? Independente do seu nicho, nós entregamos uma <b>Biblioteca de Prompts Sêniores Testados e Validados</b>. Basta aplicar as skills e plugar no seu negócio.</p>
         <p class="big" style="margin-top:40px">Copiar, colar, faturar. <span class="hl">Simples assim.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- MECANISMO ÚNICO - CICLO AGÊNTICO -->
+<section class="section" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:60px">
+      <span class="eyebrow">A Diferença que Gera Vendas</span>
+      <h2 style="color:#fff">O Ciclo Agêntico de Conversão</h2>
+      <p class="lead" style="max-width:600px;margin:16px auto 0">Ao contrário das estratégias comuns de "postar e rezar", as IAs autônomas de 2026 executam um processo fechado de atração e venda.</p>
+    </div>
+    
+    <div class="cycle-container">
+      <div class="cycle-grid">
+        <div class="cycle-item">
+          <div class="cycle-num">1</div>
+          <h3>Mapeamento <br>Profundo</h3>
+          <p>A IA analisa o seu nicho, identifica as dores e cria o ângulo da oferta perfeito.</p>
+        </div>
+        <div class="cycle-arrow"><svg width="24" height="24" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+        <div class="cycle-item">
+          <div class="cycle-num">2</div>
+          <h3>Atração <br>de Precisão</h3>
+          <p>Modelos de criativos gerados para pescar exatamente o cliente que quer comprar.</p>
+        </div>
+        <div class="cycle-arrow"><svg width="24" height="24" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+        <div class="cycle-item">
+          <div class="cycle-num">3</div>
+          <h3>Automação <br>Conversacional</h3>
+          <p>A IA assume os comentários e o Direct, atendendo cada lead como um humano 24/7.</p>
+        </div>
+        <div class="cycle-arrow"><svg width="24" height="24" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+        <div class="cycle-item">
+          <div class="cycle-num">4</div>
+          <h3>Conversão e <br>Retroalimentação</h3>
+          <p>O lead compra, o algoritmo do Instagram entende o perfil, e entrega mais leads parecidos.</p>
+        </div>
       </div>
     </div>
   </div>
