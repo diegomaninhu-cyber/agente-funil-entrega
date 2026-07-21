@@ -154,34 +154,68 @@
 
   .ig-app {
     display: flex; flex-direction: column; height: 100%; width: 100%; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    margin-top: 10px;
+    margin-top: 10px; overflow: hidden;
   }
-  .ig-topbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
-  .ig-logo { font-family: 'Grand Hotel', cursive; font-size: 1.8rem; font-weight: 400; letter-spacing: 0.5px; }
-  .ig-top-icons { display: flex; gap: 15px; align-items: center; font-size: 1.2rem; }
+  .ig-topbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; }
+  .ig-logo { font-family: 'Grand Hotel', cursive; font-size: 1.6rem; font-weight: 400; letter-spacing: 0.5px; }
+  .ig-top-icons { display: flex; gap: 18px; align-items: center; font-size: 1.2rem; }
   
   .ig-red-bubble {
-    position: absolute; top: 0; right: -5px; background: #ff1a1a; color: #fff; font-weight: 700;
-    font-size: 0.7rem; padding: 6px 12px; border-radius: 20px; white-space: nowrap;
-    box-shadow: 0 4px 15px rgba(255, 26, 26, 0.5); z-index: 10;
-    transform: translate(30%, -40%); letter-spacing: -0.2px;
+    position: absolute; top: -8px; right: -10px; background: #ff1a1a; color: #fff; font-weight: 700;
+    font-size: 0.55rem; padding: 4px 8px; border-radius: 12px; white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(255, 26, 26, 0.6); z-index: 10;
+    display: flex; gap: 6px; align-items: center;
+  }
+  .ig-red-bubble span { display: flex; align-items: center; gap: 2px; }
+  
+  .ig-stories { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid #222; overflow: hidden; }
+  .ig-story { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+  .ig-story-ring {
+    width: 56px; height: 56px; border-radius: 50%; padding: 3px;
+    background: #333;
+  }
+  .ig-story-ring.active {
+    background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  }
+  .ig-story-ring.own {
+    background: none; border: 1px dashed #555;
+  }
+  .ig-story-inner {
+    width: 100%; height: 100%; border-radius: 50%; background: #1a1a1a; border: 2px solid #000;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .ig-story-inner .silhouette {
+    width: 60%; height: 60%; border-radius: 50%; background: #444;
+  }
+  .ig-story-name { font-size: 0.6rem; color: #aaa; width: 56px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-align: center; }
+
+  /* Profile Section (entre stories e post) */
+  .ig-profile {
+    display: flex; align-items: center; gap: 10px; padding: 10px 0;
+  }
+  .ig-profile-avatar {
+    width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+    background: #444; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ig-profile-avatar .silhouette { width: 60%; height: 60%; border-radius: 50%; background: #666; }
+  .ig-profile-info { flex: 1; }
+  .ig-profile-info .ig-username { font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+  .ig-profile-info .ig-meta { font-size: 0.6rem; color: #888; margin-top: 2px; }
+  .ig-seguir-btn {
+    background: #0095f6; color: #fff; border: none; padding: 5px 16px; border-radius: 8px;
+    font-size: 0.7rem; font-weight: 600; cursor: pointer; flex-shrink: 0;
   }
   
-  .ig-stories { display: flex; gap: 14px; padding: 12px 0px; border-bottom: 1px solid #222; overflow: hidden; margin: 0 -5px; }
-  .ig-story { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .ig-story-img { width: 60px; height: 60px; border-radius: 50%; background: #222; padding: 2px; }
-  .ig-story-img.active { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-  .ig-story-img::after { content: ''; display: block; width: 100%; height: 100%; background: #333; border-radius: 50%; border: 2px solid #000; }
-  .ig-story-name { font-size: 0.65rem; color: #ccc; width: 60px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; text-align: center; }
+  .ig-feed { flex: 1; display: flex; flex-direction: column; }
+  .ig-feed-img { flex: 1; margin: 0 -20px; overflow: hidden; position: relative; }
   
-  .ig-feed { flex: 1; display: flex; flex-direction: column; padding: 10px 0; }
-  .ig-feed-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .ig-feed-avatar { width: 36px; height: 36px; border-radius: 50%; background: #444; }
-  .ig-feed-header b { font-size: 0.8rem; }
-  .ig-feed-img { flex: 1; border-radius: 0px; margin: 0 -20px; margin-bottom: 10px; overflow: hidden; }
+  .ig-actions { display: flex; justify-content: space-between; padding: 8px 0; align-items: center; }
+  .ig-actions-left { display: flex; gap: 14px; }
+  .ig-likes { font-size: 0.7rem; font-weight: 600; padding-bottom: 4px; }
   
-  .ig-bottombar { display: flex; justify-content: space-around; align-items: center; padding: 10px 0; border-top: 1px solid #222; font-size: 1.2rem; margin-top: auto; margin-bottom: -10px;}
-  .ig-dot { position: absolute; top: -5px; right: -5px; background: #ff1a1a; color: #fff; width: 14px; height: 14px; border-radius: 50%; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  .ig-bottombar { display: flex; justify-content: space-around; align-items: center; padding: 8px 0; border-top: 1px solid #222; font-size: 1.1rem; margin-top: auto; }
+  .ig-dot { position: absolute; top: -4px; right: -4px; background: #ff1a1a; color: #fff; width: 14px; height: 14px; border-radius: 50%; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
   /* Stats Bar Hero */
   .hero-stats {
@@ -387,35 +421,52 @@
             <div class="ig-topbar">
               <div class="ig-logo">Instagram</div>
               <div class="ig-top-icons">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                <div style="position:relative">
-                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                </div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
               </div>
             </div>
             <!-- Stories -->
             <div class="ig-stories">
-              <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name" style="color:#fff">Seu story</div></div>
-              <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name">_joao</div></div>
-              <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name">maria</div></div>
+              <div class="ig-story">
+                <div class="ig-story-ring own"><div class="ig-story-inner"><div class="silhouette"></div></div></div>
+                <div class="ig-story-name" style="color:#fff">Seu story</div>
+              </div>
+              <div class="ig-story">
+                <div class="ig-story-ring"><div class="ig-story-inner"><div class="silhouette"></div></div></div>
+                <div class="ig-story-name">_joao</div>
+              </div>
+              <div class="ig-story">
+                <div class="ig-story-ring"><div class="ig-story-inner"><div class="silhouette"></div></div></div>
+                <div class="ig-story-name">maria</div>
+              </div>
+              <div class="ig-story">
+                <div class="ig-story-ring"><div class="ig-story-inner"><div class="silhouette"></div></div></div>
+                <div class="ig-story-name">lucas_r</div>
+              </div>
             </div>
-            <!-- Feed Mockup -->
+            <!-- Profile Section -->
+            <div class="ig-profile">
+              <div class="ig-profile-avatar"><div class="silhouette"></div></div>
+              <div class="ig-profile-info">
+                <div class="ig-username">voce_aqui</div>
+                <div class="ig-meta">Patrocinado</div>
+              </div>
+            </div>
+            <!-- Feed Post -->
             <div class="ig-feed">
-               <div class="ig-feed-header">
-                 <div class="ig-feed-avatar"></div>
-                 <div><b>Você</b><br><span style="font-size:0.6rem;color:#888">Patrocinado</span></div>
-               </div>
-               <div class="ig-feed-img" style="background: #111; display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 20px;">
-                   <span style="font-size: 0.7rem; color: #888">Post com baixo engajamento</span>
+               <div class="ig-feed-img" style="background: #111; display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 30px 20px; min-height: 180px;">
+                   <span style="font-size: 0.75rem; color: #555; font-weight:500">Post com baixo engajamento</span>
+                   <span style="font-size: 0.55rem; color: #333; margin-top:8px">3 curtidas</span>
                </div>
             </div>
             <!-- Bottom Nav -->
             <div class="ig-bottombar">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-              <div style="width:22px; height:22px; border-radius:50%; background:#444"></div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <div style="width:20px; height:20px; border-radius:50%; background:#444"></div>
             </div>
           </div>
           <div class="dash-label">Antes</div>
@@ -429,72 +480,105 @@
             <div class="ig-topbar">
               <div class="ig-logo">Instagram</div>
               <div class="ig-top-icons">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 <div style="position:relative">
-                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                   <!-- Bolha Vermelha Absurda -->
-                   <div class="ig-red-bubble">
-                      💬 8 &nbsp; ❤️ 1 &nbsp; 👤 7
-                   </div>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                  <!-- Bolha Vermelha -->
+                  <div class="ig-red-bubble">
+                    <span style="color:#ff6b6b">&#9679;</span> 8
+                    <span style="color:#ff6b6b">&#9829;</span> 1
+                    <span style="color:#ff6b6b">&#9632;</span> 7
+                  </div>
                 </div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
               </div>
             </div>
             <!-- Stories -->
             <div class="ig-stories">
-              <div class="ig-story"><div class="ig-story-img"></div><div class="ig-story-name" style="color:#fff">Seu story</div></div>
-              <div class="ig-story"><div class="ig-story-img active"></div><div class="ig-story-name">stefannis...</div></div>
-              <div class="ig-story"><div class="ig-story-img active"></div><div class="ig-story-name">cecilia.c...</div></div>
-              <div class="ig-story"><div class="ig-story-img active"></div><div class="ig-story-name">eujorge...</div></div>
+              <div class="ig-story">
+                <div class="ig-story-ring own"><div class="ig-story-inner"><div class="silhouette"></div></div></div>
+                <div class="ig-story-name" style="color:#fff">Seu story</div>
+              </div>
+              <div class="ig-story">
+                <div class="ig-story-ring active"><div class="ig-story-inner"><div class="silhouette"></div></div></div>
+                <div class="ig-story-name">stefannis...</div>
+              </div>
+              <div class="ig-story">
+                <div class="ig-story-ring active"><div class="ig-story-inner"><div class="silhouette"></div></div></div>
+                <div class="ig-story-name">cecilia.c...</div>
+              </div>
+              <div class="ig-story">
+                <div class="ig-story-ring active"><div class="ig-story-inner"><div class="silhouette"></div></div></div>
+                <div class="ig-story-name">eujorge...</div>
+              </div>
             </div>
-            <!-- Feed Mockup -->
+            <!-- Profile Section -->
+            <div class="ig-profile">
+              <div class="ig-profile-avatar" style="border: 2px solid #e1306c"><div class="silhouette"></div></div>
+              <div class="ig-profile-info">
+                <div class="ig-username">
+                  @brunosakamoto
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#38bdf8"><circle cx="12" cy="12" r="12"></circle><path d="M17 8l-7 8-3-3" stroke="#fff" stroke-width="2.5" fill="none"></path></svg>
+                </div>
+                <div class="ig-meta">Patrocinado</div>
+              </div>
+              <button class="ig-seguir-btn">Seguir</button>
+            </div>
+            <!-- Feed Post -->
             <div class="ig-feed">
-               <div class="ig-feed-header">
-                 <div class="ig-feed-avatar" style="border:2px solid #e1306c"></div>
-                 <div><b>Você</b> <svg width="12" height="12" viewBox="0 0 24 24" fill="#38bdf8"><circle cx="12" cy="12" r="12"></circle><path d="M17 8l-7 8-3-3" stroke="#fff" stroke-width="2" fill="none"></path></svg><br><span style="font-size:0.65rem;color:#ccc">Patrocinado</span></div>
-               </div>
-               <div class="ig-feed-img" style="background: #000; position: relative; display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 20px 0; min-height: 200px;">
+               <div class="ig-feed-img" style="background: #000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 15px 0; min-height: 200px;">
                    <!-- Logo pixel -->
-                   <div style="position:absolute; top: 10px; display:flex; align-items:center; gap:6px; color:#fff; font-weight:600; font-size:0.8rem; letter-spacing:1px; z-index:2">
-                       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h4v4H0zm6 0h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm0 6h4v4h-4zm-6 0h4v4h-4zm-6 0h4v4H6z"></path></svg> pixel
+                   <div style="position:absolute; top: 8px; display:flex; align-items:center; gap:5px; color:#fff; font-weight:600; font-size:0.7rem; letter-spacing:1px; z-index:2">
+                       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h4v4H0zm6 0h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm0 6h4v4h-4zm-6 0h4v4h-4zm-6 0h4v4H6z"></path></svg> pixel
                    </div>
                    
                    <!-- Radar Rings -->
-                   <div style="position:absolute; width: 200px; height: 200px; border: 1px dashed rgba(249, 115, 22, 0.3); border-radius: 50%; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
-                   <div style="position:absolute; width: 140px; height: 140px; border: 1px dotted rgba(249, 115, 22, 0.5); border-radius: 50%; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                   <div style="position:absolute; width: 190px; height: 190px; border: 1px dashed rgba(249, 115, 22, 0.25); border-radius: 50%; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
+                   <div style="position:absolute; width: 130px; height: 130px; border: 1px dotted rgba(249, 115, 22, 0.45); border-radius: 50%; top: 50%; transform: translateY(-50%); pointer-events: none;"></div>
                    
                    <!-- Floating tags -->
-                   <div style="position:absolute; top: 55px; left: 50%; transform: translateX(-50%); border: 1px solid #ea580c; padding: 2px 8px; border-radius: 4px; font-size: 0.5rem; color: #ccc; background:#000; z-index:2">👤 Rotina</div>
-                   <div style="position:absolute; top: 90px; left: 10px; border: 1px solid #ea580c; padding: 2px 8px; border-radius: 4px; font-size: 0.5rem; color: #ccc; background:#000; z-index:2">📈 Leads</div>
-                   <div style="position:absolute; top: 90px; right: 10px; border: 1px solid #ea580c; padding: 2px 8px; border-radius: 4px; font-size: 0.5rem; color: #ccc; background:#000; z-index:2">🎧 Suporte</div>
-                   <div style="position:absolute; bottom: 55px; left: 15px; border: 1px solid #ea580c; padding: 2px 8px; border-radius: 4px; font-size: 0.5rem; color: #ccc; background:#000; z-index:2">🗄️ Dados</div>
-                   <div style="position:absolute; bottom: 55px; right: 15px; border: 1px solid #ea580c; padding: 2px 8px; border-radius: 4px; font-size: 0.5rem; color: #ccc; background:#000; z-index:2">🛒 Vendas</div>
+                   <div style="position:absolute; top: 50px; left: 50%; transform: translateX(-50%); border: 1px solid #ea580c; padding: 2px 7px; border-radius: 4px; font-size: 0.48rem; color: #ccc; background:#000; z-index:2">Rotina</div>
+                   <div style="position:absolute; top: 85px; left: 8px; border: 1px solid #ea580c; padding: 2px 7px; border-radius: 4px; font-size: 0.48rem; color: #ccc; background:#000; z-index:2">Leads</div>
+                   <div style="position:absolute; top: 85px; right: 8px; border: 1px solid #ea580c; padding: 2px 7px; border-radius: 4px; font-size: 0.48rem; color: #ccc; background:#000; z-index:2">Suporte</div>
+                   <div style="position:absolute; bottom: 50px; left: 12px; border: 1px solid #ea580c; padding: 2px 7px; border-radius: 4px; font-size: 0.48rem; color: #ccc; background:#000; z-index:2">Dados</div>
+                   <div style="position:absolute; bottom: 50px; right: 12px; border: 1px solid #ea580c; padding: 2px 7px; border-radius: 4px; font-size: 0.48rem; color: #ccc; background:#000; z-index:2">Vendas</div>
 
                    <!-- Center Text -->
-                   <div style="z-index: 2; text-align: center; margin-top: 15px;">
-                       <div style="font-size: 0.75rem; font-weight: 600; color: #fff;">IA Trabalhando</div>
-                       <div style="font-size: 3rem; font-weight: 800; line-height: 1; color: #fff; text-shadow: 0 0 20px rgba(249, 115, 22, 0.4); font-family: Impact, sans-serif;">24/7</div>
-                       <div style="font-size: 0.65rem; color: #f97316; margin-top: 4px; font-weight:600">pela sua empresa</div>
+                   <div style="z-index: 2; text-align: center; margin-top: 12px;">
+                       <div style="font-size: 0.7rem; font-weight: 600; color: #fff;">IA Trabalhando</div>
+                       <div style="font-size: 2.8rem; font-weight: 800; line-height: 1; color: #fff; text-shadow: 0 0 30px rgba(249, 115, 22, 0.3); font-family: Impact, sans-serif;">24/7</div>
+                       <div style="font-size: 0.6rem; color: #f97316; margin-top: 3px; font-weight:600">pela sua empresa</div>
                    </div>
                    
-                   <!-- Bottom orange box -->
-                   <div style="position:absolute; bottom: 10px; right: 0px; background: #ea580c; color: #fff; padding: 6px 12px; font-size: 0.6rem; font-weight: 600; display:flex; align-items:center; gap:4px; transform: skewX(-15deg);">
-                       <div style="transform: skewX(15deg); display:flex; align-items:center; gap: 4px;">
-                          <div style="width:16px;height:16px; border:1px solid #fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.6rem; line-height:0">→</div>
-                          <div style="text-align:left; line-height:1.2">Aprenda na Imersão<br>Agentes de IA para Negócios</div>
+                   <!-- Bottom orange CTA -->
+                   <div style="position:absolute; bottom: 8px; right: 0; background: #ea580c; color: #fff; padding: 5px 10px; font-size: 0.55rem; font-weight: 600; display:flex; align-items:center; gap:4px; transform: skewX(-12deg);">
+                       <div style="transform: skewX(12deg); display:flex; align-items:center; gap: 3px;">
+                          <div style="width:14px;height:14px; border:1px solid #fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.5rem; line-height:0">&rarr;</div>
+                          <div style="text-align:left; line-height:1.1">Aprenda na Imersao<br>Agentes de IA para Negocios</div>
                        </div>
                    </div>
                </div>
+               <!-- Actions bar -->
+               <div class="ig-actions" style="padding: 6px 0;">
+                 <div class="ig-actions-left">
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="#ff1a1a" stroke="#ff1a1a" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                 </div>
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+               </div>
+               <div class="ig-likes">2.847 curtidas</div>
             </div>
             <!-- Bottom Nav -->
             <div class="ig-bottombar">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
               <span style="position:relative">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
                 <div class="ig-dot">9</div>
               </span>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-              <div style="width:22px; height:22px; border-radius:50%; background:var(--gold)"></div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <div style="width:20px; height:20px; border-radius:50%; background:var(--gold)"></div>
             </div>
           </div>
           <div class="dash-label" style="border-color:var(--gold); color:var(--gold)">Depois</div>
