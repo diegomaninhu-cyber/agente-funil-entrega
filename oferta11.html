@@ -14,7 +14,9 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 <link rel="preload" as="image" href="/depois-fogaca.webp" fetchpriority="high">
 <script defer src="https://unpkg.com/lucide@latest"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -590,7 +592,7 @@ img, video, svg { max-width: 100%; }
   <section class="hero-section">
     <div class="container">
       <div class="hero-grid">
-        <div class="hero-content gsap-fade">
+        <div class="hero-content">
           <span class="hero-eyebrow">Treinamento Definitivo</span>
           <h1 class="hero-title"><span class="mobile-line">Transforme seu</span> <span class="mobile-line">Instagram numa</span> <span class="mobile-line">máquina de vendas</span> <span class="mobile-line">com <span class="gold">IA Autônomas.</span></span></h1>
           <p class="hero-description">Crie fluxos de conversa que captam, qualificam e convertem leads em clientes de forma automática, usando o poder da inteligência artificial.</p>
@@ -602,7 +604,7 @@ img, video, svg { max-width: 100%; }
           </ul>
         </div>
         
-        <div class="hero-media gsap-fade" style="transition-delay: 200ms;">
+        <div class="hero-media" style="transition-delay: 200ms;">
           <div class="phone-mockup" style="max-width: 480px; margin: 0 auto;">
             <div class="cmp" style="width: 100%; aspect-ratio: 1080/2340; border: none; box-shadow: none; border-radius: 28px;">
               <div class="cmp-img cmp-after"><img decoding="async" fetchpriority="high" width="720" height="1472" src="/depois-fogaca.webp" alt="Depois — Antonio Fogaça 53.974 seguidores"><small>Depois</small></div>
