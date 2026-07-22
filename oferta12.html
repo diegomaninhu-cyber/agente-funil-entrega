@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oferta 12 | Máquina de Seguidores com IA</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8Q4CT4XQQ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8Q4CT4XQQ1');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1151,6 +1158,18 @@ img, video, svg { max-width: 100%; }
         }
       };
       
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, {
+          page_path: payload.page,
+          session_id: payload.metadata.session_id,
+          button_text: payload.metadata.button_text || '',
+          button_href: payload.metadata.button_href || '',
+          utm_source: payload.metadata.utm_source || '',
+          utm_medium: payload.metadata.utm_medium || '',
+          utm_campaign: payload.metadata.utm_campaign || ''
+        });
+      }
+
       const blob = new Blob([JSON.stringify(payload)], {type : 'application/json'});
       if (navigator.sendBeacon) {
         navigator.sendBeacon('/api/track', blob);

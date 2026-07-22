@@ -12,154 +12,200 @@
       --text: #E5E5E5;
       --text-muted: #909090;
       --primary: #D7A84B;
+      --live: #14d17b;
+      --offline: #ff5252;
     }
     body {
-      background: var(--bg); color: var(--text);
+      background: var(--bg);
+      color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0; padding: 40px;
+      margin: 0;
+      padding: 40px;
     }
     h1, h2 { color: #fff; margin-top: 0; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 24px; }
+    .live-status { display: flex; align-items: center; gap: 10px; color: var(--text-muted); font-size: 14px; }
+    .live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 6px rgba(20, 209, 123, .12); }
+    .live-status.offline .live-dot { background: var(--offline); box-shadow: 0 0 0 6px rgba(255, 82, 82, .12); }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 40px; }
     .card { background: var(--surface); border: 1px solid var(--border); padding: 24px; border-radius: 12px; }
     .card-title { font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
     .card-value { font-size: 36px; font-weight: bold; color: var(--primary); }
-    
     table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
     th, td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); }
     th { background: #181818; color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
     tr:last-child td { border-bottom: none; }
     .link { color: var(--primary); text-decoration: none; word-break: break-all; }
+    @media (max-width: 720px) {
+      body { padding: 24px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      th, td { padding: 12px; }
+    }
   </style>
 </head>
 <body>
-
-  <h1>Analytics Dashboard</h1>
-  
-  <div class="grid" id="kpis">
-    <!-- KPIs will be injected here -->
+  <div class="topbar">
+    <h1>Analytics Dashboard</h1>
+    <div class="live-status" id="live-status">
+      <span class="live-dot"></span>
+      <span id="live-label">Ao vivo</span>
+      <span id="last-update">carregando...</span>
+    </div>
   </div>
 
-  <h2>Desempenho dos Botões (CTAs)</h2>
+  <div class="grid" id="kpis"></div>
+
+  <h2>Desempenho dos Botoes (CTAs)</h2>
   <table>
     <thead>
       <tr>
-        <th>Página</th>
-        <th>Botão</th>
+        <th>Pagina</th>
+        <th>Botao</th>
         <th>Destino</th>
         <th>Cliques</th>
         <th>CTR</th>
       </tr>
     </thead>
-    <tbody id="btn-table">
-    </tbody>
+    <tbody id="btn-table"></tbody>
   </table>
 
-  <h2>Últimos Eventos (50)</h2>
+  <h2>Ultimos Eventos (50)</h2>
   <table>
     <thead>
       <tr>
         <th>Data/Hora</th>
-        <th>Página</th>
+        <th>Pagina</th>
         <th>Evento</th>
-        <th>Sessão</th>
+        <th>Sessao</th>
         <th>UTM Source</th>
       </tr>
     </thead>
-    <tbody id="events-table">
-    </tbody>
+    <tbody id="events-table"></tbody>
   </table>
 
   <script>
     const token = new URLSearchParams(window.location.search).get('token');
-    
+    let allEvents = [];
+
+    function setLiveStatus(isLive, label) {
+      const status = document.getElementById('live-status');
+      const liveLabel = document.getElementById('live-label');
+      status.classList.toggle('offline', !isLive);
+      liveLabel.textContent = label || (isLive ? 'Ao vivo' : 'Reconectando');
+    }
+
+    function setLastUpdate() {
+      document.getElementById('last-update').textContent = 'ultima atualizacao: ' + new Date().toLocaleTimeString('pt-BR');
+    }
+
+    function renderData(events) {
+      const pageViews = { '/oferta11': 0, '/oferta12': 0 };
+      const clicks = { '/oferta11': 0, '/oferta12': 0 };
+      const sessions = { '/oferta11': new Set(), '/oferta12': new Set() };
+      const buttonStats = {};
+
+      events.forEach((event) => {
+        const path = event.page;
+        const sessionId = event.metadata?.session_id || 'unknown';
+
+        if (event.event === 'page_view') {
+          if (pageViews[path] !== undefined) pageViews[path]++;
+          if (sessions[path]) sessions[path].add(sessionId);
+        } else if (event.event === 'cta_click') {
+          if (clicks[path] !== undefined) clicks[path]++;
+
+          const btnKey = path + '|' + (event.metadata?.button_text || 'CTA');
+          if (!buttonStats[btnKey]) {
+            buttonStats[btnKey] = {
+              page: path,
+              text: event.metadata?.button_text || 'CTA',
+              href: event.metadata?.button_href || '#',
+              clicks: 0
+            };
+          }
+          buttonStats[btnKey].clicks++;
+        }
+      });
+
+      document.getElementById('kpis').innerHTML = ['/oferta11', '/oferta12'].map((page) => {
+        const views = pageViews[page];
+        const unique = sessions[page].size;
+        const ctaClicks = clicks[page];
+        const ctr = views > 0 ? ((ctaClicks / views) * 100).toFixed(2) + '%' : '0%';
+
+        return `
+          <div class="card">
+            <div class="card-title">${page}</div>
+            <div class="card-value">${views} <span style="font-size:16px;color:var(--text-muted)">views</span></div>
+            <div style="margin-top: 12px; font-size:14px">
+              <div>Visitantes Unicos: <strong style="color:#fff">${unique}</strong></div>
+              <div>Cliques (CTAs): <strong style="color:#fff">${ctaClicks}</strong></div>
+              <div>CTR Geral: <strong style="color:#fff">${ctr}</strong></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const buttonRows = Object.values(buttonStats).sort((a, b) => b.clicks - a.clicks).map((button) => {
+        const views = pageViews[button.page] || 0;
+        const ctr = views > 0 ? ((button.clicks / views) * 100).toFixed(2) + '%' : '0%';
+        return `
+          <tr>
+            <td>${button.page}</td>
+            <td>${button.text}</td>
+            <td><a class="link" href="${button.href}" target="_blank">Link</a></td>
+            <td>${button.clicks}</td>
+            <td>${ctr}</td>
+          </tr>
+        `;
+      }).join('');
+      document.getElementById('btn-table').innerHTML = buttonRows || '<tr><td colspan="5">Nenhum clique registrado ainda.</td></tr>';
+
+      const recentRows = [...events].reverse().slice(0, 50).map((event) => {
+        const date = new Date(event.timestamp || event.server_timestamp).toLocaleString('pt-BR');
+        return `
+          <tr>
+            <td>${date}</td>
+            <td>${event.page}</td>
+            <td>${event.event}</td>
+            <td>${(event.metadata?.session_id || '').substring(0, 8)}...</td>
+            <td>${event.metadata?.utm_source || '-'}</td>
+          </tr>
+        `;
+      }).join('');
+      document.getElementById('events-table').innerHTML = recentRows || '<tr><td colspan="5">Nenhum evento registrado ainda.</td></tr>';
+      setLastUpdate();
+    }
+
     async function loadData() {
       try {
-        const res = await fetch('/api/analytics?token=' + token);
-        const data = await res.json();
-        const events = data.events || [];
-        
-        // Metrics
-        const pageViews = { '/oferta11': 0, '/oferta12': 0 };
-        const clicks = { '/oferta11': 0, '/oferta12': 0 };
-        const sessions = { '/oferta11': new Set(), '/oferta12': new Set() };
-        const buttonStats = {}; // { 'page|text': { page, text, href, clicks } }
-
-        events.forEach(e => {
-          const path = e.page;
-          const sessionId = e.metadata?.session_id || 'unknown';
-          
-          if (e.event === 'page_view') {
-            if (pageViews[path] !== undefined) pageViews[path]++;
-            if (sessions[path]) sessions[path].add(sessionId);
-          } else if (e.event === 'cta_click') {
-            if (clicks[path] !== undefined) clicks[path]++;
-            
-            const btnKey = path + '|' + e.metadata?.button_text;
-            if (!buttonStats[btnKey]) {
-              buttonStats[btnKey] = { page: path, text: e.metadata?.button_text, href: e.metadata?.button_href, clicks: 0 };
-            }
-            buttonStats[btnKey].clicks++;
-          }
-        });
-
-        // Update KPIs
-        const kpisHtml = ['/oferta11', '/oferta12'].map(p => {
-          const views = pageViews[p];
-          const unq = sessions[p].size;
-          const clk = clicks[p];
-          const ctr = views > 0 ? ((clk / views) * 100).toFixed(2) + '%' : '0%';
-          
-          return `
-            <div class="card">
-              <div class="card-title">${p}</div>
-              <div class="card-value">${views} <span style="font-size:16px;color:var(--text-muted)">views</span></div>
-              <div style="margin-top: 12px; font-size:14px">
-                <div>Visitantes Únicos: <strong style="color:#fff">${unq}</strong></div>
-                <div>Cliques (CTAs): <strong style="color:#fff">${clk}</strong></div>
-                <div>CTR Geral: <strong style="color:#fff">${ctr}</strong></div>
-              </div>
-            </div>
-          `;
-        }).join('');
-        document.getElementById('kpis').innerHTML = kpisHtml;
-
-        // Update Buttons Table
-        const btnHtml = Object.values(buttonStats).sort((a,b) => b.clicks - a.clicks).map(b => {
-          const views = pageViews[b.page] || 0;
-          const ctr = views > 0 ? ((b.clicks / views) * 100).toFixed(2) + '%' : '0%';
-          return `
-            <tr>
-              <td>${b.page}</td>
-              <td>${b.text}</td>
-              <td><a class="link" href="${b.href}" target="_blank">Link</a></td>
-              <td>${b.clicks}</td>
-              <td>${ctr}</td>
-            </tr>
-          `;
-        }).join('');
-        document.getElementById('btn-table').innerHTML = btnHtml;
-
-        // Update Recent Events
-        const recentHtml = [...events].reverse().slice(0, 50).map(e => {
-          const dt = new Date(e.timestamp || e.server_timestamp).toLocaleString('pt-BR');
-          return `
-            <tr>
-              <td>${dt}</td>
-              <td>${e.page}</td>
-              <td>${e.event}</td>
-              <td>${(e.metadata?.session_id || '').substring(0,8)}...</td>
-              <td>${e.metadata?.utm_source || '-'}</td>
-            </tr>
-          `;
-        }).join('');
-        document.getElementById('events-table').innerHTML = recentHtml;
-
+        const response = await fetch('/api/analytics?token=' + encodeURIComponent(token || ''));
+        const data = await response.json();
+        allEvents = data.events || [];
+        renderData(allEvents);
       } catch (err) {
         console.error('Error loading analytics', err);
+        setLiveStatus(false, 'Erro de conexao');
       }
     }
 
     loadData();
+    setInterval(loadData, 5000);
+
+    if (window.EventSource && token) {
+      const stream = new EventSource('/api/analytics/stream?token=' + encodeURIComponent(token));
+      stream.onopen = () => setLiveStatus(true, 'Ao vivo');
+      stream.onmessage = (event) => {
+        try {
+          allEvents.push(JSON.parse(event.data));
+          renderData(allEvents);
+          setLiveStatus(true, 'Ao vivo');
+        } catch (err) {
+          loadData();
+        }
+      };
+      stream.onerror = () => setLiveStatus(false, 'Reconectando');
+    }
   </script>
 </body>
 </html>

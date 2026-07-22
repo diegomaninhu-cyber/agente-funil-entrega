@@ -6,6 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const SALES_FILE = path.join(__dirname, 'vendas.json');
 const ANALYTICS_FILE = process.env.ANALYTICS_FILE || path.join(__dirname, 'analytics.json');
+const analyticsClients = new Set();
 
 // Parse JSON bodies (for webhook)
 app.use(express.json());
@@ -89,17 +90,37 @@ app.get('/vendas', (req, res) => {
 
 // ─── ANALYTICS ───────────────────────────────────────────────────────────────
 
+function readAnalyticsEvents() {
+  if (!fs.existsSync(ANALYTICS_FILE)) {
+    return [];
+  }
+
+  try {
+    return JSON.parse(fs.readFileSync(ANALYTICS_FILE, 'utf8'));
+  } catch (e) {
+    return [];
+  }
+}
+
+function writeAnalyticsEvents(events) {
+  fs.writeFileSync(ANALYTICS_FILE, JSON.stringify(events, null, 2), 'utf8');
+}
+
+function notifyAnalyticsClients(eventPayload) {
+  const data = `data: ${JSON.stringify(eventPayload)}\n\n`;
+  analyticsClients.forEach((client) => {
+    try {
+      client.write(data);
+    } catch (e) {
+      analyticsClients.delete(client);
+    }
+  });
+}
+
 // 1. Receber eventos do Frontend
 app.post('/api/track', (req, res) => {
   try {
-    let events = [];
-    if (fs.existsSync(ANALYTICS_FILE)) {
-      try {
-        events = JSON.parse(fs.readFileSync(ANALYTICS_FILE, 'utf8'));
-      } catch (e) {
-        events = [];
-      }
-    }
+    const events = readAnalyticsEvents();
     
     // IP anonimizado
     const rawIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
@@ -112,13 +133,37 @@ app.post('/api/track', (req, res) => {
     };
 
     events.push(eventPayload);
-    fs.writeFileSync(ANALYTICS_FILE, JSON.stringify(events, null, 2), 'utf8');
+    writeAnalyticsEvents(events);
+    notifyAnalyticsClients(eventPayload);
 
     res.status(200).json({ status: 'ok' });
   } catch (err) {
     console.error('❌ Erro no track:', err);
     res.status(500).json({ status: 'error' });
   }
+});
+
+app.get('/api/analytics/stream', (req, res) => {
+  const token = req.query.token;
+  if (token !== (process.env.ADMIN_TOKEN || 'diego2026')) {
+    return res.status(401).end();
+  }
+
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.flushHeaders?.();
+  res.write(': connected\n\n');
+  analyticsClients.add(res);
+
+  const heartbeat = setInterval(() => {
+    res.write(': heartbeat\n\n');
+  }, 15000);
+
+  req.on('close', () => {
+    clearInterval(heartbeat);
+    analyticsClients.delete(res);
+  });
 });
 
 // 2. Painel HTML protegido
@@ -137,12 +182,8 @@ app.get('/api/analytics', (req, res) => {
     return res.status(401).json({ error: 'Não autorizado' });
   }
 
-  if (!fs.existsSync(ANALYTICS_FILE)) {
-    return res.json({ events: [] });
-  }
-
   try {
-    const events = JSON.parse(fs.readFileSync(ANALYTICS_FILE, 'utf8'));
+    const events = readAnalyticsEvents();
     res.json({ events });
   } catch (e) {
     res.status(500).json({ error: 'Erro ao ler analytics' });
