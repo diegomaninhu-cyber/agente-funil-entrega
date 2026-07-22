@@ -549,8 +549,8 @@ footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24
     </div>
     <div class="gsap-fade" style="max-width: 800px; margin: 0 auto;">
       <div class="video-card">
-        <div class="video-img">
-          <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Video Placeholder">
+        <div class="video-img" style="cursor: pointer;" onclick="var v=this.querySelector('video'); var btn=this.querySelector('.play-btn'); if(v.paused){v.play(); btn.style.display='none'; v.controls=true; v.style.opacity=1;}else{v.pause();}">
+          <video src="/demonstracao.mp4" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;" preload="metadata" playsinline></video>
           <div class="play-btn"><i data-lucide="play" fill="currentColor"></i></div>
         </div>
         <div class="video-footer">
