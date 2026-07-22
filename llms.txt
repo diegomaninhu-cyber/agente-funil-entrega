@@ -1,0 +1,12 @@
+# Máquina de Seguidores
+
+Site oficial do produto Máquina de Seguidores, com páginas de oferta para automações de Instagram, Manychat, scripts de DM e funis de vendas com IA.
+
+## Páginas principais
+
+- Oferta 11: https://agente-funil-entrega-production.up.railway.app/oferta11
+- Oferta 12: https://agente-funil-entrega-production.up.railway.app/oferta12
+
+## Objetivo
+
+Ajudar criadores, empreendedores e negócios digitais a transformar comentários e mensagens do Instagram em fluxos automatizados de atendimento, qualificação e venda.
