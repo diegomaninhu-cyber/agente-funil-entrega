@@ -970,5 +970,67 @@ img, video, svg { max-width: 100%; }
     });
   });
 </script>
+
+  <!-- ─── ANALYTICS ─── -->
+  <script>
+  (function(){
+    function getSessionId() {
+      let sid = localStorage.getItem('__session_id');
+      if (!sid) {
+        sid = Math.random().toString(36).substring(2) + Date.now().toString(36);
+        localStorage.setItem('__session_id', sid);
+      }
+      return sid;
+    }
+    
+    function getUTMs() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        utm_source: params.get('utm_source') || '',
+        utm_medium: params.get('utm_medium') || '',
+        utm_campaign: params.get('utm_campaign') || '',
+        utm_content: params.get('utm_content') || '',
+        utm_term: params.get('utm_term') || ''
+      };
+    }
+
+    function sendEvent(eventName, extraData = {}) {
+      const payload = {
+        event: eventName,
+        page: window.location.pathname,
+        metadata: {
+          session_id: getSessionId(),
+          referrer: document.referrer,
+          user_agent: navigator.userAgent,
+          ...getUTMs(),
+          ...extraData
+        }
+      };
+      
+      const blob = new Blob([JSON.stringify(payload)], {type : 'application/json'});
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon('/api/track', blob);
+      } else {
+        fetch('/api/track', { method: 'POST', body: JSON.stringify(payload), headers: {'Content-Type': 'application/json'}, keepalive: true }).catch(function(){});
+      }
+    }
+
+    // Dispara page_view
+    sendEvent('page_view');
+
+    // Mapeia cliques em botões (CTAs para checkout ou pricing)
+    document.addEventListener('click', function(e) {
+      const btn = e.target.closest('a');
+      if (btn && btn.href && (btn.href.includes('checkout') || btn.href.includes('#pricing'))) {
+        sendEvent('cta_click', {
+          button_text: btn.innerText.trim(),
+          button_href: btn.href,
+          element_class: btn.className || ''
+        });
+      }
+    });
+  })();
+  </script>
 </body>
+
 </html>

@@ -5,6 +5,7 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const SALES_FILE = path.join(__dirname, 'vendas.json');
+const ANALYTICS_FILE = process.env.ANALYTICS_FILE || path.join(__dirname, 'analytics.json');
 
 // Parse JSON bodies (for webhook)
 app.use(express.json());
@@ -86,6 +87,68 @@ app.get('/vendas', (req, res) => {
   }
 });
 
+// ─── ANALYTICS ───────────────────────────────────────────────────────────────
+
+// 1. Receber eventos do Frontend
+app.post('/api/track', (req, res) => {
+  try {
+    let events = [];
+    if (fs.existsSync(ANALYTICS_FILE)) {
+      try {
+        events = JSON.parse(fs.readFileSync(ANALYTICS_FILE, 'utf8'));
+      } catch (e) {
+        events = [];
+      }
+    }
+    
+    // IP anonimizado
+    const rawIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
+    const anonIp = rawIp.replace(/\.\d+$/, '.0').replace(/:[0-9a-fA-F]+$/, ':0000');
+
+    const eventPayload = {
+      ...req.body,
+      ip: anonIp,
+      server_timestamp: new Date().toISOString()
+    };
+
+    events.push(eventPayload);
+    fs.writeFileSync(ANALYTICS_FILE, JSON.stringify(events, null, 2), 'utf8');
+
+    res.status(200).json({ status: 'ok' });
+  } catch (err) {
+    console.error('❌ Erro no track:', err);
+    res.status(500).json({ status: 'error' });
+  }
+});
+
+// 2. Painel HTML protegido
+app.get('/analytics', (req, res) => {
+  const token = req.query.token;
+  if (token !== (process.env.ADMIN_TOKEN || 'diego2026')) {
+    return res.status(401).send('<h1>Não autorizado</h1>');
+  }
+  res.sendFile(path.join(__dirname, 'analytics-dashboard.html'));
+});
+
+// 3. API JSON para o Painel
+app.get('/api/analytics', (req, res) => {
+  const token = req.query.token;
+  if (token !== (process.env.ADMIN_TOKEN || 'diego2026')) {
+    return res.status(401).json({ error: 'Não autorizado' });
+  }
+
+  if (!fs.existsSync(ANALYTICS_FILE)) {
+    return res.json({ events: [] });
+  }
+
+  try {
+    const events = JSON.parse(fs.readFileSync(ANALYTICS_FILE, 'utf8'));
+    res.json({ events });
+  } catch (e) {
+    res.status(500).json({ error: 'Erro ao ler analytics' });
+  }
+});
+
 // ─── SERVE PÁGINAS DE OFERTA E ENTREGA ──────────────────────────────────────
 app.use(express.static(path.join(__dirname)));
 
@@ -145,4 +208,5 @@ app.listen(PORT, () => {
   console.log(`✅ Servidor rodando na porta ${PORT}`);
   console.log(`🔗 Webhook URL: https://agente-funil-entrega-production.up.railway.app/webhook`);
   console.log(`📊 Painel de vendas: https://agente-funil-entrega-production.up.railway.app/vendas?token=diego2026`);
+  console.log(`📊 Painel de analytics: https://agente-funil-entrega-production.up.railway.app/analytics?token=diego2026`);
 });
