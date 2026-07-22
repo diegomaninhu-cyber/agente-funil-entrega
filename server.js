@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const fs = require('fs');
 
@@ -9,6 +10,15 @@ const ANALYTICS_FILE = process.env.ANALYTICS_FILE || path.join(__dirname, 'analy
 const analyticsClients = new Set();
 
 // Parse JSON bodies (for webhook)
+app.use(compression({
+  filter: (req, res) => {
+    if (req.path === '/api/analytics/stream') {
+      return false;
+    }
+
+    return compression.filter(req, res);
+  }
+}));
 app.use(express.json());
 
 // ─── WEBHOOK InfinitePay ─────────────────────────────────────────────────────
@@ -191,7 +201,20 @@ app.get('/api/analytics', (req, res) => {
 });
 
 // ─── SERVE PÁGINAS DE OFERTA E ENTREGA ──────────────────────────────────────
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname), {
+  etag: true,
+  maxAge: '7d',
+  setHeaders: (res, filePath) => {
+    if (/\.(html)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache');
+      return;
+    }
+
+    if (/\.(webp|png|jpg|jpeg|mp4|css|js|woff2?)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=2592000');
+    }
+  }
+}));
 
 app.get('/oferta', (req, res) => {
   res.sendFile(path.join(__dirname, 'oferta.html'));

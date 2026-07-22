@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Máquina de Seguidores | Premium</title>
+<meta name="description" content="Treinamento para transformar Instagram em uma máquina de vendas com IA, automações de comentários, DMs, scripts, workflows e biblioteca de prompts.">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8Q4CT4XQQ1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -14,10 +15,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script>
+<link rel="preload" as="image" href="/depois-fogaca.webp" fetchpriority="high">
+<script defer src="https://unpkg.com/lucide@latest"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script defer src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script>
 <style>
 :root {
   --background: #050505;
@@ -136,7 +138,7 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 .stat-item { display: flex; align-items: center; gap: 20px; justify-content: center; }
 @media (max-width: 768px) { .stat-item { justify-content: flex-start; } }
 .stat-icon { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--primary-dark); display: flex; align-items: center; justify-content: center; color: var(--primary); }
-.stat-text h4 { font-size: 20px; margin-bottom: 4px; }
+.stat-text h3 { font-size: 20px; margin-bottom: 4px; }
 .stat-text p { font-size: 14px; color: var(--gray-400); }
 
 /* PROBLEM */
@@ -603,8 +605,8 @@ img, video, svg { max-width: 100%; }
         <div class="hero-media gsap-fade" style="transition-delay: 200ms;">
           <div class="phone-mockup" style="max-width: 480px; margin: 0 auto;">
             <div class="cmp" style="width: 100%; aspect-ratio: 1080/2340; border: none; box-shadow: none; border-radius: 28px;">
-              <div class="cmp-img cmp-after"><img loading="lazy" decoding="async" src="/depois-fogaca.jpg" alt="Depois — Antonio Fogaça 53.974 seguidores"><small>Depois</small></div>
-              <div class="cmp-img cmp-before"><img loading="lazy" decoding="async" src="/antes-fogaca.jpg" alt="Antes — Antonio Fogaça 31.940 seguidores"><small>Antes</small></div>
+              <div class="cmp-img cmp-after"><img decoding="async" fetchpriority="high" width="720" height="1472" src="/depois-fogaca.webp" alt="Depois — Antonio Fogaça 53.974 seguidores"><small>Depois</small></div>
+              <div class="cmp-img cmp-before"><img decoding="async" width="720" height="1482" src="/antes-fogaca.webp" alt="Antes — Antonio Fogaça 31.940 seguidores"><small>Antes</small></div>
               <div class="cmp-divider"><div class="cmp-handle">⟺</div></div>
             </div>
           </div>
@@ -623,13 +625,13 @@ img, video, svg { max-width: 100%; }
     <div class="gsap-fade" style="max-width: 800px; margin: 0 auto;">
       <div class="video-card">
         <div class="video-img" style="aspect-ratio: 80/121;">
-          <video src="/demonstracao.mp4" style="width: 100%; height: 100%; object-fit: cover;" autoplay loop muted playsinline></video>
+          <video data-src="/demonstracao-opt.mp4" poster="/demonstracao-poster.webp" preload="none" width="384" height="832" style="width: 100%; height: 100%; object-fit: cover;" autoplay loop muted playsinline></video>
         </div>
         <div class="video-footer">
           <div class="badge-avatars">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="User">
-            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" alt="User">
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="User">
+            <img loading="lazy" decoding="async" width="100" height="100" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="User">
+            <img loading="lazy" decoding="async" width="100" height="100" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" alt="User">
+            <img loading="lazy" decoding="async" width="100" height="100" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="User">
           </div>
           <div class="badge-text">
             <strong>+3.000 alunos</strong>
@@ -646,19 +648,19 @@ img, video, svg { max-width: 100%; }
       <div class="stats-box gsap-fade">
         <div class="stat-item">
           <div class="stat-icon"><i data-lucide="user"></i></div>
-          <div class="stat-text"><h4>+3.000</h4><p>Alunos ativos</p></div>
+          <div class="stat-text"><h3>+3.000</h3><p>Alunos ativos</p></div>
         </div>
         <div class="stat-item">
           <div class="stat-icon"><i data-lucide="line-chart"></i></div>
-          <div class="stat-text"><h4>Resultados</h4><p>Comprovados</p></div>
+          <div class="stat-text"><h3>Resultados</h3><p>Comprovados</p></div>
         </div>
         <div class="stat-item">
           <div class="stat-icon"><i data-lucide="refresh-ccw"></i></div>
-          <div class="stat-text"><h4>Atualizações</h4><p>Constantes</p></div>
+          <div class="stat-text"><h3>Atualizações</h3><p>Constantes</p></div>
         </div>
         <div class="stat-item">
           <div class="stat-icon"><i data-lucide="unlock"></i></div>
-          <div class="stat-text"><h4>Acesso vitalício</h4><p>Conteúdo completo</p></div>
+          <div class="stat-text"><h3>Acesso vitalício</h3><p>Conteúdo completo</p></div>
         </div>
       </div>
     </div>
@@ -694,16 +696,16 @@ img, video, svg { max-width: 100%; }
     
     <div class="problem-grid">
       <div class="problem-card gsap-fade" style="padding: 0; background: none; border: none;">
-        <img src="/oferta11-card-tecnologia-hq.png" style="width: 100%; display: block; border-radius: 20px;" alt="Você não vai precisar saber tecnologia.">
+        <img loading="lazy" decoding="async" width="820" height="820" src="/oferta11-card-tecnologia-hq.webp" style="width: 100%; display: block; border-radius: 20px;" alt="Você não vai precisar saber tecnologia.">
       </div>
       <div class="problem-card gsap-fade" style="padding: 0; background: none; border: none; transition-delay: 100ms;">
-        <img src="/oferta11-card-assertividade-hq.png" style="width: 100%; display: block; border-radius: 20px;" alt="Você pode criar conteúdo de altíssima assertividade sem precisar aparecer se não quiser.">
+        <img loading="lazy" decoding="async" width="820" height="820" src="/oferta11-card-assertividade-hq.webp" style="width: 100%; display: block; border-radius: 20px;" alt="Você pode criar conteúdo de altíssima assertividade sem precisar aparecer se não quiser.">
       </div>
       <div class="problem-card gsap-fade" style="padding: 0; background: none; border: none; transition-delay: 200ms;">
-        <img src="/oferta11-card-60min-hq.png" style="width: 100%; display: block; border-radius: 20px;" alt="Em no máximo 60 minutos de implementação, sua máquina autônoma estará pronta.">
+        <img loading="lazy" decoding="async" width="820" height="820" src="/oferta11-card-60min-hq.webp" style="width: 100%; display: block; border-radius: 20px;" alt="Em no máximo 60 minutos de implementação, sua máquina autônoma estará pronta.">
       </div>
       <div class="problem-card gsap-fade" style="padding: 0; background: none; border: none; transition-delay: 300ms;">
-        <img src="/oferta11-card-preco-hq.png" style="width: 100%; display: block; border-radius: 20px;" alt="Com poucos cliques e com IA estratégica, você terá pessoas qualificadas a partir de R$0,90.">
+        <img loading="lazy" decoding="async" width="820" height="820" src="/oferta11-card-preco-hq.webp" style="width: 100%; display: block; border-radius: 20px;" alt="Com poucos cliques e com IA estratégica, você terá pessoas qualificadas a partir de R$0,90.">
       </div>
     </div>
   </section>
@@ -745,7 +747,7 @@ img, video, svg { max-width: 100%; }
         </div>
         
         <div class="mech-img-wrap">
-          <video src="/gere_uma_imagem_com_efeito_em.mp4" style="width: 100%; max-width: 520px; border-radius: 20px; object-fit: cover;" autoplay loop muted playsinline></video>
+          <video data-src="/gere_uma_imagem_com_efeito_em-opt.mp4" poster="/gere_uma_imagem_com_efeito_em-poster.webp" preload="none" width="540" height="960" style="width: 100%; max-width: 520px; border-radius: 20px; object-fit: cover;" autoplay loop muted playsinline></video>
         </div>
       </div>
     </div>
@@ -759,13 +761,13 @@ img, video, svg { max-width: 100%; }
     </div>
     <div class="cmp-grid gsap-fade">
       <div class="cmp" style="aspect-ratio: 864/1824; background: #0A0A0A;">
-        <div class="cmp-img cmp-after"><img loading="lazy" decoding="async" src="/oferta11-slider-perfil-depois-hq.png" alt="Depois — Perfil Premium" style="object-fit: contain;"><small>Depois</small></div>
-        <div class="cmp-img cmp-before"><img loading="lazy" decoding="async" src="/oferta11-slider-perfil-antes-hq.png" alt="Antes — Perfil Desorganizado" style="object-fit: contain;"><small>Antes</small></div>
+        <div class="cmp-img cmp-after"><img loading="lazy" decoding="async" width="720" height="1518" src="/oferta11-slider-perfil-depois-hq.webp" alt="Depois — Perfil Premium" style="object-fit: contain;"><small>Depois</small></div>
+        <div class="cmp-img cmp-before"><img loading="lazy" decoding="async" width="720" height="1521" src="/oferta11-slider-perfil-antes-hq.webp" alt="Antes — Perfil Desorganizado" style="object-fit: contain;"><small>Antes</small></div>
         <div class="cmp-divider"><div class="cmp-handle">⟺</div></div>
       </div>
       <div class="cmp" style="aspect-ratio: 864/1824; background: #0A0A0A;">
-        <div class="cmp-img cmp-after"><img loading="lazy" decoding="async" src="/oferta11-slider-mensagens-depois-hq.png" alt="Depois — DM Automatizada" style="object-fit: contain;"><small>Depois</small></div>
-        <div class="cmp-img cmp-before"><img loading="lazy" decoding="async" src="/oferta11-slider-mensagens-antes-hq.png" alt="Antes — DM Manual" style="object-fit: contain;"><small>Antes</small></div>
+        <div class="cmp-img cmp-after"><img loading="lazy" decoding="async" width="720" height="1440" src="/oferta11-slider-mensagens-depois-hq.webp" alt="Depois — DM Automatizada" style="object-fit: contain;"><small>Depois</small></div>
+        <div class="cmp-img cmp-before"><img loading="lazy" decoding="async" width="720" height="1518" src="/oferta11-slider-mensagens-antes-hq.webp" alt="Antes — DM Manual" style="object-fit: contain;"><small>Antes</small></div>
         <div class="cmp-divider"><div class="cmp-handle">⟺</div></div>
       </div>
     </div>
@@ -781,19 +783,19 @@ img, video, svg { max-width: 100%; }
     
     <div class="benefits-container">
       <div class="benefit-card gsap-fade" style="padding: 0;">
-        <img src="/oferta11-bonus-01-diagnostico-hq.png" style="width: 100%; display: block; border-radius: 16px;" alt="Skill Especial ou Diagnóstico de Funil">
+        <img loading="lazy" decoding="async" width="720" height="1373" src="/oferta11-bonus-01-diagnostico-hq.webp" style="width: 100%; display: block; border-radius: 16px;" alt="Skill Especial ou Diagnóstico de Funil">
       </div>
       <div class="benefit-card gsap-fade" style="padding: 0; transition-delay: 100ms;">
-        <img src="/oferta11-bonus-02-anuncios-hq.png" style="width: 100%; display: block; border-radius: 16px;" alt="Criação de Anúncios Criativos com IA">
+        <img loading="lazy" decoding="async" width="720" height="1417" src="/oferta11-bonus-02-anuncios-hq.webp" style="width: 100%; display: block; border-radius: 16px;" alt="Criação de Anúncios Criativos com IA">
       </div>
       <div class="benefit-card gsap-fade" style="padding: 0; transition-delay: 200ms;">
-        <img src="/oferta11-bonus-03-workflows-hq.png" style="width: 100%; display: block; border-radius: 16px;" alt="Workflows de Conversação e Atendimento">
+        <img loading="lazy" decoding="async" width="720" height="1440" src="/oferta11-bonus-03-workflows-hq.webp" style="width: 100%; display: block; border-radius: 16px;" alt="Workflows de Conversação e Atendimento">
       </div>
       <div class="benefit-card gsap-fade" style="padding: 0;">
-        <img src="/oferta11-bonus-04-biblioteca-hq.png" style="width: 100%; display: block; border-radius: 16px;" alt="Biblioteca de Prompts Softwares Validados">
+        <img loading="lazy" decoding="async" width="720" height="1406" src="/oferta11-bonus-04-biblioteca-hq.webp" style="width: 100%; display: block; border-radius: 16px;" alt="Biblioteca de Prompts Softwares Validados">
       </div>
       <div class="benefit-card gsap-fade" style="padding: 0; transition-delay: 100ms;">
-        <img src="/oferta11-bonus-05-claude-hq.png" style="width: 100%; display: block; border-radius: 16px;" alt="Como obter 6 meses de Claude Grátis">
+        <img loading="lazy" decoding="async" width="720" height="1392" src="/oferta11-bonus-05-claude-hq.webp" style="width: 100%; display: block; border-radius: 16px;" alt="Como obter 6 meses de Claude Grátis">
       </div>
     </div>
     
@@ -914,6 +916,7 @@ img, video, svg { max-width: 100%; }
 </footer>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function () {
   lucide.createIcons();
   const lenis = new Lenis({
     duration: 1.2,
@@ -975,6 +978,28 @@ img, video, svg { max-width: 100%; }
         ans.style.maxHeight = ans.scrollHeight + 'px';
       }
     });
+  });
+  document.querySelectorAll('video[data-src]').forEach(function(video){
+    function loadVideo(){
+      if(video.dataset.src && !video.src){
+        video.src = video.dataset.src;
+        video.load();
+        video.play().catch(function(){});
+      }
+    }
+
+    if('IntersectionObserver' in window){
+      var observer = new IntersectionObserver(function(entries){
+        if(entries.some(function(entry){ return entry.isIntersecting; })){
+          loadVideo();
+          observer.disconnect();
+        }
+      }, { rootMargin: '400px 0px' });
+      observer.observe(video);
+    } else {
+      loadVideo();
+    }
+  });
   });
 </script>
 
