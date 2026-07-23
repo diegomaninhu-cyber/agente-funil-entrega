@@ -166,6 +166,14 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
   transition: all 0.3s ease;
 }
 .problem-card:hover { border-color: var(--primary-dark); transform: translateY(-4px); }
+.problem-grid .problem-card { align-self: start; }
+.problem-grid .problem-card img {
+  width: 100%;
+  height: auto !important;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  display: block;
+}
 .problem-icon {
   margin: 0 auto 28px;
   width: 72px;
