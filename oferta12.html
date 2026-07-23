@@ -386,46 +386,6 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
   height: auto;
   object-fit: contain;
 }
-.benefits-container .benefit-card .price-replacement {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 4;
-  height: 16%;
-  min-height: 78px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  gap: 3px;
-  padding: 0 0 22px 18px;
-  border-radius: 0 0 16px 16px;
-  background: linear-gradient(180deg, rgba(5,5,5,0) 0%, rgba(5,5,5,0.96) 31%, #050505 100%);
-  color: #f4bd4d;
-  font-weight: 900;
-  line-height: 1;
-  text-transform: uppercase;
-  text-shadow: 0 0 18px rgba(244,189,77,0.22);
-  pointer-events: none;
-}
-.benefits-container .benefit-card .price-label {
-  display: block;
-  font-size: clamp(14px, 1.2vw, 18px);
-  letter-spacing: 0.14em;
-  line-height: 1;
-}
-.benefits-container .benefit-card .price-value {
-  display: block;
-  font-size: clamp(25px, 2vw, 30px);
-  letter-spacing: 0.01em;
-  line-height: 0.96;
-  white-space: nowrap;
-}
-.benefits-container .benefit-card.claude-featured .price-value {
-  font-size: clamp(25px, 1.9vw, 29px);
-  letter-spacing: -0.02em;
-}
 .benefits-container .benefit-card.claude-featured {
   flex-basis: 320px;
   width: min(100%, 320px);
@@ -470,18 +430,6 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
     max-width: 380px;
     transform: none;
     margin-top: 18px;
-  }
-  .benefits-container .benefit-card .price-replacement {
-    min-height: 92px;
-    padding: 0 0 28px 22px;
-  }
-  .benefits-container .benefit-card .price-label {
-    font-size: clamp(16px, 4.6vw, 20px);
-  }
-  .benefits-container .benefit-card .price-value,
-  .benefits-container .benefit-card.claude-featured .price-value {
-    font-size: clamp(31px, 8.2vw, 39px);
-    letter-spacing: -0.02em;
   }
 }
 .benefit-num { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--primary-dark); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; margin-bottom: 24px; background: rgba(215,168,75,0.05); }
@@ -1040,13 +988,11 @@ img, video, svg { max-width: 100%; }
     </div>
     
     <div class="benefits-container">
-      <div class="benefit-card price-override gsap-fade" style="padding: 0;">
+      <div class="benefit-card gsap-fade" style="padding: 0;">
         <img src="/oferta11-bonus-01-diagnostico-hq.png" style="width: 100%; display: block; border-radius: 16px;" alt="Skill Especial ou Diagnóstico de Funil">
-        <span class="price-replacement"><span class="price-label">VALOR</span><span class="price-value">R$497,00</span></span>
       </div>
-      <div class="benefit-card price-override gsap-fade" style="padding: 0; transition-delay: 100ms;">
+      <div class="benefit-card gsap-fade" style="padding: 0; transition-delay: 100ms;">
         <img src="/oferta11-bonus-02-anuncios-hq.png" style="width: 100%; display: block; border-radius: 16px;" alt="Criação de Anúncios Criativos com IA">
-        <span class="price-replacement"><span class="price-label">VALOR</span><span class="price-value">R$250,00</span></span>
       </div>
       <div class="benefit-card gsap-fade" style="padding: 0; transition-delay: 200ms;">
         <img src="/oferta11-bonus-03-workflows-hq.png" style="width: 100%; display: block; border-radius: 16px;" alt="Workflows de Conversação e Atendimento">
@@ -1054,9 +1000,8 @@ img, video, svg { max-width: 100%; }
       <div class="benefit-card gsap-fade" style="padding: 0;">
         <img src="/oferta11-bonus-04-biblioteca-hq.png" style="width: 100%; display: block; border-radius: 16px;" alt="Biblioteca de Prompts Softwares Validados">
       </div>
-      <div class="benefit-card claude-featured price-override gsap-fade" style="padding: 0; transition-delay: 100ms;">
+      <div class="benefit-card claude-featured gsap-fade" style="padding: 0; transition-delay: 100ms;">
         <img src="/oferta11-bonus-05-claude-hq.png" style="width: 100%; display: block; border-radius: 16px;" alt="Como obter 6 meses de Claude Grátis">
-        <span class="price-replacement"><span class="price-label">VALOR</span><span class="price-value">R$1.150,00</span></span>
       </div>
     </div>
     
