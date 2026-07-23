@@ -349,11 +349,50 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
   height: auto;
   object-fit: contain;
 }
+.benefits-container .benefit-card.claude-featured {
+  flex-basis: 320px;
+  width: min(100%, 320px);
+  max-width: 320px;
+  z-index: 2;
+  transform: translateY(-14px);
+}
+.benefits-container .benefit-card.claude-featured:hover {
+  transform: translateY(-20px);
+}
+.benefits-container .benefit-card.claude-featured::before {
+  content: "BÔNUS EM DESTAQUE";
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  white-space: nowrap;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f7d47a, var(--primary), #8b5e18);
+  color: #090600;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 34px rgba(215,168,75,0.35), 0 0 0 1px rgba(255,255,255,0.18) inset;
+}
+.benefits-container .benefit-card.claude-featured img {
+  border: 2px solid rgba(247,212,122,0.82);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.12) inset, 0 22px 80px rgba(215,168,75,0.26), 0 0 48px rgba(215,168,75,0.24);
+}
 @media(max-width: 600px){
   .benefits-container .benefit-card {
     flex-basis: min(100%, 360px);
     width: min(100%, 360px);
     max-width: 360px;
+  }
+  .benefits-container .benefit-card.claude-featured {
+    flex-basis: min(100%, 380px);
+    width: min(100%, 380px);
+    max-width: 380px;
+    transform: none;
+    margin-top: 18px;
   }
 }
 .benefit-num { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--primary-dark); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; margin-bottom: 24px; background: rgba(215,168,75,0.05); }
@@ -821,7 +860,7 @@ img, video, svg { max-width: 100%; }
       <div class="benefit-card gsap-fade" style="padding: 0;">
         <img loading="lazy" decoding="async" width="720" height="1406" src="/oferta11-bonus-04-biblioteca-hq.webp" style="width: 100%; display: block; border-radius: 16px;" alt="Biblioteca de Prompts Softwares Validados">
       </div>
-      <div class="benefit-card gsap-fade" style="padding: 0; transition-delay: 100ms;">
+      <div class="benefit-card claude-featured gsap-fade" style="padding: 0; transition-delay: 100ms;">
         <img loading="lazy" decoding="async" width="720" height="1392" src="/oferta11-bonus-05-claude-hq.webp" style="width: 100%; display: block; border-radius: 16px;" alt="Como obter 6 meses de Claude Grátis">
       </div>
     </div>
