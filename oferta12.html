@@ -1227,6 +1227,7 @@ img, video, svg { max-width: 100%; }
 
       const payload = {
         event: eventName,
+        custom_event_name: extraData.custom_event_name || null,
         event_id: event_id,
         fbp: fbp,
         fbc: fbc,
@@ -1254,10 +1255,16 @@ img, video, svg { max-width: 100%; }
       }
 
       if (typeof window.fbq === 'function') {
-        const fbEventName = eventName === 'page_view' ? 'PageView' : 'InitiateCheckout';
-        window.fbq('track', fbEventName, {
-          content_name: payload.metadata.button_text || ''
-        }, { eventID: event_id });
+        const fbEventName = payload.custom_event_name || (eventName === 'page_view' ? 'PageView' : 'InitiateCheckout');
+        if (payload.custom_event_name) {
+          window.fbq('trackCustom', fbEventName, {
+            content_name: payload.metadata.button_text || ''
+          }, { eventID: event_id });
+        } else {
+          window.fbq('track', fbEventName, {
+            content_name: payload.metadata.button_text || ''
+          }, { eventID: event_id });
+        }
       }
 
       const blob = new Blob([JSON.stringify(payload)], {type : 'application/json'});
@@ -1278,7 +1285,8 @@ img, video, svg { max-width: 100%; }
         sendEvent('cta_click', {
           button_text: btn.innerText.trim(),
           button_href: btn.href,
-          element_class: btn.className || ''
+          element_class: btn.className || '',
+          custom_event_name: 'Oferta12_Conversao_Personalizada'
         });
       }
     });

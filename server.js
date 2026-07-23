@@ -137,7 +137,7 @@ function sendToFacebookCAPI(eventPayload, req, anonIp) {
     return;
   }
 
-  const fbEventName = eventPayload.event === 'page_view' ? 'PageView' : 'InitiateCheckout';
+  const fbEventName = eventPayload.custom_event_name || (eventPayload.event === 'page_view' ? 'PageView' : 'InitiateCheckout');
   const actionSource = 'website';
   const eventTime = Math.floor(Date.now() / 1000);
 
