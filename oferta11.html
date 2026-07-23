@@ -1139,13 +1139,13 @@ img, video, svg { max-width: 100%; }
       }
 
       if (typeof window.fbq === 'function') {
-        const fbEventName = payload.custom_event_name || (eventName === 'page_view' ? 'PageView' : 'InitiateCheckout');
+        const standardEvent = eventName === 'page_view' ? 'PageView' : 'InitiateCheckout';
+        window.fbq('track', standardEvent, {
+          content_name: payload.metadata.button_text || ''
+        }, { eventID: event_id });
+        
         if (payload.custom_event_name) {
-          window.fbq('trackCustom', fbEventName, {
-            content_name: payload.metadata.button_text || ''
-          }, { eventID: event_id });
-        } else {
-          window.fbq('track', fbEventName, {
+          window.fbq('trackCustom', payload.custom_event_name, {
             content_name: payload.metadata.button_text || ''
           }, { eventID: event_id });
         }

@@ -137,7 +137,7 @@ function sendToFacebookCAPI(eventPayload, req, anonIp) {
     return;
   }
 
-  const fbEventName = eventPayload.custom_event_name || (eventPayload.event === 'page_view' ? 'PageView' : 'InitiateCheckout');
+  const standardEventName = eventPayload.event === 'page_view' ? 'PageView' : 'InitiateCheckout';
   const actionSource = 'website';
   const eventTime = Math.floor(Date.now() / 1000);
 
@@ -150,7 +150,7 @@ function sendToFacebookCAPI(eventPayload, req, anonIp) {
   if (eventPayload.fbc) userData.fbc = eventPayload.fbc;
 
   const data = [{
-    event_name: fbEventName,
+    event_name: standardEventName,
     event_time: eventTime,
     action_source: actionSource,
     event_id: eventPayload.event_id || `evt_${eventTime}`,
@@ -160,6 +160,20 @@ function sendToFacebookCAPI(eventPayload, req, anonIp) {
       content_name: eventPayload.metadata?.button_text || eventPayload.event
     }
   }];
+
+  if (eventPayload.custom_event_name) {
+    data.push({
+      event_name: eventPayload.custom_event_name,
+      event_time: eventTime,
+      action_source: actionSource,
+      event_id: eventPayload.event_id || `evt_${eventTime}`,
+      event_source_url: eventPayload.event_source_url || eventPayload.page || '',
+      user_data: userData,
+      custom_data: {
+        content_name: eventPayload.metadata?.button_text || eventPayload.event
+      }
+    });
+  }
 
   const payload = { data: data };
 
