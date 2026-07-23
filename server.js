@@ -161,7 +161,18 @@ function sendToFacebookCAPI(eventPayload, req, anonIp) {
     }
   }];
 
-  const postData = JSON.stringify({ data: data });
+  const payload = { data: data };
+
+  // Extracao do test_event_code
+  try {
+    const urlStr = eventPayload.event_source_url || eventPayload.page || '';
+    const match = urlStr.match(/[?&]test_event_code=([^&#]*)/);
+    if (match && match[1]) {
+      payload.test_event_code = match[1];
+    }
+  } catch (e) {}
+
+  const postData = JSON.stringify(payload);
 
   const https = require('https');
   const options = {
