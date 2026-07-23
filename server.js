@@ -127,6 +127,65 @@ function notifyAnalyticsClients(eventPayload) {
   });
 }
 
+// Função para enviar para o Facebook CAPI
+function sendToFacebookCAPI(eventPayload, req, anonIp) {
+  const FB_PIXEL_ID = '607914143271127';
+  const FB_CAPI_TOKEN = process.env.FB_CAPI_TOKEN;
+  
+  if (!FB_CAPI_TOKEN) {
+    // Silently skip if no token is configured
+    return;
+  }
+
+  const fbEventName = eventPayload.event === 'page_view' ? 'PageView' : 'InitiateCheckout';
+  const actionSource = 'website';
+  const eventTime = Math.floor(Date.now() / 1000);
+
+  const userData = {
+    client_ip_address: req.headers['x-forwarded-for'] || req.socket.remoteAddress || anonIp,
+    client_user_agent: req.headers['user-agent'] || eventPayload.metadata?.user_agent || '',
+  };
+
+  if (eventPayload.fbp) userData.fbp = eventPayload.fbp;
+  if (eventPayload.fbc) userData.fbc = eventPayload.fbc;
+
+  const data = [{
+    event_name: fbEventName,
+    event_time: eventTime,
+    action_source: actionSource,
+    event_id: eventPayload.event_id || `evt_${eventTime}`,
+    event_source_url: eventPayload.event_source_url || eventPayload.page || '',
+    user_data: userData,
+    custom_data: {
+      content_name: eventPayload.metadata?.button_text || eventPayload.event
+    }
+  }];
+
+  const postData = JSON.stringify({ data: data });
+
+  const https = require('https');
+  const options = {
+    hostname: 'graph.facebook.com',
+    path: `/v19.0/${FB_PIXEL_ID}/events?access_token=${FB_CAPI_TOKEN}`,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(postData)
+    }
+  };
+
+  const request = https.request(options, (res) => {
+    res.on('data', () => {}); // Consume data to free memory
+  });
+
+  request.on('error', (e) => {
+    console.error('❌ Erro no CAPI:', e.message);
+  });
+
+  request.write(postData);
+  request.end();
+}
+
 // 1. Receber eventos do Frontend
 app.post('/api/track', (req, res) => {
   try {
@@ -145,6 +204,9 @@ app.post('/api/track', (req, res) => {
     events.push(eventPayload);
     writeAnalyticsEvents(events);
     notifyAnalyticsClients(eventPayload);
+
+    // Envia para o Facebook CAPI assincronamente
+    sendToFacebookCAPI(eventPayload, req, anonIp);
 
     res.status(200).json({ status: 'ok' });
   } catch (err) {

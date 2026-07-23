@@ -12,6 +12,22 @@
   gtag('js', new Date());
   gtag('config', 'G-8Q4CT4XQQ1');
 </script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '607914143271127');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=607914143271127&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap">
@@ -1089,8 +1105,16 @@ img, video, svg { max-width: 100%; }
     }
 
     function sendEvent(eventName, extraData = {}) {
+      const event_id = 'evt_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+      const fbp = document.cookie.split('; ').find(row => row.startsWith('_fbp='))?.split('=')[1] || '';
+      const fbc = document.cookie.split('; ').find(row => row.startsWith('_fbc='))?.split('=')[1] || '';
+
       const payload = {
         event: eventName,
+        event_id: event_id,
+        fbp: fbp,
+        fbc: fbc,
+        event_source_url: window.location.href,
         page: window.location.pathname,
         metadata: {
           session_id: getSessionId(),
@@ -1111,6 +1135,13 @@ img, video, svg { max-width: 100%; }
           utm_medium: payload.metadata.utm_medium || '',
           utm_campaign: payload.metadata.utm_campaign || ''
         });
+      }
+
+      if (typeof window.fbq === 'function') {
+        const fbEventName = eventName === 'page_view' ? 'PageView' : 'InitiateCheckout';
+        window.fbq('track', fbEventName, {
+          content_name: payload.metadata.button_text || ''
+        }, { eventID: event_id });
       }
 
       const blob = new Blob([JSON.stringify(payload)], {type : 'application/json'});
