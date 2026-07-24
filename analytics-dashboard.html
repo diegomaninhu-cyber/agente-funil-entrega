@@ -99,9 +99,9 @@
     }
 
     function renderData(events) {
-      const pageViews = { '/oferta11': 0, '/oferta12': 0 };
-      const clicks = { '/oferta11': 0, '/oferta12': 0 };
-      const sessions = { '/oferta11': new Set(), '/oferta12': new Set() };
+      const pageViews = { '/oferta11': 0, '/oferta12': 0, '/oferta13': 0 };
+      const clicks = { '/oferta11': 0, '/oferta12': 0, '/oferta13': 0 };
+      const sessions = { '/oferta11': new Set(), '/oferta12': new Set(), '/oferta13': new Set() };
       const buttonStats = {};
 
       events.forEach((event) => {
@@ -127,7 +127,7 @@
         }
       });
 
-      document.getElementById('kpis').innerHTML = ['/oferta11', '/oferta12'].map((page) => {
+      document.getElementById('kpis').innerHTML = ['/oferta11', '/oferta12', '/oferta13'].map((page) => {
         const views = pageViews[page];
         const unique = sessions[page].size;
         const ctaClicks = clicks[page];

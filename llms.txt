@@ -6,6 +6,7 @@ Site oficial do produto Máquina de Seguidores, com páginas de oferta para auto
 
 - Oferta 11: https://agente-funil-entrega-production.up.railway.app/oferta11
 - Oferta 12: https://agente-funil-entrega-production.up.railway.app/oferta12
+- Oferta 13: https://agente-funil-entrega-production.up.railway.app/oferta13
 
 ## Objetivo
 
