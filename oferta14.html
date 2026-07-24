@@ -36,11 +36,11 @@ src="https://www.facebook.com/tr?id=607914143271127&ev=PageView&noscript=1"
 <script src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script>
 <style>
 :root {
-  --background: #050505;
-  --surface: #0A0A0A;
-  --surface-2: #151515;
-  --surface-3: #1A1A1A;
-  --border: #222222;
+  --background: var(--background);
+  --surface: var(--surface);
+  --surface-2: var(--surface-2);
+  --surface-3: var(--surface-2);
+  --border: var(--border)222;
   --primary: #D97757;
   --primary-light: #E69D84;
   --primary-dark: #A64E33;
@@ -55,8 +55,8 @@ src="https://www.facebook.com/tr?id=607914143271127&ev=PageView&noscript=1"
   --gray-700: #444444;
   --gray-800: #2A2A2A;
   --gray-900: #181818;
-  --shadow-card: 0 10px 30px rgba(0,0,0,0.35);
-  --shadow-hover: 0 20px 60px rgba(0,0,0,0.55);
+  --shadow-card: 0 10px 30px rgba(0,0,0,0.08);
+  --shadow-hover: 0 20px 60px rgba(0,0,0,0.12);
   --shadow-btn: 0 8px 30px rgba(217,119,87,0.25);
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -102,7 +102,7 @@ section { padding: 96px 0; }
 .btn-secondary { background-color: transparent; color: var(--primary); border: 1px solid var(--primary); }
 
 .card {
-  background-color: #121212; border: 1px solid #282828;
+  background-color: #121212; border: 1px solid var(--border);
   border-radius: var(--radius-lg); padding: 40px 32px;
   box-shadow: var(--shadow-card); transition: all 0.3s ease;
 }
@@ -138,10 +138,10 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 @media (max-width: 520px) { .hero-actions .btn { width: 100%; } .hero-seals { grid-template-columns: 1fr; } }
 
 .flow-section { padding: 72px 0; }
-.flow-card { border: 1px solid rgba(217,119,87,0.24); border-radius: 28px; background: linear-gradient(135deg, rgba(217,119,87,0.10), rgba(8,8,8,0.96) 34%, rgba(8,8,8,1)); padding: 44px; box-shadow: 0 28px 70px rgba(0,0,0,0.55); }
+.flow-card { border: 1px solid rgba(217,119,87,0.24); border-radius: 28px; background: linear-gradient(135deg, rgba(217,119,87,0.10), rgba(255,255,255,0.96) 34%, rgba(255,255,255,1)); padding: 44px; box-shadow: 0 28px 70px rgba(0,0,0,0.12); }
 .flow-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 28px; align-items: center; }
 .flow-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-.flow-step { min-height: 160px; border: 1px solid #242424; border-radius: 20px; background: rgba(0,0,0,0.38); padding: 22px; }
+.flow-step { min-height: 160px; border: 1px solid var(--border); border-radius: 20px; background: rgba(0,0,0,0.03); padding: 22px; }
 .flow-step strong { display: block; color: var(--primary-light); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
 .flow-step h4 { font-size: 20px; margin-bottom: 8px; }
 
@@ -159,15 +159,15 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 
 .stack-preview { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 42px; align-items: center; }
 .stack-list { display: grid; gap: 14px; }
-.stack-item { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; padding: 18px; border: 1px solid #202020; border-radius: 16px; background: #090909; }
+.stack-item { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; padding: 18px; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); }
 .stack-item i { color: var(--primary); width: 22px; height: 22px; margin-top: 3px; }
 .stack-item strong { display: block; color: var(--white); margin-bottom: 4px; }
 .stack-item span { color: var(--gray-400); font-size: 15px; }
 @media(max-width: 960px){ .stack-preview { grid-template-columns: 1fr; } }
 
 .compare-ai { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 44px; }
-.compare-panel { border: 1px solid #222; border-radius: 22px; padding: 32px; background: #090909; }
-.compare-panel.good { border-color: rgba(217,119,87,0.35); background: radial-gradient(circle at top right, rgba(217,119,87,0.14), #090909 48%); }
+.compare-panel { border: 1px solid var(--border); border-radius: 22px; padding: 32px; background: var(--surface); }
+.compare-panel.good { border-color: rgba(217,119,87,0.35); background: radial-gradient(circle at top right, rgba(217,119,87,0.14), var(--surface) 48%); }
 .compare-panel h3 { font-size: 28px; margin-bottom: 20px; }
 .compare-panel ul { list-style: none; display: grid; gap: 14px; }
 .compare-panel li { display: flex; gap: 12px; color: var(--gray-300); font-size: 16px; }
@@ -176,27 +176,27 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 @media(max-width: 800px){ .compare-ai { grid-template-columns: 1fr; } }
 
 .mini-proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
-.mini-proof-card { border: 1px solid #202020; border-radius: 18px; background: #090909; padding: 24px; }
+.mini-proof-card { border: 1px solid var(--border); border-radius: 18px; background: var(--surface); padding: 24px; }
 .mini-proof-card strong { color: var(--white); display: block; margin-bottom: 8px; }
 .mini-proof-card p { color: var(--gray-400); font-size: 15px; line-height: 1.55; }
 @media(max-width: 760px){ .mini-proof { grid-template-columns: 1fr; } }
 
-.video-card { background: #0A0A0A; border-radius: 20px; overflow: hidden; border: 1px solid #222; box-shadow: 0 40px 80px rgba(0,0,0,0.5); width: 100%; max-width: 480px; margin: 0 auto; }
+.video-card { background: var(--surface); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 40px 80px rgba(0,0,0,0.5); width: 100%; max-width: 480px; margin: 0 auto; }
 .video-img { position: relative; aspect-ratio: 4/5; }
 .video-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
-.play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border: 2px solid rgba(255,255,255,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); backdrop-filter: blur(4px); color: var(--white); transition: all 0.2s; cursor: pointer; }
-.play-btn:hover { background: rgba(217,119,87,0.8); border-color: transparent; color: #000; transform: translate(-50%, -50%) scale(1.1); }
-.video-footer { padding: 24px; display: flex; align-items: center; gap: 16px; background: #0A0A0A;}
+.play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border: 2px solid rgba(255,255,255,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.02); backdrop-filter: blur(4px); color: var(--white); transition: all 0.2s; cursor: pointer; }
+.play-btn:hover { background: rgba(217,119,87,0.8); border-color: transparent; color: var(--surface-3); transform: translate(-50%, -50%) scale(1.1); }
+.video-footer { padding: 24px; display: flex; align-items: center; gap: 16px; background: var(--surface);}
 
 .badge-avatars { display: flex; }
-.badge-avatars img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #0A0A0A; margin-left: -12px; }
+.badge-avatars img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--surface); margin-left: -12px; }
 .badge-avatars img:first-child { margin-left: 0; }
 .badge-text { font-size: 13px; color: var(--gray-400); line-height:1.3;}
 .badge-text strong { color: var(--white); font-weight: 700; display: block; font-size: 14px;}
 
 /* STATS */
 .stats-section { padding: 0 0 80px 0; border: none; background: transparent;}
-.stats-box { background: #0A0A0A; border: 1px solid #222; border-radius: 24px; padding: 40px 64px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+.stats-box { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px 64px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
 @media (max-width: 960px) { .stats-box { grid-template-columns: repeat(2, 1fr); padding: 32px; } }
 @media (max-width: 600px) { .stats-box { grid-template-columns: 1fr; } }
 .stat-item { display: flex; align-items: center; gap: 20px; justify-content: center; }
@@ -219,8 +219,8 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 @media (max-width: 960px) { .problem-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .problem-grid { grid-template-columns: 1fr; } }
 .problem-card {
-  background: #090909;
-  border: 1px solid #1E1E1E;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 18px;
   text-align: center;
   padding: 44px 28px;
@@ -254,8 +254,8 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 /* MECHANISM */
 .mechanism-section { padding: 40px 0 80px 0; background: transparent; }
 .mechanism-card {
-  background: #080808;
-  border: 1px solid #1E1E1E;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 28px;
   padding: 64px 56px;
   box-shadow: 0 30px 80px rgba(0,0,0,0.6);
@@ -312,7 +312,7 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
   aspect-ratio: 1/1;
   border-radius: 18px;
   overflow: hidden;
-  border: 1px solid #1E1E1E;
+  border: 1px solid var(--border);
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   --pct: 50%;
   touch-action: pan-y;
@@ -330,9 +330,9 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
   height: 100%;
   object-fit: cover;
 }
-.cmp-after { background: #1A1A1A; }
+.cmp-after { background: var(--surface-2); }
 .cmp-before {
-  background: #111;
+  background: var(--surface-2);
   clip-path: inset(0 calc(100% - var(--pct)) 0 0);
   z-index: 1;
 }
@@ -482,7 +482,7 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
   align-items: center;
   max-width: 900px;
   margin: 0 auto;
-  background: #080808;
+  background: var(--surface);
   border: 1px solid rgba(217,119,87,0.25);
   border-radius: 24px;
   padding: 56px;
@@ -513,8 +513,8 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 .faq-section { padding: 80px 0; }
 .faq-list { max-width: 800px; margin: 48px auto 0; display: grid; gap: 14px; }
 .faq-item {
-  background: #090909;
-  border: 1px solid #1E1E1E;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
   transition: border-color 0.3s ease;
@@ -570,8 +570,8 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
   display: flex;
   align-items: center;
   gap: 14px;
-  background: #090909;
-  border: 1px solid #1E1E1E;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 20px;
 }
@@ -605,10 +605,10 @@ footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24
 /* PHONE MOCKUP */
 .phone-mockup {
   position: relative;
-  border: 12px solid #111;
+  border: 12px solid var(--surface-2);
   border-radius: 40px;
-  background: #000;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 0 2px #282828;
+  background: var(--surface-3);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 0 2px var(--border);
   overflow: hidden;
 }
 .phone-mockup::after {
@@ -619,7 +619,7 @@ footer p { font-size: 13px; color: var(--gray-500); max-width: 600px; margin: 24
   transform: translateX(-50%);
   width: 140px;
   height: 28px;
-  background: #111;
+  background: var(--surface-2);
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   z-index: 100;
@@ -974,7 +974,7 @@ img, video, svg { max-width: 100%; }
     </div>
     <div class="cmp-grid gsap-fade">
       <!-- Slider de perfil removido -->
-      <div class="cmp" style="aspect-ratio: 864/1824; background: #0A0A0A;">
+      <div class="cmp" style="aspect-ratio: 864/1824; background: var(--surface);">
         <div class="cmp-img cmp-after"><img loading="lazy" decoding="async" src="/oferta11-slider-mensagens-depois-hq.png" alt="Depois — DM Automatizada" style="object-fit: contain;"><small>Depois</small></div>
         <div class="cmp-img cmp-before"><img loading="lazy" decoding="async" src="/oferta11-slider-mensagens-antes-hq.png" alt="Antes — DM Manual" style="object-fit: contain;"><small>Antes</small></div>
         <div class="cmp-divider"><div class="cmp-handle">⟷</div></div>
