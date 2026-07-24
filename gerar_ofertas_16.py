@@ -60,7 +60,7 @@ niches = {
         "problem_eyebrow": '<span class="problem-eyebrow">A Dieta Gratuita</span>',
         "problem_title": '<h2 style="font-size: 52px; font-weight: 800; margin-bottom: 32px; line-height: 1.15;">Seus seguidores adoram suas dicas, <br><span class="gold">mas fogem na hora de pagar</span></h2>',
         "prob_text1": 'Nutricionistas criam muito conteúdo gratuito (receitas, dicas), acreditando que a autoridade fará chover pacientes no consultório.<br>\n          O resultado? Pessoas sugam a dieta no Direct, mas a sua agenda clínica particular não sai do lugar.',
-        "prob_mecanismo": 'Existe um método de conversão inviolável chamado <strong style="color:var(--gold)">Isca Ética</strong>. A IA envia um ebook de marmitas gratuitas para atrair os interessados, e em seguida, faz uma triagem inteligente para oferecer o acompanhamento particular. Você entrega valor sem banalizar sua consulta.',
+        "prob_mecanismo": 'Existe um fenômeno comportamental chamado <strong style="color:var(--gold)">Fator Impulso</strong>. Na nutrição, posts de transformação ou qualidade de vida rodam no tráfego pago pedindo a palavra "PLANO". Nossa IA entra em ação na DM no exato milissegundo em que o paciente deseja aquela mudança, convertendo o impulso em agendamento imediato da sua consulta particular.',
         "prob_text2": 'Nossa IA engaja o seguidor através de material gratuito e depois realiza uma triagem automatizada, ofertando o seu acompanhamento particular.',
         "prob_text3": 'Transforme o seu Instagram no melhor captador do seu consultório de nutrição.<br>\n          Feche planos trimestrais ou semestrais automaticamente.'
     }
