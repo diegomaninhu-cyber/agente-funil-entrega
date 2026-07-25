@@ -61,6 +61,15 @@
       <span id="last-update">carregando...</span>
     </div>
   </div>
+  <div class="controls" style="margin: 20px 0; display: flex; align-items: center; gap: 12px;">
+    <label for="sort-kpis" style="color: var(--muted); font-size: 14px;">Organizar por:</label>
+    <select id="sort-kpis" style="background: var(--card); color: var(--text); border: 1px solid var(--border); padding: 8px 12px; border-radius: 8px; outline: none; font-family: inherit;">
+      <option value="name">Nome (A-Z)</option>
+      <option value="views">Mais Views</option>
+      <option value="unique">Mais Visitantes Únicos</option>
+      <option value="clicks">Mais Cliques (CTAs)</option>
+    </select>
+  </div>
 
   <div class="grid" id="kpis"></div>
 
@@ -140,7 +149,13 @@
         }
       });
 
-      const pages = Object.keys(pageViews).sort();
+      const sortBy = document.getElementById('sort-kpis')?.value || 'name';
+      const pages = Object.keys(pageViews).sort((a, b) => {
+        if (sortBy === 'views') return pageViews[b] - pageViews[a];
+        if (sortBy === 'unique') return sessions[b].size - sessions[a].size;
+        if (sortBy === 'clicks') return clicks[b] - clicks[a];
+        return a.localeCompare(b);
+      });
       document.getElementById('kpis').innerHTML = pages.map((page) => {
         const views = pageViews[page];
         const unique = sessions[page].size;
@@ -205,6 +220,11 @@
 
     loadData();
     setInterval(loadData, 5000);
+
+    const sortSelect = document.getElementById('sort-kpis');
+    if (sortSelect) {
+      sortSelect.addEventListener('change', () => renderData(allEvents));
+    }
 
     if (window.EventSource && token) {
       const stream = new EventSource('/api/analytics/stream?token=' + encodeURIComponent(token));
