@@ -137,7 +137,13 @@ function sendToFacebookCAPI(eventPayload, req, anonIp) {
     return;
   }
 
-  const standardEventName = eventPayload.event === 'page_view' ? 'PageView' : 'InitiateCheckout';
+  const eventMap = {
+    'page_view': 'PageView',
+    'initiate_checkout': 'InitiateCheckout',
+    'purchase': 'Purchase',
+    'delivery_view': 'Purchase',
+  };
+  const standardEventName = eventMap[eventPayload.event] || 'PageView';
   const actionSource = 'website';
   const eventTime = Math.floor(Date.now() / 1000);
 
@@ -357,6 +363,14 @@ app.get('/oferta13', (req, res) => {
 
 app.get('/oferta14', (req, res) => {
   res.sendFile(path.join(__dirname, 'oferta14.html'));
+});
+
+app.get('/termos-de-uso', (req, res) => {
+  res.sendFile(path.join(__dirname, 'termos-de-uso.html'));
+});
+
+app.get('/politica-de-privacidade', (req, res) => {
+  res.sendFile(path.join(__dirname, 'politica-de-privacidade.html'));
 });
 
 app.get('*', (req, res) => {
