@@ -17,6 +17,13 @@
     fbq('init', '607914143271127');
     fbq('track', 'PageView');
     fbq('track', 'Purchase', { currency: 'BRL', value: 49.90 });
+
+    gtag('event', 'purchase', {
+      currency: 'BRL',
+      value: 49.90,
+      transaction_id: 'trans_' + Date.now()
+    });
+
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=607914143271127&ev=Purchase&noscript=1"
@@ -478,6 +485,15 @@
       .tab-btn { min-width: 110px; font-size: 12px; padding: 8px 12px; }
     }
   </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8Q4CT4XQQ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8Q4CT4XQQ1');
+  </script>
 </head>
 <body>
 
