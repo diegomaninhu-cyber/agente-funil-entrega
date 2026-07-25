@@ -108,20 +108,24 @@
     }
 
     function renderData(events) {
-      const pageViews = { '/oferta11': 0, '/oferta12': 0, '/oferta13': 0 };
-      const clicks = { '/oferta11': 0, '/oferta12': 0, '/oferta13': 0 };
-      const sessions = { '/oferta11': new Set(), '/oferta12': new Set(), '/oferta13': new Set() };
+      const pageViews = {};
+      const clicks = {};
+      const sessions = {};
       const buttonStats = {};
 
       events.forEach((event) => {
-        const path = event.page;
+        const path = (event.page || '').split('?')[0];
         const sessionId = event.metadata?.session_id || 'unknown';
 
-        if (event.event === 'page_view') {
-          if (pageViews[path] !== undefined) pageViews[path]++;
-          if (sessions[path]) sessions[path].add(sessionId);
-        } else if (event.event === 'cta_click') {
-          if (clicks[path] !== undefined) clicks[path]++;
+        if (!pageViews[path]) pageViews[path] = 0;
+        if (!clicks[path]) clicks[path] = 0;
+        if (!sessions[path]) sessions[path] = new Set();
+
+        if (event.event === 'page_view' || event.event === 'delivery_view') {
+          pageViews[path]++;
+          sessions[path].add(sessionId);
+        } else if (event.event === 'cta_click' || event.event === 'initiate_checkout') {
+          clicks[path]++;
 
           const btnKey = path + '|' + (event.metadata?.button_text || 'CTA');
           if (!buttonStats[btnKey]) {
@@ -136,7 +140,8 @@
         }
       });
 
-      document.getElementById('kpis').innerHTML = ['/oferta11', '/oferta12', '/oferta13'].map((page) => {
+      const pages = Object.keys(pageViews).sort();
+      document.getElementById('kpis').innerHTML = pages.map((page) => {
         const views = pageViews[page];
         const unique = sessions[page].size;
         const ctaClicks = clicks[page];
