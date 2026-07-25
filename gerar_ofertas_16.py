@@ -5,7 +5,7 @@ base_file = "oferta13.html"
 
 niches = {
     "estetica": {
-        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copy e Cole a máquina de seguidores</span> <span class="mobile-line">que vende pacientes premium para a</span> <span class="mobile-line gold">sua Clínica de Estética.</span></h1>',
+        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copie e Cole agora essa Máquina de Seguidores para escala</span> <span class="mobile-line">que vende pacientes premium para a</span> <span class="mobile-line gold">sua Clínica de Estética.</span></h1>',
         "desc": '<p class="hero-description">Pare de disputar preço na recepção. Instale a tecnologia <strong style="color:var(--white)">claudeCode</strong> na sua clínica e trie automaticamente apenas pacientes dispostos a pagar o preço justo pelos seus protocolos estéticos.</p>',
         "problem_eyebrow": '<span class="problem-eyebrow">A Recepção Esgotada</span>',
         "problem_title": '<h2 style="font-size: 52px; font-weight: 800; margin-bottom: 32px; line-height: 1.15;">Ter uma clínica cheia <br><span class="gold">não significa lucro</span></h2>',
@@ -15,7 +15,7 @@ niches = {
         "prob_text3": 'A solução definitiva para donos de clínica que precisam escalar.<br>\n          Lote sua agenda estética de forma automatizada a partir de R$ 0,90.'
     },
     "medicos": {
-        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copy e Cole a máquina de seguidores</span> <span class="mobile-line">que traz pacientes particulares para</span> <span class="mobile-line gold">Consultórios Médicos.</span></h1>',
+        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copie e Cole agora essa Máquina de Seguidores para escala</span> <span class="mobile-line">que traz pacientes particulares para</span> <span class="mobile-line gold">Consultórios Médicos.</span></h1>',
         "desc": '<p class="hero-description">Ser um bom médico não enche consultório. A tecnologia <strong style="color:var(--white)">claudeCode</strong> cria um funil ético (CFM) que prospecta e agenda consultas particulares, libertando você dos convênios.</p>',
         "problem_eyebrow": '<span class="problem-eyebrow">O Refém do Convênio Médico</span>',
         "problem_title": '<h2 style="font-size: 52px; font-weight: 800; margin-bottom: 32px; line-height: 1.15;">Na faculdade não te ensinaram <br><span class="gold">a atrair pacientes particulares</span></h2>',
@@ -25,7 +25,7 @@ niches = {
         "prob_text3": 'Recupere o controle da sua carreira médica e valorize sua consulta.<br>\n          Captação previsível para médicos modernos a partir de R$ 0,90.'
     },
     "dentistas": {
-        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copy e Cole a máquina de seguidores</span> <span class="mobile-line">que fecha orçamentos premium para</span> <span class="mobile-line gold">Consultórios Odontológicos.</span></h1>',
+        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copie e Cole agora essa Máquina de Seguidores para escala</span> <span class="mobile-line">que fecha orçamentos premium para</span> <span class="mobile-line gold">Consultórios Odontológicos.</span></h1>',
         "desc": '<p class="hero-description">Na cadeira você cuida da técnica, e a tecnologia <strong style="color:var(--white)">claudeCode</strong> cuida da sua captação. Traga clientes qualificados para Lentes, Implantes e Harmonização Orofacial todos os dias.</p>',
         "problem_eyebrow": '<span class="problem-eyebrow">A Cadeira do Suspiro</span>',
         "problem_title": '<h2 style="font-size: 52px; font-weight: 800; margin-bottom: 32px; line-height: 1.15;">Volume de pacientes não é estratégia <br><span class="gold">no seu consultório</span></h2>',
@@ -35,7 +35,7 @@ niches = {
         "prob_text3": 'A captação ideal para a clínica odontológica que quer faturar alto.<br>\n          Chega de depender de panfletos ou agências ruins.'
     },
     "advogados": {
-        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copy e Cole a máquina de seguidores</span> <span class="mobile-line">que traz clientes rentáveis para</span> <span class="mobile-line gold">Escritórios de Advocacia.</span></h1>',
+        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copie e Cole agora essa Máquina de Seguidores para escala</span> <span class="mobile-line">que traz clientes rentáveis para</span> <span class="mobile-line gold">Escritórios de Advocacia.</span></h1>',
         "desc": '<p class="hero-description">Prospecte clientes com segurança sem ferir o Provimento da OAB. Instale a tecnologia <strong style="color:var(--white)">claudeCode</strong> no seu escritório e pare de esperar o cliente bater na sua porta.</p>',
         "problem_eyebrow": '<span class="problem-eyebrow">A Mesa Sem Processos Novos</span>',
         "problem_title": '<h2 style="font-size: 52px; font-weight: 800; margin-bottom: 32px; line-height: 1.15;">Você está perdendo honorários <br><span class="gold">por não saber escalar</span></h2>',
@@ -45,7 +45,7 @@ niches = {
         "prob_text3": 'Previsibilidade de honorários e causas de alto valor todos os meses.<br>\n          Coloque um Agente de IA para defender a captação da sua banca.'
     },
     "psicologos": {
-        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copy e Cole a máquina de seguidores</span> <span class="mobile-line">que escala as suas sessões e lota</span> <span class="mobile-line gold">sua Clínica Psicológica.</span></h1>',
+        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copie e Cole agora essa Máquina de Seguidores para escala</span> <span class="mobile-line">que escala as suas sessões e lota</span> <span class="mobile-line gold">sua Clínica Psicológica.</span></h1>',
         "desc": '<p class="hero-description">Saia da armadilha do convênio. A tecnologia <strong style="color:var(--white)">claudeCode</strong> prospecta pacientes particulares que valorizam a psicoterapia e preenche os buracos da sua agenda automaticamente.</p>',
         "problem_eyebrow": '<span class="problem-eyebrow">A Exaustão Emocional do Profissional</span>',
         "problem_title": '<h2 style="font-size: 52px; font-weight: 800; margin-bottom: 32px; line-height: 1.15;">Atender 10 pacientes de convênio <br><span class="gold">está esgotando você</span></h2>',
@@ -55,7 +55,7 @@ niches = {
         "prob_text3": 'Valorize o seu conselho e a sua saúde mental de forma ética.<br>\n          Captação qualificada para psicólogos a partir de R$ 0,90.'
     },
     "nutricionistas": {
-        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copy e Cole a máquina de seguidores</span> <span class="mobile-line">que atrai pacientes particulares</span> <span class="mobile-line gold">para nutricionistas.</span></h1>',
+        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: Copie e Cole agora essa Máquina de Seguidores para escala</span> <span class="mobile-line">que atrai pacientes particulares</span> <span class="mobile-line gold">para nutricionistas.</span></h1>',
         "desc": '<p class="hero-description">Chega de trabalhar de graça tirando dúvidas no direct. Aplique a tecnologia <strong style="color:var(--white)">claudeCode</strong> para transformar seguidores curiosos em agendamentos presenciais ou venda de e-books e desafios online.</p>',
         "problem_eyebrow": '<span class="problem-eyebrow">A Dieta Gratuita</span>',
         "problem_title": '<h2 style="font-size: 52px; font-weight: 800; margin-bottom: 32px; line-height: 1.15;">Seus seguidores adoram suas dicas, <br><span class="gold">mas fogem na hora de pagar</span></h2>',
