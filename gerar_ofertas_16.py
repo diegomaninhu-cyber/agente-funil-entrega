@@ -97,9 +97,9 @@ def generate():
         new_html = p_mecanismo_re.sub(data["prob_mecanismo"], new_html)
         new_html = p2_re.sub(data["prob_text2"], new_html)
         new_html = p3_re.sub(data["prob_text3"], new_html)
-        if niche == "nutricionistas":
-            new_html = new_html.replace('/oferta11-slider-mensagens-antes-hq.png', 'assets/nutricionistas/slider-reclamacoes-esquerda-iphone12pm-v6.png')
-            new_html = new_html.replace('/oferta11-slider-mensagens-depois-hq.png', 'assets/nutricionistas/slider-conversas-precos-iphone12pm-v6.png')
+        if niche in ["nutricionistas", "dentistas", "medicos", "estetica", "advogados"]:
+            new_html = new_html.replace('/oferta11-slider-mensagens-antes-hq.png', f'assets/handoff-oferta16/{niche}-antes.png')
+            new_html = new_html.replace('/oferta11-slider-mensagens-depois-hq.png', f'assets/handoff-oferta16/{niche}-depois.png')
 
         out_name = f"oferta16_{niche}.html"
         with open(out_name, 'w', encoding='utf-8') as f:
