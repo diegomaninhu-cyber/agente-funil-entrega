@@ -55,7 +55,7 @@ niches = {
         "prob_text3": 'Valorize o seu conselho e a sua saúde mental de forma ética.<br>\n          Captação qualificada para psicólogos a partir de R$ 0,90.'
     },
     "nutricionistas": {
-        "title": '<h1 class="hero-title"><span class="mobile-line">CLAUDE: A Máquina B2B que</span> <span class="mobile-line">atrai pacientes particulares para</span> <span class="mobile-line gold">Nutricionistas.</span></h1>',
+        "title": '<h1 class="hero-title"><span class="mobile-line">Cloud: a máquina de seguidores</span> <span class="mobile-line">que atrai pacientes particulares</span> <span class="mobile-line gold">para nutricionistas.</span></h1>',
         "desc": '<p class="hero-description">Chega de trabalhar de graça tirando dúvidas no direct. Aplique a tecnologia <strong style="color:var(--white)">claudeCode</strong> para transformar seguidores curiosos em agendamentos presenciais ou venda de e-books e desafios online.</p>',
         "problem_eyebrow": '<span class="problem-eyebrow">A Dieta Gratuita</span>',
         "problem_title": '<h2 style="font-size: 52px; font-weight: 800; margin-bottom: 32px; line-height: 1.15;">Seus seguidores adoram suas dicas, <br><span class="gold">mas fogem na hora de pagar</span></h2>',
