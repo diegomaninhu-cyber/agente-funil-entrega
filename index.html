@@ -903,6 +903,30 @@ Texto persuasivo, ético e sem enrolação.</div>
       setTimeout(() => toast.classList.remove('show'), 2500);
     });
   }
+
+  // Enviar evento de visualização para o CAPI do servidor
+  window.addEventListener('DOMContentLoaded', () => {
+    try {
+      const payload = {
+        event: 'delivery_view',
+        page: window.location.pathname + window.location.search,
+        metadata: {
+          user_agent: navigator.userAgent
+        }
+      };
+      
+      const searchParams = new URLSearchParams(window.location.search);
+      if (searchParams.has('fbp')) payload.fbp = searchParams.get('fbp');
+      if (searchParams.has('fbc')) payload.fbc = searchParams.get('fbc');
+
+      fetch('/api/track', { 
+        method: 'POST', 
+        body: JSON.stringify(payload), 
+        headers: {'Content-Type': 'application/json'},
+        keepalive: true
+      }).catch(function(){});
+    } catch(e) {}
+  });
 </script>
 
 </body>
