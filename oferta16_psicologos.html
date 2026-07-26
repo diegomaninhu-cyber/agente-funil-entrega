@@ -8,13 +8,10 @@
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
-if(!window.fbq) {
-  window.fbq = function(){
-    if(window.fbq.callMethod) window.fbq.callMethod.apply(window.fbq,arguments);
-    else window.fbq.queue.push(arguments);
-  };
-  window.fbq.queue = [];
-}
+
+// Fake fbq just to catch early clicks
+window._fbqQueue = [];
+window.fbq = function(){ window._fbqQueue.push(arguments); };
 </script>
 
 <!-- Google Tag Manager (Delayed) -->
@@ -24,9 +21,22 @@ var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+
 var loaded=false;
 function loadGTM(){
   if(loaded) return; loaded=true;
+  
+  // DESTROY fake fbq so standard GTM Meta Pixel snippet doesn't abort!
+  delete window.fbq;
+  
   w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
   j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
   f.parentNode.insertBefore(j,f);
+
+  // Drain the queue once real fbq is ready
+  var fbInterval = setInterval(function(){
+    if(typeof window.fbq === 'function' && window.fbq.callMethod !== undefined) {
+      clearInterval(fbInterval);
+      window._fbqQueue.forEach(function(args){ window.fbq.apply(window, args); });
+      window._fbqQueue = [];
+    }
+  }, 300);
 }
 // Load on interaction
 ['scroll','mousemove','touchstart','click'].forEach(function(e){
