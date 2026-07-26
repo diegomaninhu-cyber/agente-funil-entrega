@@ -260,5 +260,38 @@
   });
 </script>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var ctaButtons = document.querySelectorAll('.btn, button');
+  ctaButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var loc = 'unknown';
+      if (this.closest('.hero-content') || this.closest('header') || this.closest('.hero-actions')) {
+        loc = 'hero';
+      } else if (this.closest('.pricing-section') || this.closest('.pricing-grid')) {
+        loc = 'pricing';
+      } else if (this.closest('.sticky-cta')) {
+        loc = 'sticky-bar';
+      } else if (this.closest('.mechanism-section')) {
+        loc = 'mechanism';
+      } else if (this.closest('.faq-section')) {
+        loc = 'faq';
+      }
+      
+      var txt = this.innerText.trim();
+      if (!txt && this.value) txt = this.value.trim();
+      
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'cta_click',
+        'button_location': loc,
+        'button_text': txt,
+        'page_url': window.location.href
+      });
+    });
+  });
+});
+</script>
 </body>
 </html>
