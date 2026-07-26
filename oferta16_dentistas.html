@@ -62,7 +62,8 @@ setTimeout(loadGTM, 7000);
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
 <style>
 
@@ -840,7 +841,7 @@ header { padding: 24px 0; background: transparent; position: relative; z-index: 
 
 .benefits-container .benefit-card.claude-featured::before {
 
-  content: "B�”NUS EM DESTAQUE";
+  content: "B�”NUS EM DESTAQUE";
 
   position: absolute;
 
