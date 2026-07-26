@@ -386,13 +386,30 @@
 </style>
 
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8Q4CT4XQQ1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8Q4CT4XQQ1');
-  </script>
+  <!-- Delay Load Tracking Queue -->
+<script>
+window.dataLayer = window.dataLayer || [];
+</script>
+
+<!-- Google Tag Manager (Delayed) -->
+<script>
+(function(w,d,s,l,i){w[l]=w[l]||[];
+var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+var loaded=false;
+function loadGTM(){
+  if(loaded) return; loaded=true;
+  w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+  j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+  f.parentNode.insertBefore(j,f);
+}
+// Load on interaction
+['scroll','mousemove','touchstart','click'].forEach(function(e){
+  window.addEventListener(e, loadGTM, {once:true, passive:true});
+});
+// Fallback: load after 7 seconds
+setTimeout(loadGTM, 7000);
+})(window,document,'script','dataLayer','GTM-MH2JBSDJ');
+</script>
 </head>
 <body>
 

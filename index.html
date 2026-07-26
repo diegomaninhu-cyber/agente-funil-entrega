@@ -7,23 +7,26 @@
   <meta name="description" content="Acesse agora o Treinamento Express e o Kit Copiar e Colar para crescer seguidores e vender no automático pelo Instagram." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <!-- Meta Pixel -->
+  <!-- Delay Load Tracking Queue -->
   <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '607914143271127');
-    fbq('track', 'PageView');
-    fbq('track', 'Purchase', { currency: 'BRL', value: 49.90 });
-
-
+  window.dataLayer = window.dataLayer || [];
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=607914143271127&ev=Purchase&noscript=1"
-  /></noscript>
-  <!-- /Meta Pixel -->
+
+  <!-- Google Tag Manager (Delayed) -->
+  <script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];
+  var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+  var loaded=false;
+  function loadGTM(){
+    if(loaded) return; loaded=true;
+    w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+    j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+    f.parentNode.insertBefore(j,f);
+  }
+  // Load immediately for purchase page (critical conversion tracking)
+  loadGTM();
+  })(window,document,'script','dataLayer','GTM-MH2JBSDJ');
+  </script>
   <style>
 
     :root {
@@ -481,17 +484,21 @@
     }
   </style>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8Q4CT4XQQ1"></script>
+  <!-- Purchase Event via GTM dataLayer -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8Q4CT4XQQ1');
-    gtag('event', 'purchase', {
-      currency: 'BRL',
-      value: 49.90,
-      transaction_id: 'trans_' + Date.now()
+    var purchase_event_id = 'evt_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+    window.dataLayer.push({
+      event: 'track_conversion',
+      action_type: 'Purchase',
+      custom_event: '',
+      event_id: purchase_event_id,
+      content_name: 'Compra Confirmada',
+      page_path: window.location.pathname,
+      session_id: '',
+      utm_source: '',
+      utm_medium: '',
+      utm_campaign: ''
     });
   </script>
 </head>

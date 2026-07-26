@@ -4,29 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Máquina de Seguidores com IAs Autônomas 2026</title>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8Q4CT4XQQ1"></script>
+<!-- Delay Load Tracking Queue -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-8Q4CT4XQQ1');
+window.dataLayer = window.dataLayer || [];
 </script>
-<!-- Meta Pixel Code -->
+
+<!-- Google Tag Manager (Delayed) -->
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '607914143271127');
+(function(w,d,s,l,i){w[l]=w[l]||[];
+var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+var loaded=false;
+function loadGTM(){
+  if(loaded) return; loaded=true;
+  w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+  j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+  f.parentNode.insertBefore(j,f);
+}
+// Load on interaction
+['scroll','mousemove','touchstart','click'].forEach(function(e){
+  window.addEventListener(e, loadGTM, {once:true, passive:true});
+});
+// Fallback: load after 7 seconds
+setTimeout(loadGTM, 7000);
+})(window,document,'script','dataLayer','GTM-MH2JBSDJ');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=607914143271127&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1222,30 +1224,20 @@ img, video, svg { max-width: 100%; }
         }
       };
       
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', eventName, {
-          page_path: payload.page,
-          session_id: payload.metadata.session_id,
-          button_text: payload.metadata.button_text || '',
-          button_href: payload.metadata.button_href || '',
-          utm_source: payload.metadata.utm_source || '',
-          utm_medium: payload.metadata.utm_medium || '',
-          utm_campaign: payload.metadata.utm_campaign || ''
-        });
-      }
-
-      if (typeof window.fbq === 'function') {
-        const standardEvent = eventName === 'page_view' ? 'PageView' : 'InitiateCheckout';
-        window.fbq('track', standardEvent, {
-          content_name: payload.metadata.button_text || ''
-        }, { eventID: event_id });
-        
-        if (payload.custom_event_name) {
-          window.fbq('trackCustom', payload.custom_event_name, {
-            content_name: payload.metadata.button_text || ''
-          }, { eventID: event_id });
-        }
-      }
+            window.dataLayer = window.dataLayer || [];
+      const standardEvent = eventName === 'page_view' ? 'PageView' : 'InitiateCheckout';
+      window.dataLayer.push({
+        event: 'track_conversion',
+        action_type: standardEvent,
+        custom_event: payload.custom_event_name || '',
+        event_id: event_id,
+        content_name: payload.metadata.button_text || '',
+        page_path: payload.page,
+        session_id: payload.metadata.session_id,
+        utm_source: payload.metadata.utm_source || '',
+        utm_medium: payload.metadata.utm_medium || '',
+        utm_campaign: payload.metadata.utm_campaign || ''
+      });
 
       const blob = new Blob([JSON.stringify(payload)], {type : 'application/json'});
       if (navigator.sendBeacon) {
