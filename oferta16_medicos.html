@@ -1375,6 +1375,44 @@ img, video, svg { max-width: 100%; }
 
 }
 
+.sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+  padding: 12px 20px;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.4);
+  z-index: 1000;
+  align-items: center;
+  justify-content: space-between;
+}
+.sticky-cta .price {
+  color: var(--white);
+  font-weight: 800;
+  font-size: 18px;
+}
+.sticky-cta .price small {
+  display: block;
+  font-size: 11px;
+  color: var(--gray-400);
+  font-weight: 500;
+  line-height: 1;
+}
+.sticky-cta .btn {
+  height: 48px;
+  padding: 0 24px;
+  font-size: 14px;
+  margin: 0;
+}
+@media (max-width: 960px) {
+  .sticky-cta {
+    display: flex;
+  }
+}
+
 </style>
 
 </head>
@@ -1441,6 +1479,13 @@ img, video, svg { max-width: 100%; }
 
           </ul>
 
+          <div class="hero-actions" style="margin-top: 32px; display: flex; flex-direction: column; align-items: flex-start;">
+            <a href="#pricing" class="btn btn-primary gtm-checkout-click" style="width: 100%; max-width: 400px; font-size: 16px;">QUERO INSTALAR A MÁQUINA AGORA</a>
+            <div style="font-size: 13px; color: var(--gray-400); margin-top: 12px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+              <span><i data-lucide="shield-check" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right:4px; color: var(--primary);"></i> Risco Zero: 7 dias</span>
+              <span><i data-lucide="clock" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right:4px; color: var(--primary);"></i> Oferta Especial hoje</span>
+            </div>
+          </div>
           
 
         </div>
@@ -2197,9 +2242,10 @@ img, video, svg { max-width: 100%; }
 
 </footer>
 
-
-
-
+<div class="sticky-cta">
+  <div class="price">R$ 49,90 <small>Pagamento único</small></div>
+  <a href="#pricing" class="btn btn-primary gtm-checkout-click">COMPRAR</a>
+</div>
 
 </body>
 
