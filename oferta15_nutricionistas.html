@@ -32,10 +32,6 @@ setTimeout(loadGTM, 7000);
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<script defer src="https://unpkg.com/lucide@latest"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script defer src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script>
 <style>
 :root {
   --background: #050505;
@@ -1114,70 +1110,6 @@ img, video, svg { max-width: 100%; }
   </div>
 </footer>
 
-<script>
-  lucide.createIcons();
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true,
-  });
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-  gsap.registerPlugin(ScrollTrigger);
-  const fadeElements = document.querySelectorAll('.gsap-fade');
-  fadeElements.forEach((el) => {
-    gsap.to(el, {
-      scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" },
-      opacity: 1, y: 0, duration: 0.8, ease: "power2.out", clearProps: "transform"
-    });
-  });
-
-  // Comparador antes/depois arrastável (mouse + toque)
-  document.querySelectorAll('.cmp').forEach(function(c){
-    var dragging=false, pending=false, sx=0, sy=0;
-    function set(x){var r=c.getBoundingClientRect();var p=(x-r.left)/r.width;p=Math.max(0,Math.min(1,p));c.style.setProperty('--pct',(p*100)+'%');}
-    c.addEventListener('pointerdown',function(e){
-      sx=e.clientX; sy=e.clientY;
-      if(e.pointerType==='mouse'){dragging=true;try{c.setPointerCapture(e.pointerId);}catch(_){}set(e.clientX);}
-      else{pending=true;}
-    });
-    c.addEventListener('pointermove',function(e){
-      if(dragging){set(e.clientX);return;}
-      if(!pending) return;
-      var dx=e.clientX-sx, dy=e.clientY-sy;
-      if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>6){
-        pending=false;dragging=true;
-        try{c.setPointerCapture(e.pointerId);}catch(_){}
-        set(e.clientX);
-      }else if(Math.abs(dy)>6){
-        pending=false;
-      }
-    });
-    c.addEventListener('pointerup',function(e){if(pending)set(e.clientX);dragging=false;pending=false;});
-    window.addEventListener('pointerup',function(){dragging=false;});
-    c.addEventListener('pointercancel',function(){dragging=false;pending=false;});
-  });
-
-  // FAQ Accordion
-  document.querySelectorAll('.faq-q').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var item = btn.parentElement;
-      var ans = item.querySelector('.faq-a');
-      var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(function(o){
-        o.classList.remove('open');
-        o.querySelector('.faq-a').style.maxHeight = null;
-      });
-      if(!isOpen){
-        item.classList.add('open');
-        ans.style.maxHeight = ans.scrollHeight + 'px';
-      }
-    });
-  });
-</script>
 
 </body>
 
