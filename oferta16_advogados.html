@@ -2347,6 +2347,26 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+<script>
+// FASE 4: InitiateCheckout — Intenção de Compra (Fase 3 do Funil)
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('a[href*="checkout.infinitepay.io"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var ic_event_id = 'ic_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'track_conversion',
+        'action_type': 'InitiateCheckout',
+        'event_id': ic_event_id,
+        'value': 49.90,
+        'currency': 'BRL',
+        'content_name': 'Máquina de Seguidores IA',
+        'page_url': window.location.href
+      });
+    });
+  });
+});
+</script>
 </body>
 
 

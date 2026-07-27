@@ -206,6 +206,8 @@
       custom_event: '',
       event_id: purchase_event_id,
       content_name: 'Compra Confirmada',
+      value: 49.90,
+      currency: 'BRL',
       page_path: window.location.pathname,
       session_id: '',
       utm_source: '',
@@ -241,6 +243,9 @@
       const payload = {
         event: 'delivery_view',
         page: window.location.pathname + window.location.search,
+        value: 49.90,
+        event_source_url: window.location.href,
+        event_id: purchase_event_id,
         metadata: {
           user_agent: navigator.userAgent
         }

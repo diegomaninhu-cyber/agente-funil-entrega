@@ -163,7 +163,9 @@ function sendToFacebookCAPI(eventPayload, req, anonIp) {
     event_source_url: eventPayload.event_source_url || eventPayload.page || '',
     user_data: userData,
     custom_data: {
-      content_name: eventPayload.metadata?.button_text || eventPayload.event
+      content_name: eventPayload.metadata?.button_text || eventPayload.event,
+      currency: 'BRL',
+      value: eventPayload.value || 49.90
     }
   }];
 
@@ -176,7 +178,9 @@ function sendToFacebookCAPI(eventPayload, req, anonIp) {
       event_source_url: eventPayload.event_source_url || eventPayload.page || '',
       user_data: userData,
       custom_data: {
-        content_name: eventPayload.metadata?.button_text || eventPayload.event
+        content_name: eventPayload.metadata?.button_text || eventPayload.event,
+        currency: 'BRL',
+        value: eventPayload.value || 49.90
       }
     });
   }
