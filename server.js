@@ -381,7 +381,7 @@ app.get('/politica-de-privacidade', (req, res) => {
 
 app.get('*', (req, res) => {
   if (req.path === '/') {
-    const host = req.hostname || req.get('x-forwarded-host') || '';
+    const host = req.get('x-forwarded-host') || req.hostname || '';
     if (host.includes('nutricionistas')) {
       return res.sendFile(path.join(__dirname, 'oferta16_nutricionistas.html'));
     }
