@@ -42,79 +42,13 @@ window.dataLayer = window.dataLayer || [];
 
 
 
-<!-- Google Tag Manager (Delayed) -->
-
-
-
-<script>
-
-
-
-(function(w,d,s,l,i){w[l]=w[l]||[];
-
-
-
-var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-
-
-
-var loaded=false;
-
-
-
-function loadGTM(){
-
-
-
-  if(loaded) return; loaded=true;
-
-
-
-  w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-
-
-
-  j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-
-
-
-  f.parentNode.insertBefore(j,f);
-
-
-
-}
-
-
-
-// Load on interaction
-
-
-
-['scroll','mousemove','touchstart','click'].forEach(function(e){
-
-
-
-  window.addEventListener(e, loadGTM, {once:true, passive:true});
-
-
-
-});
-
-
-
-// Fallback: load after 7 seconds
-
-
-
-setTimeout(loadGTM, 7000);
-
-
-
-})(window,document,'script','dataLayer','GTM-MH2JBSDJ');
-
-
-
-</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MH2JBSDJ');</script>
+<!-- End Google Tag Manager -->
 
 
 
