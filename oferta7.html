@@ -769,5 +769,65 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+<script>
+// --- RASTREAMENTO UNIVERSAL (GTM + CAPI) ---
+function getCookie(name) {
+  let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  if (match) return match[2];
+  return null;
+}
+
+// 1. Envia PageView (CAPI)
+window.addEventListener('DOMContentLoaded', () => {
+  try {
+    const payload = {
+      event: 'page_view',
+      page: window.location.pathname + window.location.search,
+      event_source_url: window.location.href,
+      event_id: 'pv_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now(),
+      metadata: { user_agent: navigator.userAgent },
+      fbp: getCookie('_fbp'),
+      fbc: getCookie('_fbc')
+    };
+    fetch('/api/track', { method: 'POST', body: JSON.stringify(payload), headers: {'Content-Type': 'application/json'}, keepalive: true }).catch(()=>{});
+  } catch(e) {}
+});
+
+// 2. Envia InitiateCheckout (CAPI + GTM)
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('a[href*="checkout.infinitepay.io"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var ic_event_id = 'ic_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+      
+      // GTM
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'track_conversion',
+        'action_type': 'InitiateCheckout',
+        'event_id': ic_event_id,
+        'value': 49.90,
+        'currency': 'BRL',
+        'content_name': 'Máquina de Seguidores IA',
+        'page_url': window.location.href
+      });
+
+      // CAPI via Backend
+      const payload = {
+        event: 'initiate_checkout',
+        page: window.location.pathname + window.location.search,
+        value: 49.90,
+        event_source_url: window.location.href,
+        event_id: ic_event_id,
+        metadata: { user_agent: navigator.userAgent },
+        fbp: getCookie('_fbp'),
+        fbc: getCookie('_fbc')
+      };
+      fetch('/api/track', { method: 'POST', body: JSON.stringify(payload), headers: {'Content-Type': 'application/json'}, keepalive: true }).catch(()=>{});
+    });
+  });
+});
+</script>
+
 </body>
 </html>
