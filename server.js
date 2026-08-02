@@ -22,7 +22,7 @@ app.use(compression({
 app.use(express.json());
 
 // ─── WEBHOOK InfinitePay ─────────────────────────────────────────────────────
-// URL para colocar no checkout: https://agente-funil-entrega-production.up.railway.app/webhook
+// URL para colocar no checkout: https://diegoabneroficial.com/webhook
 app.post('/webhook', (req, res) => {
   try {
     const payload = req.body;
@@ -399,7 +399,7 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`✅ Servidor rodando na porta ${PORT}`);
-  console.log(`🔗 Webhook URL: https://agente-funil-entrega-production.up.railway.app/webhook`);
-  console.log(`📊 Painel de vendas: https://agente-funil-entrega-production.up.railway.app/vendas?token=diego2026`);
-  console.log(`📊 Painel de analytics: https://agente-funil-entrega-production.up.railway.app/analytics?token=diego2026`);
+  console.log(`🔗 Webhook URL: https://diegoabneroficial.com/webhook`);
+  console.log(`📊 Painel de vendas: https://diegoabneroficial.com/vendas?token=diego2026`);
+  console.log(`📊 Painel de analytics: https://diegoabneroficial.com/analytics?token=diego2026`);
 });
