@@ -2118,7 +2118,7 @@ img, video, svg { max-width: 100%; }
 
             <div class="price-tag">12x R$ 5,13 <small>ou R$ 49,90 à vista</small></div>
 
-            <a href="https://checkout.infinitepay.io/ag12-sendz?lenc=G0oBICwKbGNu4EEaZR5oHizyEBs_k1H6GcpOXPMe-IWzSaJ6s-TdgDN8oDt_-F8e6fNE-zDY1dV8jLNk4JBDPuANWlvgVMHJWe703V7h9vS_tfZbmEUtSSMJAw00DFtgeS4__SxETrE39VCNyWrkTffTBP6-MCxJsByNEQTNGQuyeRszzUDvblYxHKLi82PivFtd7sWBY7r1D_pBXibib7tRwDWWuGh5JZ-j1BhZsfM0LI9J0bXUhmr45gSaVnTtoz7vxuimEyOSiicyeJDf5VEKffApsCAuBe7Aho0XS4mch9hhUSSL_UYcshQ.v1.839b51d9acbb69fb&mcp_token=eyJwaWQiOjEwMjkxMjc1ODAyODc1OCwic2lkIjoxOTc0Mjg5ODc2LCJheCI6IjhiOWMxMGIyMzBmNDQyMDY0OTliOGFjMmZiMWRjMjlhIiwidHMiOjE3ODQ1NDQ0ODUsImV4cCI6MTc4Njk2MzY4NX0.qM5PL7vFouin-en22kPZjVCFb8ZZhbyVt0hocijJVb0&fbclid=PAVERFWATK3EFwZG9mAmV4dG4DYWVtAjEwAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp90a_OOHrKYgCaZpOOqV-pr-Wq_vD_6cdqq9lozfdR8Uw8N9zMm_hRDtKwMG_aem_-WwTGjVAE-V4EID8841tEg" class="btn btn-primary" style="width: 100%;">QUERO ACESSO IMEDIATO</a>
+            <a href="https://pay.kiwify.com.br/fPVVDXj" class="btn btn-primary gtm-checkout-click" style="width: 100%;">QUERO ACESSO IMEDIATO</a>
 
             <p class="text-caption" style="margin-top: 16px; color: var(--gray-500); display: flex; align-items: center; justify-content: center; gap: 8px;"><i data-lucide="lock" style="width:14px;height:14px;"></i> Compra segura. Acesso imediato. 7 dias de garantia.</p>
 
@@ -2340,7 +2340,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // 2. Envia InitiateCheckout (CAPI + GTM)
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('a[href*="checkout.infinitepay.io"]').forEach(function(btn) {
+  document.querySelectorAll('a.gtm-checkout-click, a[href*="pay.kiwify.com.br"], a[href*="checkout.infinitepay.io"]').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var ic_event_id = 'ic_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
       
