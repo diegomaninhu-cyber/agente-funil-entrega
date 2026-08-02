@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
+app.set('trust proxy', true);
 const PORT = process.env.PORT || 3000;
 const SALES_FILE = path.join(__dirname, 'vendas.json');
 const ANALYTICS_FILE = process.env.ANALYTICS_FILE || path.join(__dirname, 'analytics.json');
@@ -380,7 +381,7 @@ app.get('/politica-de-privacidade', (req, res) => {
 
 app.get('*', (req, res) => {
   if (req.path === '/') {
-    const host = req.hostname || '';
+    const host = req.hostname || req.get('x-forwarded-host') || '';
     if (host.includes('nutricionistas')) {
       return res.sendFile(path.join(__dirname, 'oferta16_nutricionistas.html'));
     }
