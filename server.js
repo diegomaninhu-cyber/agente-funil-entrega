@@ -22,46 +22,63 @@ app.use(compression({
 }));
 app.use(express.json());
 
-// ─── WEBHOOK InfinitePay ─────────────────────────────────────────────────────
-// URL para colocar no checkout: https://diegoabneroficial.com/webhook
+// ─── WEBHOOK VENDAS (Kiwify / Plataformas) ─────────────────────────────────────────────────────
+// URL para colocar na plataforma: https://diegoabneroficial.com/webhook
 app.post('/webhook', (req, res) => {
   try {
     const payload = req.body;
     const timestamp = new Date().toISOString();
 
+    // Identifica se é Kiwify ou InfinitePay
+    const status = payload.order_status || payload.status || 'unknown';
+    const amount = payload.Commissions?.charge_amount || payload.amount || payload.paid_amount || 0;
+    const customer_email = payload.customer?.email || payload.Customer?.email || '';
+    const customer_phone = payload.customer?.mobile || payload.Customer?.mobile || '';
+
     // Monta o registro da venda
     const venda = {
       timestamp,
-      invoice_slug: payload.invoice_slug || null,
-      amount: payload.amount || null,
-      paid_amount: payload.paid_amount || null,
-      installments: payload.installments || null,
-      capture_method: payload.capture_method || null,
-      transaction_nsu: payload.transaction_nsu || null,
-      order_nsu: payload.order_nsu || null,
-      receipt_url: payload.receipt_url || null,
-      customer: payload.customer || null,
-      items: payload.items || null,
+      status,
+      order_id: payload.order_id || payload.invoice_slug || null,
+      amount: amount,
+      customer_email,
+      customer_phone,
+      product_name: payload.product_name || payload.Product?.name || null,
       raw: payload
     };
 
-    // Lê o arquivo de vendas atual (ou cria vazio)
+    // Lê o arquivo de vendas atual
     let vendas = [];
     if (fs.existsSync(SALES_FILE)) {
-      try {
-        vendas = JSON.parse(fs.readFileSync(SALES_FILE, 'utf8'));
-      } catch (e) {
-        vendas = [];
-      }
+      try { vendas = JSON.parse(fs.readFileSync(SALES_FILE, 'utf8')); } catch (e) { vendas = []; }
     }
 
-    // Adiciona a nova venda e salva
     vendas.push(venda);
     fs.writeFileSync(SALES_FILE, JSON.stringify(vendas, null, 2), 'utf8');
 
-    console.log(`✅ [VENDA] ${timestamp} | R$ ${(venda.paid_amount / 100).toFixed(2)} | ${venda.capture_method}`);
+    console.log(`✅ [WEBHOOK RECEBIDO] ${timestamp} | Status: ${status} | Produto: ${venda.product_name}`);
 
-    // Responde 200 OK em menos de 1 segundo (obrigatório pela InfinitePay)
+    // Se for compra aprovada, dispara Purchase no CAPI
+    if (status === 'paid' || status === 'approved') {
+      const eventPayload = {
+        event: 'purchase',
+        value: amount ? (amount / 100).toFixed(2) : 49.90, // Kiwify envia em centavos na charge_amount
+        currency: 'BRL',
+        metadata: { 
+          customer_email: customer_email,
+          customer_phone: customer_phone 
+        },
+        // Tenta pegar fbp/fbc dos tracking parameters se existirem
+        fbp: payload.TrackingParameters?.fbp || undefined,
+        fbc: payload.TrackingParameters?.fbc || undefined,
+        event_id: `pur_${venda.order_id || Date.now()}`
+      };
+      
+      const rawIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
+      sendToFacebookCAPI(eventPayload, req, rawIp);
+      console.log(`🚀 [CAPI] Evento Purchase enviado para order ${venda.order_id}`);
+    }
+
     res.status(200).json({ status: 'ok', received: timestamp });
   } catch (err) {
     console.error('❌ Erro no webhook:', err);
