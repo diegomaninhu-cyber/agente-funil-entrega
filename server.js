@@ -301,6 +301,7 @@ app.get('/api/analytics', (req, res) => {
 app.use(express.static(path.join(__dirname), {
   etag: true,
   maxAge: '7d',
+  index: false,
   setHeaders: (res, filePath) => {
     if (/\.(html)$/i.test(filePath)) {
       res.setHeader('Cache-Control', 'no-cache');
@@ -378,6 +379,21 @@ app.get('/politica-de-privacidade', (req, res) => {
 });
 
 app.get('*', (req, res) => {
+  if (req.path === '/') {
+    const host = req.hostname || '';
+    if (host.includes('nutricionistas')) {
+      return res.sendFile(path.join(__dirname, 'oferta16_nutricionistas.html'));
+    }
+    if (host.includes('medicos')) {
+      return res.sendFile(path.join(__dirname, 'oferta16_medicos.html'));
+    }
+    if (host.includes('estetica')) {
+      return res.sendFile(path.join(__dirname, 'oferta16_estetica.html'));
+    }
+    if (host.includes('advogados')) {
+      return res.sendFile(path.join(__dirname, 'oferta16_advogados.html'));
+    }
+  }
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
