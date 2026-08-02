@@ -2968,7 +2968,7 @@ img, video, svg { max-width: 100%; }
 
 
 
-          <video class="lazy" data-src="/VIDEO-2026-07-26-01-31-38.mp4" style="width: 100%; height: 100%; object-fit: cover;" loop muted playsinline></video>
+          <video src="/VIDEO-2026-07-26-01-31-38-opt.mp4" poster="/VIDEO-2026-07-26-01-31-38-poster.webp" preload="auto" style="width: 100%; height: 100%; object-fit: cover;" loop muted playsinline></video>
 
 
 
@@ -4671,6 +4671,37 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
+  if ("IntersectionObserver" in window) {
+    var lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(video) {
+        if (video.isIntersecting) {
+          if (video.target.dataset.src) {
+            video.target.src = video.target.dataset.src;
+          }
+          video.target.load();
+          video.target.classList.remove("lazy");
+          lazyVideoObserver.unobserve(video.target);
+        }
+      });
+    }, { rootMargin: "200px 0px" });
+    lazyVideos.forEach(function(lazyVideo) {
+      lazyVideoObserver.observe(lazyVideo);
+    });
+  } else {
+    // Fallback for older browsers
+    lazyVideos.forEach(function(video) {
+      if (video.dataset.src) video.src = video.dataset.src;
+      video.load();
+      video.classList.remove("lazy");
+    });
+  }
+});
+</script>
 
 </body>
 
