@@ -2,6 +2,7 @@ const express = require('express');
 const compression = require('compression');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 
 const app = express();
 app.set('trust proxy', true);
@@ -169,6 +170,17 @@ function sendToFacebookCAPI(eventPayload, req, anonIp) {
     client_ip_address: req.headers['x-forwarded-for'] || req.socket.remoteAddress || anonIp,
     client_user_agent: req.headers['user-agent'] || eventPayload.metadata?.user_agent || '',
   };
+
+  if (eventPayload.metadata?.customer_email) {
+    userData.em = crypto.createHash('sha256').update(eventPayload.metadata.customer_email.trim().toLowerCase()).digest('hex');
+  }
+  
+  if (eventPayload.metadata?.customer_phone) {
+    const cleanPhone = eventPayload.metadata.customer_phone.replace(/\D/g, '');
+    if (cleanPhone) {
+      userData.ph = crypto.createHash('sha256').update(cleanPhone).digest('hex');
+    }
+  }
 
   if (eventPayload.fbp) userData.fbp = eventPayload.fbp;
   if (eventPayload.fbc) userData.fbc = eventPayload.fbc;
