@@ -339,7 +339,7 @@ app.use(express.static(path.join(__dirname), {
     }
 
     if (/\.(webp|png|jpg|jpeg|mp4|css|js|woff2?)$/i.test(filePath)) {
-      res.setHeader('Cache-Control', 'public, max-age=2592000');
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     }
   }
 }));
