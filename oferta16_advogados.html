@@ -695,6 +695,10 @@ transition: opacity 0.6s ease, transform 0.6s ease;
 opacity: 1;
 transform: translateY(0);
 }
+.hero-section .gsap-fade {
+opacity: 1;
+transform: none;
+}
 </style>
 </head>
 <body>
@@ -857,7 +861,7 @@ O medo da OAB e a falta de tempo impedem o advogado de prospectar clientes lucra
 O resultado? Escritórios vivendo de correspondência jurídica barata enquanto outras bancas escalam faturamentos gigantes com tecnologia.
 </p>
 <p style="margin-bottom: 24px; color: var(--gray-300); font-size: 18px; line-height: 1.6;">
-Existe um método de conversão inviolável chamado <strong style="color:var(--gold)">Isca Ética</strong>. Para bancas jurídicas e a OAB, a nossa IA entrega um manual de direitos básicos gratuito de forma automatizada antes de falar de honorários. Isso mantém a captação dentro da lei, gera reciprocidade e traz clientes prontos.<br><br><div class="mecanismo-visual" style="text-align: center; margin: 40px 0;"><picture><source media="(max-width: 768px)" srcset="assets/mecanismos/advogados-mobile.webp"><img src="assets/mecanismos/advogados-desktop.webp" alt="Mecanismo Advogados" style="max-width: 100%; height: auto; border: 1px solid var(--gold); border-radius: 12px;"></picture></div>
+Existe um método de conversão inviolável chamado <strong style="color:var(--gold)">Isca Ética</strong>. Para bancas jurídicas e a OAB, a nossa IA entrega um manual de direitos básicos gratuito de forma automatizada antes de falar de honorários. Isso mantém a captação dentro da lei, gera reciprocidade e traz clientes prontos.<br><br><div class="mecanismo-visual" style="text-align: center; margin: 40px 0;"><picture><source media="(max-width: 768px)" srcset="assets/mecanismos/advogados-mobile.webp"><img width="800" height="600" src="assets/mecanismos/advogados-desktop.webp" alt="Mecanismo Advogados" style="max-width: 100%; height: auto; border: 1px solid var(--gold); border-radius: 12px;"></picture></div>
 </p>
 <p style="margin-bottom: 24px; color: var(--white); font-weight: 700; font-size: 20px;">
 Através da entrega ética de informações jurídicas no direct, a nossa IA cria autoridade imediata e filtra o cliente rentável para o escritório.
@@ -1138,8 +1142,7 @@ window.addEventListener('DOMContentLoaded', () => {
       fbp: getCookie('_fbp'),
       fbc: getCookie('_fbc')
     };
-    var sendTrack = function() { fetch('/api/track', { method: 'POST', body: JSON.stringify(payload), headers: {'Content-Type': 'application/json'}, keepalive: true }).catch(function(){}); };
-    if ('requestIdleCallback' in window) { requestIdleCallback(sendTrack, {timeout: 2000}); } else { setTimeout(sendTrack, 100); }
+    if (navigator.sendBeacon) { navigator.sendBeacon('/api/track', new Blob([JSON.stringify(payload)], {type: 'application/json'})); } else { fetch('/api/track', { method: 'POST', body: JSON.stringify(payload), headers: {'Content-Type': 'application/json'}, keepalive: true }).catch(function(){}); }
   } catch(e) {}
 });
 // 2. Envia InitiateCheckout (CAPI + GTM)

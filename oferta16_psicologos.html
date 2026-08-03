@@ -1094,8 +1094,7 @@ window.addEventListener('DOMContentLoaded', () => {
       fbp: getCookie('_fbp'),
       fbc: getCookie('_fbc')
     };
-    var sendTrack = function() { fetch('/api/track', { method: 'POST', body: JSON.stringify(payload), headers: {'Content-Type': 'application/json'}, keepalive: true }).catch(function(){}); };
-    if ('requestIdleCallback' in window) { requestIdleCallback(sendTrack, {timeout: 2000}); } else { setTimeout(sendTrack, 100); }
+    if (navigator.sendBeacon) { navigator.sendBeacon('/api/track', new Blob([JSON.stringify(payload)], {type: 'application/json'})); } else { fetch('/api/track', { method: 'POST', body: JSON.stringify(payload), headers: {'Content-Type': 'application/json'}, keepalive: true }).catch(function(){}); }
   } catch(e) {}
 });
 // 2. Envia InitiateCheckout (CAPI + GTM)
